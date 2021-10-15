@@ -34,6 +34,14 @@ footer {
     text-align: right;
 }
 
+.footerAsideDerecha a {
+    color: green;
+}
+
+.footerAsideDerecha a:hover {
+    color: lightgreen;
+}
+
 /* TABLETS */
 @media (max-width: 768px) {
     footer {
@@ -42,7 +50,8 @@ footer {
         padding-top: 1vw;
         padding-left: 2vw;
         padding-right: 2vw;
-        padding-bottom: 1vw;        display: grid;
+        padding-bottom: 1vw;        
+        display: grid;
         grid-template-columns: auto auto auto;
         grid-template-rows: auto;
     }
@@ -68,7 +77,8 @@ footer {
         padding-top: 1vw;
         padding-left: 2vw;
         padding-right: 2vw;
-        padding-bottom: 1vw;        display: grid;
+        padding-bottom: 1vw;        
+        display: grid;
         grid-template-columns: auto;
         grid-template-rows: auto auto auto;
         gap: 1vw;
