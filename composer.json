@@ -1,0 +1,19 @@
+{
+    "name": "grupo3/fix-point",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Grupo3\\FixPoint\\": "web/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Grupo 3",
+            "email": "2dw3grupo3@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "8.0"
+    }
+}
