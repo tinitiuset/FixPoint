@@ -3,6 +3,7 @@
 
 function getHeader($headerArgs = null) : void
 {
+    session_start();
     $structure = '
     <!DOCTYPE html>
     <html lang="es">
@@ -26,6 +27,7 @@ function getHeader($headerArgs = null) : void
 
 function navbar(): string
 {
+
     return 'navbar';
 }
 
