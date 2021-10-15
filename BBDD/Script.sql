@@ -2,21 +2,21 @@ create database fixPoint collate utf8mb4_spanish_ci;
 
 use fixPoint;
 
-create table usuario{
+create table usuario(
     dni char(9) primary key,
     nombre varchar(10) not null,
     apellidos varchar(30) not null,
     administrador boolean not null default false,
     password varchar(20) not null,
     email varchar(30) not null unique
-    };
+);
 
-create table categoria{
+create table categoria(
     idCategoria int primary key auto_increment,
     nombre varchar(15) unique
-    };
+    );
 
-create table herramienta{
+create table herramienta(
     id_herramienta int primary key auto_increment,
     nombre varchar(15) not null unique,
     modelo varchar(15) not null,
@@ -25,9 +25,9 @@ create table herramienta{
     observaciones varchar(60),
     idCategoria int not null,
     constraint fk_idCategoria_herramienta foreign key (idCategoria) references categoria (idCategoria) on update cascade,
-    };
+                                                                                                              );
 
-create table alquiler{
+create table alquiler(
     dni char(9) primary key,
     id_herramienta int,
     fechaInicio date not null,
@@ -36,9 +36,9 @@ create table alquiler{
     constraint ch_dias check(dias>0),
     constraint fk_DNI_alquiler foreign key (dni) references usuario (dni) on update cascade,
     constraint fk_IDHERRAMIENTA_alquiler foreign key (id_herramienta) references herramienta (id_herramienta) on update cascade,
-    };
+                                                                                                                                                                                                  );
 
-create table guiaDespiece{
+create table guiaDespiece(
     numFicha int primary key auto_increment,
     fecha date default current_date,
     nombreMaquina varchar(15) not null unique,
@@ -47,13 +47,13 @@ create table guiaDespiece{
     propuesta varchar(70) not null,
     averias varchar(80) not null,
     solucion varchar(70) not null
-    };
+    );
 
-create table creadorGuia{
+create table creadorGuia(
     dni char(9),
     numFicha int,
     constraint pk_creadorGuia primary key (dni, numFicha),
     constraint fk_DNI_creadorGuia foreign key (dni) references usuario (dni) on update cascade,
     constraint fk_numFicha_creadorGuia foreign key (numFicha) references guiaDespiece (numFicha) on update cascade,
-    };
+                                                                                                                                                                                        );
 
