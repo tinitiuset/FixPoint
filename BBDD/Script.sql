@@ -65,3 +65,13 @@ create table creadorGuia
     constraint fk_numFicha_creadorGuia foreign key (numFicha) references guiaDespiece (numFicha) on update cascade
 );
 
+create table paso
+(
+    numpaso int,
+    numficha int,
+    detalle varchar(200) not null,
+    foto varchar(50);
+    constraint pk_paso primary key (numpaso, numficha),
+    constraint fk_numFicha_paso foreign key (numFicha) references guiaDespiece (numFicha) on update cascade
+);
+
