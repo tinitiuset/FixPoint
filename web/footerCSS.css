@@ -1,14 +1,28 @@
 footer {
     background-color: black;
     color: white;
-    padding: 2vw;
+    padding-top: 1vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 1vw;
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto;
-    margin: 0;
 }
 
-.footerAsideIzquierda {
+.footerAsideizquierda * {
+    margin: 0.4vw;
+}
+
+.footerSectionCentro * {
+    margin: 0.4vw;
+}
+
+.footerAsideDerecha * {
+    margin: 0.4vw;
+}
+
+.footerAsideizquierda {
     text-align: left;
 }
 
@@ -25,14 +39,15 @@ footer {
     footer {
         background-color: black;
         color: white;
-        padding: 2vw;
-        display: grid;
+        padding-top: 1vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        padding-bottom: 1vw;        display: grid;
         grid-template-columns: auto auto auto;
         grid-template-rows: auto;
-        margin: 0;
     }
     
-    .footerAsideIzquierda {
+    .footerAsideizquierda {
         text-align: left;
     }
     
@@ -50,8 +65,10 @@ footer {
     footer {
         background-color: black;
         color: white;
-        padding: 2vw;
-        display: grid;
+        padding-top: 1vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        padding-bottom: 1vw;        display: grid;
         grid-template-columns: auto;
         grid-template-rows: auto auto auto;
         gap: 1vw;
