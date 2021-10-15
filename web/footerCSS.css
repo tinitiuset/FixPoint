@@ -1,0 +1,63 @@
+footer {
+    background-color: black;
+    color: white;
+    padding: 2vw;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    margin: 0;
+}
+
+.footerAsideIzquierda {
+    text-align: left;
+}
+
+.footerSectionCentro {
+    text-align: center;
+}
+
+.footerAsideDerecha {
+    text-align: right;
+}
+
+/* TABLETS */
+@media (max-width: 768px) {
+    footer {
+        background-color: black;
+        color: white;
+        padding: 2vw;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto;
+        margin: 0;
+    }
+    
+    .footerAsideIzquierda {
+        text-align: left;
+    }
+    
+    .footerSectionCentro {
+        text-align: center;
+    }
+    
+    .footerAsideDerecha {
+        text-align: right;
+    }
+}
+
+/* MÓVILES */
+@media (max-width: 484px) {
+    footer {
+        background-color: black;
+        color: white;
+        padding: 2vw;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        gap: 1vw;
+    }
+
+    footer * {
+        text-align: center;
+    }
+}
