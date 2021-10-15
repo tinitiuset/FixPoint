@@ -3,10 +3,10 @@ require "functions.php";
 $args = [
     'title' => 'Index',
     'styles' => [
-        'style.css',
+        'css/footer.css',
     ],
     'scripts' => [
-        'script.js',
+        'js/script.js',
     ]
 ];
 
