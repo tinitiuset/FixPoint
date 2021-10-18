@@ -31,19 +31,15 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
 /*--------------------------------------- Version Movil ---------------------------------------------*/
 /*---------------Barra de Navegacion-----------------*/
 nav > div {
-    /*display: inline-block;*/
     padding-right: 20px;
 }
 
 .iconoLogin {
-    /*padding: 1em;*/
     position: absolute;
-    /*top: .5em;*/
-    right: 5em;
-    display: flex;
-    align-items: center;
-    
+    top: 2em;
+    right: 5em; 
 }
+
 .iconoLogin > a{
     color: white;
     text-decoration: none;
@@ -52,43 +48,22 @@ nav > div {
     color: #1975f1;
 }
 
-.Login-a{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.Login-a > a {
-    color: white; /*Le damos color a los enlaces*/
-    text-decoration: none;
-}
-
-.Login-a > a:hover {
-    color: #1975f1; 
-}
-    
 .Login {
-    display: flex;
-    align-items: center;
-}
-
-.Login > div {
-    display: inline-block;
+    display: none;
+   
 }
 
 .logo{
     margin: 0; /*como estaba en posicion relativa le damos margin 0 para posicionarlo arriba a la derecha*/
 }
 
-.container{
-    max-width: 400px; /*le damos un tamaño máximo fijo de 400px*/
-}
-
 .site-nav{
+    margin-top: 1%;
+    position: absolute; /* Le damos una posición absoluta */ 
+    right:0; /*lo colocamos en la esquina superior derecha*/
     background:#334756; /* Le damos el mismo color que a la barra de navegación*/
     clip-path: circle(0px at top right); /* le decimos que posición va a tener normal  */
     transition: clip-path ease-in-out 700ms; /* le ponemos tiempo al efecto*/
-    /*display: flex;
-    align-items: center;*/
 }
 
 .site-nav-open{ /*utilizamos la utilidad clip-path:*/
@@ -112,8 +87,6 @@ nav > div {
     position: absolute;
     top: 1.5em;
     right: .5em; 
-    display: flex;
-    align-items: center;
 }
 
 
@@ -154,7 +127,7 @@ nav > div {
 }
 
 /*-------------------------------------------version tablet------------------------------------*/
-@media (min-width:600px){
+@media (min-width:768px){
     .container{
         margin-left: 20px;
     }
@@ -165,9 +138,6 @@ nav > div {
 
 /*-------------------------------Versión Web-------------------------------------*/
 @media only screen and (min-width:1200px){
-    .container {
-      display: inline;
-    }
     .iconoLogin {
         display: none;
     }
@@ -176,18 +146,38 @@ nav > div {
         display:none ; /*con esto eliminamos la hamburguesa*/
     } 
 
+    .Login > div {
+        display: inline-block;
+    }
+
+    .Login-a{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .Login-a > a {
+        color: white; /*Le damos color a los enlaces*/
+        text-decoration: none;
+    }
+    
+    .Login-a > a:hover {
+        color: #1975f1; 
+    }
+
     .Login {
         display: flex;
-        margin-left: 350px;
+        margin-left: 450px;
         padding: auto;
     }
 
     .site-nav{
         background: transparent;
         clip-path: initial;
-        margin-left: 30px;
         display: flex;
-        align-items: center;
+        position: relative;
+        margin-top: 2em;
+        margin-left: 0%;
+   
     } 
 
     .icon-bar {
