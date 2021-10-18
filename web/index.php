@@ -11,7 +11,12 @@ $args = [
 ];
 
 function getContent () {
-    echo "Content";
+
+    $content= '
+    <div> 
+    
+    </div>';
+    echo $content;
 }
 
 getHeader($args);
