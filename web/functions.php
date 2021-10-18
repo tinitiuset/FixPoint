@@ -31,7 +31,7 @@ function getHeader($headerArgs = null) : void
 function navbar(): string
 {
 
-    return 'navbar';
+    return '';
 }
 
 function getFooter($footerArgs = null)
