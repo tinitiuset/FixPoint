@@ -13,8 +13,9 @@
     <!--Creamos el favicon-->
     <link rel="icon" href="../Favicon/favicon.png" type="image/ico">
     <!-- Cargamos las hojas de estilo que va a utilizar la página-->
-    <link rel="stylesheet" href="../CSS/CSS_Header2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/CSS_Header.css">
+    <link rel="stylesheet" href="../https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/CSS_crearSesion.css">
     <!--Titulo que queremos que tenga la pagina en concreto-->
     <title>Inicio</title>
 </head>
@@ -31,7 +32,7 @@
             <div class="Contacto"><a href="">Contacto <i class="fas fa-envelope"></i></a></div>
         </nav>
         <div class="Login">
-            <div class="Login-a"><a href="">Unete</a></div>
+            <div class="Login-a"><a id="login">Unete</a></div>
             <div class="icon-bar"></div>
             <div class="Login-a"><a href="">Iniciar Sesión</a></div>
         </div>
@@ -40,6 +41,36 @@
             <div class="hamburger"></div>
         </div>
     </header>
+    <!-- Modal creación de usuario -->
+    <div class="modalCrearSesion" id="modal">
+        <div class="modalContenido">
+            <div class="modalHeader">
+                <span class="cerrar">&times;</span>
+                <h2>Crear Cuenta</h2>
+                <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
+            </div>
+            <div class="modalBody">
+                <form action="" method="post">
+                    <label for="dni">DNI:</label><br>
+                    <input type="text" name="dni"><br>
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" name="nombre"><br>
+                    <label for="apellidos">Apellidos:</label><br>
+                    <input type="text" name="apellidos"><br>
+                    <label for="correo">Correo electrónico:</label><br>
+                    <input type="text" name="correo"><br>
+                    <p>Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
+                    <label for="contrasena">Contraseña:</label><br>
+                    <input type="password" name="contrasena"><br>
+                    <label for="confirmarContrasena">Confirmar contraseña:</label><br>
+                    <input type="password" name="confirmarContrasena"><br><br>
+                    <input type="submit" value="Crear cuenta"><br>
+                    <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="../JS/Menu.js"></script>
+    <script src="../JS/crearSesion.js"></script>
 </body>
 </html>
