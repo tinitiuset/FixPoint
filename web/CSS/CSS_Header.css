@@ -83,10 +83,12 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
 /*-------------------------------Versión Móvil-------------------------------------*/
 @media (max-width:400px) { 
     .container{
-        max-width: 400px; /*le damos un tamaño máximo fijo de 400px*/
+       margin: 0 auto;
     }
     
     .site-nav{
+        position: absolute; /* Le damos una posición absoluta */ 
+        right:0; /*lo colocamos en la esquina superior derecha*/
         background:#334756; /* Le damos el mismo color que a la barra de navegación*/
         clip-path: circle(0px at top right); /* le decimos que posición va a tener normal  */
         transition: clip-path ease-in-out 700ms; /* le ponemos tiempo al efecto*/
@@ -100,6 +102,9 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
     }
     
     .site-nav a{
+        display: block;
+        padding: 1em 3em; /*1 arriba y abajo, 3 derecha e izquierda*/
+        text-transform: uppercase;
         color: white; /*Le damos color a los enlaces*/
         text-decoration: none; /* Se le quita la decoración del enlace por defecto*/
     }
