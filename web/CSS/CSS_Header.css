@@ -31,9 +31,27 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
 /*--------------------------------------- Version Movil ---------------------------------------------*/
 /*---------------Barra de Navegacion-----------------*/
 nav > div {
-    display: inline-block;
+    /*display: inline-block;*/
     padding-right: 20px;
 }
+
+.iconoLogin {
+    /*padding: 1em;*/
+    position: absolute;
+    /*top: .5em;*/
+    right: 5em;
+    display: flex;
+    align-items: center;
+    
+}
+.iconoLogin > a{
+    color: white;
+    text-decoration: none;
+}
+.iconoLogin > a:hover{
+    color: #1975f1;
+}
+
 .Login-a{
     padding-left: 20px;
     padding-right: 20px;
@@ -69,8 +87,8 @@ nav > div {
     background:#334756; /* Le damos el mismo color que a la barra de navegación*/
     clip-path: circle(0px at top right); /* le decimos que posición va a tener normal  */
     transition: clip-path ease-in-out 700ms; /* le ponemos tiempo al efecto*/
-    display: flex;
-    align-items: center;
+    /*display: flex;
+    align-items: center;*/
 }
 
 .site-nav-open{ /*utilizamos la utilidad clip-path:*/
@@ -92,9 +110,12 @@ nav > div {
 .menu-toggle{
     padding: 1em;
     position: absolute;
-    top: .5em;
-    right: .5em;   
+    top: 1.5em;
+    right: .5em; 
+    display: flex;
+    align-items: center;
 }
+
 
 /* Hacemos una animacion girando las lineas para que sean aspas*/
 .menu-open .hamburger{ /*con esta clase hacemos girar las aspas debemos enlazarlo
@@ -137,6 +158,9 @@ nav > div {
     .container{
         margin-left: 20px;
     }
+    .Login {
+        display: none;
+    }
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
@@ -144,16 +168,26 @@ nav > div {
     .container {
       display: inline;
     }
+    .iconoLogin {
+        display: none;
+    }
 
     .menu-toggle{
         display:none ; /*con esto eliminamos la hamburguesa*/
     } 
 
+    .Login {
+        display: flex;
+        margin-left: 350px;
+        padding: auto;
+    }
+
     .site-nav{
         background: transparent;
         clip-path: initial;
-        margin: 0%;
-        margin-right: 150px;
+        margin-left: 30px;
+        display: flex;
+        align-items: center;
     } 
 
     .icon-bar {
