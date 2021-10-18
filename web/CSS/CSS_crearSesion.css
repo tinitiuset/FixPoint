@@ -12,12 +12,12 @@
 
 .modalHeader {
   background-color: whitesmoke;
-  padding: 2px 16px;
+  padding: 2px 2px;
 }
 
 .modalBody {
   background-color: rgb(235, 235, 235);
-  padding: 2px 16px;
+  padding: 2px 2px;
 }
 
 .modalContenido {
