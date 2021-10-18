@@ -7,3 +7,6 @@
             menuOpen.classList.toggle('menu-open');
 
     }
+window.onload = function() {  
+    document.getElementById("menu-toggle").onclick = cambiarClase;
+}
