@@ -52,16 +52,19 @@
             <div class="modalBody">
                 <form action="" method="post">
                     <label for="dni">DNI:</label><br>
-                    <input type="text" name="dni"><br>
+                    <input type="text" name="dni" required><br>
                     <label for="nombre">Nombre:</label><br>
-                    <input type="text" name="nombre"><br>
+                    <input type="text" name="nombre" required><br>
                     <label for="apellidos">Apellidos:</label><br>
-                    <input type="text" name="apellidos"><br>
+                    <input type="text" name="apellidos" required><br>
                     <label for="correo">Correo electrónico:</label><br>
-                    <input type="text" name="correo"><br>
+                    <input type="email" placeholder="Email@ejemplo.com" name="correo" 
+                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
                     <p>Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
                     <label for="contrasena">Contraseña:</label><br>
-                    <input type="password" name="contrasena"><br>
+                    <input type="password" name="contrasena" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+                    title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 
+                    o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <label for="confirmarContrasena">Confirmar contraseña:</label><br>
                     <input type="password" name="confirmarContrasena"><br><br>
                     <input type="submit" value="Crear cuenta"><br>
