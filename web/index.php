@@ -5,9 +5,10 @@ $args = [
     'styles' => [
         'css/footer.css',
         'css/index.css',
+        'css/CSS_Header.css',
     ],
     'scripts' => [
-        'js/script.js',
+        'js/Menu.js',
     ]
 ];
 

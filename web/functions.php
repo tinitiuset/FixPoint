@@ -31,7 +31,29 @@ function getHeader($headerArgs = null) : void
 function navbar(): string
 {
 
-    return '';
+    return '
+    <header>
+        <div class="container">
+            <a class="logo" href="Index.html"><img src="../web/img/Logo-250px.png" alt="FixPoint LOGO"></a>
+        </div>
+        <nav id="site-nav" class="site-nav">
+            <div class="catalogo"><a href="">Catálogo</a></div>
+            <div class="Guías"><a href="">Guías despiece</a></div>
+            <div class="Donar"><a href="">Donar herramientas</a></div>
+            <div class="Contacto"><a href="">Contacto <i class="fas fa-envelope"></i></a></div>
+            <div class="Login" id="Login">
+                <div class="Login-a"><a href="">Unete</a></div>
+                <div class="icon-bar"></div>
+                <div class="Login-a"><a href="">Iniciar Sesión</a></div>
+            </div>
+        </nav>
+        <div class="iconoLogin"><a href=""><i class="far fa-user"></i></a></div>
+        <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
+        en nuestro caso onClick que llama al Menu.js-->
+            <div class="hamburger"></div>
+        </div>
+    </header>
+    ';
 }
 
 function getFooter($footerArgs = null)
