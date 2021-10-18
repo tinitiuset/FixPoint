@@ -1,5 +1,4 @@
-window.onload = function() {
-    console.log("Ejecutando")
+ console.log("Ejecutando")
     function cambiarClase(){ /*llamamos a la funcion cambiarclase*/
         let siteNav = document.getElementById('site-nav'); /* Declaramos la variable siteNave*/ 
             siteNav.classList.toggle('site-nav-open'); /**Aqui añadimos la clase que queramos que añada o quite */
@@ -8,4 +7,3 @@ window.onload = function() {
             menuOpen.classList.toggle('menu-open');
 
     }
-}
