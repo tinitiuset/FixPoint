@@ -17,8 +17,8 @@ function getContent () {
 
     $content= '
     <div class="slideshow-container">
-        <div class="slider fade"> 
-            <img name ="slider">
+        <div class="slider fade">
+        <img name ="slider" src="../web/img/back01.jpg" id="slider">
             <div class="text">
                 <h2>¿Qué es FixPoint?</h2>
                 <p>FixPoint es una iniciativa circular sostenible, 
@@ -26,13 +26,12 @@ function getContent () {
                 luchando por una economía circular con nuestra 
                 biblioteca de herramientas.</p>
             </div>
+    </div>
+        <button class="btnDonar">Donar Herramientas</button>
         </div>
-   
-            <button class="btnDonar">Donar Herramientas</button>
-        </div>
-        <a class="back">&#10094</a>
-        <a class="next">&#10095</a>
-    </div>';
+            <a class="back" id="back">&#10094</a>
+            <a class="next" id="next">&#10095</a>
+        </div>';
     echo $content;
 }
 

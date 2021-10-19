@@ -20,11 +20,11 @@ img {
 }
 
 .slideshow-container{
-    max-width: fit-content;
-    position:relative;
-    margin:auto;
-   }
+    position: relative;
+    margin: auto;
+}
 
+   
 .back, .next{
     cursor:pointer;
     position:absolute;
@@ -58,11 +58,11 @@ img {
    }
 
    /*Y finalmente las animaciones*/
-.fade{
-    -webkit-animation-name:fade;
-    -webkit-animation-duration:1.5s;
-    animation-name:fade;
-    animation-duration:1.5s;
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
    }
    
    @-webkit-keyframes fade{
