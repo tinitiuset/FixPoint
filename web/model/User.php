@@ -24,6 +24,17 @@ class User
 
     private $activo;
 
+    function __construct($dni = '', $nombre = '', $apellidos= '', $password = '', $email = '', $administrador = 0, $activo = 0) {
+
+        $this->setDni($dni);
+        $this->setNombre($nombre);
+        $this->setApellidos($apellidos);
+        $this->setPassword($password);
+        $this->setEmail($email);
+        $this->setAdministrador($administrador);
+        $this->setActivo($activo);
+
+    }
     /**
      * @param $id int ID of user to be retrieved from the database.
      */
@@ -58,7 +69,8 @@ class User
 
     public function activateUser()
     {
-        $query = "UPDATE `usuario` SET `activo` = '" . $this->getActivo() . "' 
+
+        $query = "UPDATE `usuario` SET `activo` = '" . ($this->getActivo() ^ 1) . "' 
                   WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
         $this->setActivo(!$this->getActivo());
         Connection::executeQuery($query)->execute();
