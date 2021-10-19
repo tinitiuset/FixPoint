@@ -31,6 +31,11 @@
   margin: 15% auto;
 }
 
+.btnCrearCuenta {
+  background-color: #1975f1;
+  color: white;
+}
+
 /* Botón de cerrar */
 .cerrar {
     color: #aaa;
