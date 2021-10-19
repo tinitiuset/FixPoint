@@ -16,5 +16,8 @@
     "require": {
         "php": "^7.4",
         "vlucas/phpdotenv": "5.3.x-dev"
+    },
+    "require-dev": {
+        "kint-php/kint": "dev-master"
     }
 }

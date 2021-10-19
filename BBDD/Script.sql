@@ -9,7 +9,7 @@ create table usuario (
     administrador boolean not null default false,
     password varchar(20) not null,
     email varchar(30) not null unique,
-    activo boolean not null default true
+    activo boolean not null default false
 );
 
 create table categoria (

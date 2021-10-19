@@ -1,8 +1,12 @@
 <?php
 
-namespace Grupo3\FixPoint\model;
 
+namespace Grupo3\FixPoint\model;
 use Grupo3\FixPoint\Connection;
+use Kint\Kint;
+use PDO;
+
+require __DIR__ .'/../Connection.php';
 
 class User
 {
@@ -20,17 +24,44 @@ class User
 
     private $activo;
 
-    public function createUser(){
+    /**
+     * @param $id int ID of user to be retrieved from the database.
+     */
+    function getUser(int $id)
+    {
+         $query = "SELECT * FROM `usuario` WHERE `dni` LIKE '".$id."' ";
+         $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+         $this->setDni($User['dni']);
+         $this->setNombre($User['nombre']);
+         $this->setApellidos($User['apellidos']);
+         $this->setAdministrador($User['administrador']);
+         $this->setPassword(null);
+         $this->setEmail($User['email']);
+         $this->setActivo($User['activo']);
+
+         Kint::dump($this);
+
+    }
+
+    public function createUser()
+    {
         $query = "INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`) VALUES 
-                                        ('".$this->getDni()."',
-                                         '".$this->getNombre()."',
-                                         '".$this->getApellidos()."',
-                                         '".$this->getAdministrador()."',
-                                         '".$this->getPassword()."',
-                                         '".$this->getEmail()."'
+                                        ('" . $this->getDni() . "',
+                                         '" . $this->getNombre() . "',
+                                         '" . $this->getApellidos() . "',
+                                         '" . $this->getAdministrador() . "',
+                                         '" . $this->getPassword() . "',
+                                         '" . $this->getEmail() . "'
                                          );";
         Connection::executeQuery($query);
+    }
 
+    public function activateUser()
+    {
+        $query = "UPDATE `usuario` SET `activo` = '" . $this->getActivo() . "' 
+                  WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
+        $this->setActivo(!$this->getActivo());
+        Connection::executeQuery($query)->execute();
     }
 
     /**
