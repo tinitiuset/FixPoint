@@ -1,18 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("formularioRegistro").addEventListener('submit', validarFormulario);
 });
+
 function validarFormulario(evento) {
+    /*Para que el formulario no haga el submit hasta que yo quiera*/
     evento.preventDefault();
 
     if (validarDni(document.getElementsByName('dni')[0].value)
         && validarApellidos(document.getElementsByName('apellidos')[0].value)
         && validarNombre(document.getElementsByName('nombre')[0].value)
         && validarEmail(document.getElementsByName('email')[0].value)
+        && comprobarPasswords(document.getElementsByName('password')[0].value,
+            document.getElementsByName('passwordConfirm')[0].value)
     ) {
 
-        return 'ok';
-
+        /*Submiteamos el formulario*/
         this.submit();
+
+        /*Este mensaje no sale por el submit de cuando es correcto*/
+        var mensaje = 'Usuario registrado correctamente';
+
+
 
     } else {
 
@@ -20,23 +28,40 @@ function validarFormulario(evento) {
         var mensaje = '';
 
         if (!validarDni(document.getElementsByName('dni')[0].value)) {
-            mensaje += '<br>- El dni no es correcto';
-        }if (!validarApellidos(document.getElementsByName('apellidos')[0].value)) {
-            mensaje += '<br>- Rellena los apellidos correctamente';
+            mensaje += '- El dni no es correcto';
+
+        }
+        if (!validarApellidos(document.getElementsByName('apellidos')[0].value)) {
+            mensaje += '- Rellena los apellidos correctamente';
         }
         if (!validarEmail(document.getElementsByName('email')[0].value)) {
-            mensaje += '<br>- El email no es correcto';
+            mensaje += '- El email no es correcto';
         }
         if (!validarNombre(document.getElementsByName('nombre')[0].value)) {
-            mensaje += '<br>- El nombre no es correcto';
+            mensaje += '- El nombre no es correcto';
         }
-        alert(mensaje);
+        if (!comprobarPasswords(document.getElementsByName('password')[0].value,
+            document.getElementsByName('passwordConfirm')[0].value)) {
+            mensaje += '- Las contraseñas no coinciden';
+        }
+
     }
+    let element = document.getElementById('alertwarning');
+    element.innerHTML = mensaje;
+    element.style.visibility = 'visible';
+
+}
+
+function comprobarPasswords(pass, passConfirm) {
+    if (pass == passConfirm)
+        return true;
+    else
+        return false
 
 }
 
 function validarEmail(valor) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)) {
+    if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(valor)) {
         return true;
 
     } else {
@@ -46,9 +71,8 @@ function validarEmail(valor) {
 }
 
 function validarDni(dni) {
-    alert(dni);
     var numero = dni.substring(0, (dni.length - 1));
-    var letter = dni.charAt(dni.length);
+    var letter = dni.charAt(dni.length - 1);
     if (!isNaN(numero)
         && isNaN(letter)
         && numero.toString().length === 8
