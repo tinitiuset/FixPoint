@@ -2,7 +2,7 @@
 
 use Grupo3\FixPoint\Connection;
 
-require 'db_conn.php';
+require '../web/Connection.php';
 
 $mensajeError = '';
 
@@ -27,17 +27,16 @@ if (!empty($_REQUEST['apellidos']) &&
 
     /*Comprobar si existe ese email o dni ya que son unique*/
 
-    $queryEmail = "select email from usuario where email = ? ";
+    $queryEmail = "select email from usuario where email = '$email'";
 
-    $sqlEmail = $conn->prepare($queryEmail);
-    $sqlEmail->execute([$email]);
+    $sqlEmail = Connection::executeQuery($queryEmail);
 
     $numFilasSqlEmail = $sqlEmail->fetchAll();
 
-    $queryDni = "SELECT dni FROM usuario where dni=?;";
+    $queryDni = "SELECT dni FROM usuario where dni='$dni';";
 
-    $sqlDni = $conn->prepare($queryDni);
-    $sqlDni->execute([$dni]);
+    $sqlDni = Connection::executeQuery($queryDni);
+
 
     $numFilasSqlDni = $sqlDni->fetchAll();
 
@@ -62,7 +61,7 @@ if (!empty($_REQUEST['apellidos']) &&
 
         /*Ejecutamos consulta*/
 
-        if ($conn->prepare($insertUsuario)->execute()) {
+        if (Connection::executeQuery($insertUsuario)) {
             $mensajeError = 'Usuario creado correctamente';
         } else {
             $mensajeError = 'ERROR al crear el usuario, contacte con el administrador.';
