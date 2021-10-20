@@ -26,9 +26,9 @@ var texto = [
 "Promover una ciudad más sostenible, mediante el intercambio de herramientas y conocimientos, para alargar la vida útil de las cosas. Puedes ser parte de ésta iniciativa haciendo donación de material a nuestra Biblioteca de herramientas."
 ];
    
-imagenes[0] = '../web/img/back01.jpg';
-imagenes[1] = '../web/img/back02.jpg';
-imagenes[2] = '../web/img/back03.jpg';
+imagenes[0] = './img/back01.jpg';
+imagenes[1] = './img/back02.jpg';
+imagenes[2] = './img/back03.jpg';
 
 var indexImg = 0;
 
