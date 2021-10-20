@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Patinio Futura';
-    src: url('../Tipografía/Patinio\ Futura.ttf') format('truetype');
+    src: url('../res/Patinio Futura.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
   }
@@ -13,7 +13,7 @@ body{
 }
 
 header{
-    font-family:'Patinio Futura';
+    font-family: 'Patinio Futura', serif;
     font-size: 18px;
     background: #334756; /*le damos un color de fondo a la barra de navegación*/
     position: relative;
@@ -167,7 +167,7 @@ nav > div {
     .Login {
         display: flex;
         margin-left: 450px;
-        padding: auto;
+        padding: inherit;
     }
 
     .site-nav{
@@ -176,7 +176,7 @@ nav > div {
         display: flex;
         position: relative;
         margin-top: 2em;
-        margin-left: 0%;
+        margin-left: 0;
    
     } 
 

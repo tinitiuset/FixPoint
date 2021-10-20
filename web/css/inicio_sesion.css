@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'Patinio Futura';
-    src: url('../Tipografía/Patinio\ Futura.ttf') format('truetype');
+    src: url('../res/Patinio Futura.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
 }
 
 h1 {
-    font-family: 'Patinio Futura';
+    font-family: 'Patinio Futura', serif;
 }
 
 .enlace {
@@ -45,7 +45,6 @@ h1 {
 .modalContenido {
   background-color: #fefefe;
   text-align: center;
-  margin: auto;
   padding: 0;
   width: 25%;
   height: auto;
