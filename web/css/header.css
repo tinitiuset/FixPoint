@@ -1,0 +1,199 @@
+/*                     Elementos Comunes                 */
+
+@font-face {
+    font-family: 'Patinio Futura';
+    src: url('../res/Patinio Futura.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+  }
+
+body{
+    background: white; /* Le damos un color de fondo*/
+    font-family: 'Roboto', sans-serif; /* Cargamos la misma fuente en el body para todas las páginas*/
+}
+
+header{
+    font-family: 'Patinio Futura', serif;
+    font-size: 18px;
+    background: #334756; /*le damos un color de fondo a la barra de navegación*/
+    position: relative;
+    display: flex;
+}
+
+header::after{ /* Usamos este pseudo elemento y el clear both para indicar que queremos todos
+    los elementos flotantes dentro del contenedor*/
+
+    content: ''; /* El contenido lo dejamos vacio*/
+    clear: both;
+   display: block;
+}
+
+/*--------------------------------------- Version Movil ---------------------------------------------*/
+/*---------------Barra de Navegacion-----------------*/
+nav > div {
+    padding-right: 20px;
+}
+
+.iconoLogin {
+    position: absolute;
+    top: 2em;
+    right: 5em; 
+}
+
+.iconoLogin > a{
+    color: white;
+    text-decoration: none;
+}
+.iconoLogin > a:hover{
+    color: #1975f1;
+}
+
+.Login {
+    display: none;
+   
+}
+
+.logo{
+    margin: 0; /*como estaba en posicion relativa le damos margin 0 para posicionarlo arriba a la derecha*/
+}
+
+.site-nav{
+    margin-top: 1%;
+    position: absolute; /* Le damos una posición absoluta */ 
+    right:0; /*lo colocamos en la esquina superior derecha*/
+    background:#334756; /* Le damos el mismo color que a la barra de navegación*/
+    clip-path: circle(0px at top right); /* le decimos que posición va a tener normal  */
+    transition: clip-path ease-in-out 700ms; /* le ponemos tiempo al efecto*/
+}
+
+.site-nav-open{ /*utilizamos la utilidad clip-path:*/
+    clip-path: circle(150% at top right); /* al hacer click se abre
+                                         de manera circular*/
+}
+
+.site-nav a{
+    color: white; /*Le damos color a los enlaces*/
+    text-decoration: none; /* Se le quita la decoración del enlace por defecto*/
+}
+
+.site-nav a:hover,
+.site-nav a:focus{ /*cuando pasemos por encima o hagamos foco en él*/
+    color: #1975f1;
+}
+
+/* Esto va a ser donde se coloque la hamburguesa de nuestro menú*/
+.menu-toggle{
+    padding: 1em;
+    position: absolute;
+    top: 1.5em;
+    right: .5em; 
+}
+
+
+/* Hacemos una animacion girando las lineas para que sean aspas*/
+.menu-open .hamburger{ /*con esta clase hacemos girar las aspas debemos enlazarlo
+    en el javascript*/
+    transform: rotate(45deg);
+}
+
+.menu-open .hamburger::before{
+    opacity: 0;
+}
+
+.menu-open .hamburger::after{
+    transform: translateY(-3px) rotate(-90deg);
+}
+
+/*configuramos el css para hacer un icono de menu tipo hambuerguesa*/
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    display: block;
+    background: white;
+    height: 3px;
+    width: 1.75em;
+    border-radius: 3px;
+    transition: all ease-in-out 500ms; /*le añadimos una transición a todos los elementos
+    de 500 milisegundos para que tarde un poco mas en girar las aspas*/
+}
+
+.hamburger::before{
+    transform: translateY(-6px); /*asi tenemos las 3 rayas de nuestro menu*/
+}
+
+.hamburger::after{
+    transform: translateY(3px); /*asi tenemos las 3 rayas de nuestro menu*/
+}
+
+/*-------------------------------------------version tablet------------------------------------*/
+@media (min-width:768px){
+    .container{
+        margin-left: 20px;
+    }
+    .Login {
+        display: none;
+    }
+}
+
+/*-------------------------------Versión Web-------------------------------------*/
+@media only screen and (min-width:1200px){
+    .iconoLogin {
+        display: none;
+    }
+
+    .menu-toggle{
+        display:none ; /*con esto eliminamos la hamburguesa*/
+    } 
+
+    .Login > div {
+        display: inline-block;
+    }
+
+    .Login-a{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .Login-a > a {
+        color: white; /*Le damos color a los enlaces*/
+        text-decoration: none;
+    }
+    
+    .Login-a > a:hover {
+        color: #1975f1; 
+    }
+
+    .Login {
+        display: flex;
+        margin-left: 450px;
+        padding: inherit;
+    }
+
+    .site-nav{
+        background: transparent;
+        clip-path: initial;
+        display: flex;
+        position: relative;
+        margin-top: 2em;
+        margin-left: 0;
+   
+    } 
+
+    .icon-bar {
+        flex-shrink: 0;
+        width: 1px;
+        height: 24px;
+        background:rgb(117, 114, 114);
+    }
+
+
+    .site-nav a:hover,
+    .site-nav a:focus{
+        background: transparent;
+    }
+}
+
+
+
+    
