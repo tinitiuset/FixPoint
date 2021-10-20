@@ -20,28 +20,32 @@ p {
 
 img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 body {
     background-color: black;
 }
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+
+.bold {
+    font-weight: 900;
+}
 .btnDonar {
     display: none;
-    position: absolute;
-    top: 250px;
     align-items: center;
     color: white;
     border: 2px solid #eec51f;
-    border-radius: 6px;
+    border-radius: 8px;
     text-transform: uppercase;
-    background: transparent;
+    background: #F79C14;
     padding: 16px 32px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     text-decoration: none;
-    left: 42%;
+    margin-top: 70px;
 }
 
 .btnDonar:hover {
@@ -91,60 +95,89 @@ body {
     font-size: medium;
 }
 
+.slideshow-container{
+    height: 427px;
+}
+
+ /*Y finalmente las animaciones*/
+ .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    display: flex;
+    flex-direction: column;
+    height: 427px;
+}
+
+@-webkit-keyframes fade{
+    from{opacity:.4}
+    to{opacity:1}
+}
+
+@keyframes fade{
+    from{opacity:.4}
+    to{opacity:1}
+}
+
 
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
     .floatText {
-        font-size:large;
-}
+        font-size: 30px;
+        padding: 0 100px;
+        margin-top: 5vw;
+        line-height: 40px;
+    }
 
-.text{
-    top: 160px;
-}
+    .text{
+        top: 50vw;
+    }
 
-#titulo {
-    font-size: x-large;
-}
+    #titulo {
+        font-size: xxx-large;
+    }
 
-.btnDonar {
-    top: 200px;
-}
+    .btnDonar {
+        top: 40vw;
+        font-size: 20px;
+    }
+    .fade {
+        height: 1000px;
+    }
 
+    .slideshow-container{
+        height: 1000px;
+    }
 
 /*-------------------------------Versión Web-------------------------------------*/
 @media only screen and (min-width:1200px){
     .slideshow-container{
         position: relative;
         margin: auto;
+        width: 100%;
+        height: 627px;
     }
 
     .floatText {
-        font-size: x-large;
+        font-size: xx-large;
+        padding: 0 300px;
     }
    
    .text{
         top: 100px;
     }
-    
-   /*Y finalmente las animaciones*/
+
     .fade {
-        -webkit-animation-name: fade;
-        -webkit-animation-duration: 1.5s;
-        animation-name: fade;
-        animation-duration: 1.5s;
-        display: flex;
-        flex-direction: column;
+        height: 627px;  
     }
-    
-    @-webkit-keyframes fade{
-        from{opacity:.4}
-        to{opacity:1}
+
+    .btnDonar {
+        top: 40vw;
+        font-size: 20px;
     }
-    
-    @keyframes fade{
-        from{opacity:.4}
-        to{opacity:1}
-   }
+   
+  
 }
 
 }

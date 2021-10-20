@@ -143,7 +143,7 @@ function footer() : string
             <p>Mapa web</p>
         </aside>
         <section class="footerSectionCentro">
-            <img src="img/LogoFooter.png" alt="FixPoint">
+            <img src="./img/LogoFix(b&w).png" alt="FixPoint">
             <p>© 2021 FixPoint - Todos los derechos reservados</p>
         </section>
         <aside class="footerAsideDerecha">

@@ -27,7 +27,7 @@ function getContent () {
                 <p class="floatText" id="parrafo">FixPoint es una iniciativa circular sostenible, 
                 que busca provocar un cambio en el sistema de sobreproducción, 
                 luchando por una economía circular con nuestra 
-                biblioteca de herramientas.</p>
+                <span class="bold">biblioteca de herramientas</span>.</p>
                 <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
             </div>
     </div>
