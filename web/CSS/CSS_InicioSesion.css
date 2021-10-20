@@ -9,23 +9,63 @@ h1 {
     font-family: 'Patinio Futura';
 }
 
-p {
-    font-size: 20px;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-}
-
 .enlace {
-    font-size: 20px;
     text-decoration: none;
     color: #1975f1;
-    padding-left: 50px;
 }
 
 .btn-iniciarSesion {
     color: white;
     background-color:#1975f1; 
+}
+
+.modalIniciarSesion {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(7, 7, 7, 0.363)
+  }
+
+.modalHeader {
+  background-color: whitesmoke;
+  padding: 2px 2px;
+}
+
+.modalBody {
+  background-color: rgb(235, 235, 235);
+  padding: 2px 2px;
+}
+
+.modalContenido {
+  background-color: #fefefe;
+  text-align: center;
+  margin: auto;
+  padding: 0;
+  width: 25%;
+  height: auto;
+  border: 1px solid #888;
+  margin: 15% auto;
+}
+
+/* Botón de cerrar */
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.cerrar:hover,
+.cerrar:focus {
+  color: black;
+  background-color: rgb(187, 187, 187);
+  height: auto;
+  text-decoration: none;
+  cursor: pointer;
 }
