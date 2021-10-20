@@ -43,9 +43,9 @@ function cambioImagen(event) {
     else {
         indexImg+=event.currentTarget.direction;
     }
-    document.getElementById("slider").innerHTML = textoH2 [indexImg];
-    document.getElementById("titulo").innerHTML = textoH2 [indexImg];
-    document.getElementById("parrafo").innerHTML = texto [indexImg];
+    document.getElementById("slider").src = imagenes[indexImg];
+    document.getElementById("titulo").innerHTML = textoH2[indexImg];
+    document.getElementById("parrafo").innerHTML = texto[indexImg];
     if (indexImg == 2) {
         document.getElementById("btnDonar").style.display = "inline-block";
     } else {
