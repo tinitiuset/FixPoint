@@ -21,7 +21,7 @@ function getContent () {
     $content= '
     <div class="slideshow-container">
         <div class="slider fade">
-        <img name="slider" src="../web/img/back01.jpg" id="slider">
+        <img src="../web/img/back01.jpg" id="slider">
             <div class="text">
                 <h2 id="titulo">¿Qué es FixPoint?</h2>
                 <p class="floatText" id="parrafo">FixPoint es una iniciativa circular sostenible, 

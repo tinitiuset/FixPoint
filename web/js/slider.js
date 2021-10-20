@@ -43,7 +43,7 @@ function cambioImagen(event) {
     else {
         indexImg+=event.currentTarget.direction;
     }
-    document.slider.src = imagenes [indexImg];
+    document.getElementById("slider").innerHTML = textoH2 [indexImg];
     document.getElementById("titulo").innerHTML = textoH2 [indexImg];
     document.getElementById("parrafo").innerHTML = texto [indexImg];
     if (indexImg == 2) {
