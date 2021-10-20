@@ -5,11 +5,14 @@ $args = [
     'styles' => [
         'css/footer.css',
         'css/index.css',
-        'css/CSS_Header.css',
+        'css/header.css',
+        'css/crear_sesion.css',
+        'css/inicio_sesion.css',
     ],
     'scripts' => [
-        'js/Menu.js',
+        'js/menu.js',
         'js/slider.js',
+        'js/modales.js',
     ]
 ];
 
@@ -18,7 +21,7 @@ function getContent () {
     $content= '
     <div class="slideshow-container">
         <div class="slider fade">
-        <img name ="slider" src="../web/img/back01.jpg" id="slider">
+        <img alt="slider" src="../web/img/back01.jpg" id="slider">
             <div class="text">
                 <h2 id="titulo">¿Qué es FixPoint?</h2>
                 <p class="floatText" id="parrafo">FixPoint es una iniciativa circular sostenible, 
