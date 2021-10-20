@@ -20,14 +20,14 @@ function getContent () {
         <div class="slider fade">
         <img name ="slider" src="../web/img/back01.jpg" id="slider">
             <div class="text">
-                <h2>¿Qué es FixPoint?</h2>
-                <p>FixPoint es una iniciativa circular sostenible, 
+                <h2 id="titulo">¿Qué es FixPoint?</h2>
+                <p class="floatText" id="parrafo">FixPoint es una iniciativa circular sostenible, 
                 que busca provocar un cambio en el sistema de sobreproducción, 
                 luchando por una economía circular con nuestra 
                 biblioteca de herramientas.</p>
+                <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
             </div>
     </div>
-        <button class="btnDonar">Donar Herramientas</button>
         </div>
             <a class="back" id="back">&#10094</a>
             <a class="next" id="next">&#10095</a>
