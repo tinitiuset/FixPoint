@@ -1,14 +1,12 @@
-* {
-    box-sizing: border-box;
-    margin: auto;
-}
-
+/*                     Elementos Comunes                 */
+*{box-sizing:border-box;
+    margin: auto;}
 @font-face {
     font-family: 'Patinio Futura';
     src: url('../Tipografía/Patinio\ Futura.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
-}
+  }
 
 h2 {
     color: white;
@@ -16,7 +14,6 @@ h2 {
     font-size: xx-large;
     margin: 0px;
 }
-
 p {
     font-family: 'Roboto', sans-serif;
 }
@@ -25,52 +22,14 @@ img {
     width: 100%;
 }
 
-.slideshow-container {
-    position: relative;
-    margin: auto;
+body {
+    background-color: black;
 }
-
-.floatText {
-    font-size: x-large;
-    padding: 0 300px;
-    padding-bottom: 50px;
-}
-
-.back, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-}
-
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-.back:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.text {
-    color: white;
-    position: absolute;
-    text-align: center;
-    top: 150px;
-}
-
-
+/*--------------------------------------- Version Movil ---------------------------------------------*/
 .btnDonar {
     display: none;
     position: absolute;
-    top: 200px;
+    top: 250px;
     align-items: center;
     color: white;
     border: 2px solid #eec51f;
@@ -82,7 +41,7 @@ img {
     font-size: 16px;
     cursor: pointer;
     text-decoration: none;
-    left: 40em;
+    left: 42%;
 }
 
 .btnDonar:hover {
@@ -93,32 +52,99 @@ img {
     padding: 16px 30px;
 }
 
+.back, .next{
+    cursor:pointer;
+    position:absolute;
+    top:50%;
+    width:auto;
+    margin-top:-22px;
+    padding:16px;
+    color:white;
+    font-weight:bold;
+    font-size:18px;
+    transition:0.6s ease;
+    border-radius:0 3px 3px 0;
+}
+.next{
+    right:0;
+    border-radius:3px 0 0 3px;
+}
 
-/*Y finalmente las animaciones*/
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-    display: flex;
-    flex-direction: column;
+.back:hover, .next:hover{
+    background-color:rgba(0,0,0,0.8);
+}
+
+.text{
+    color: white;
+    position: absolute;
+    text-align: center;
+    top: 160px;
+}
+
+.floatText {
+    font-size: large;
+    padding: 0 300px;
+    margin: 20px;
+}
+
+#titulo {
+    font-size: medium;
 }
 
 
-@-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
+/*-------------------------------------------version tablet------------------------------------*/
+@media (min-width:768px){
+    .floatText {
+        font-size:large;
 }
 
-@keyframes fade {
-    from {
-        opacity: .4
+.text{
+    top: 160px;
+}
+
+#titulo {
+    font-size: x-large;
+}
+
+.btnDonar {
+    top: 200px;
+}
+
+
+/*-------------------------------Versión Web-------------------------------------*/
+@media only screen and (min-width:1200px){
+    .slideshow-container{
+        position: relative;
+        margin: auto;
     }
-    to {
-        opacity: 1
+
+    .floatText {
+        font-size: x-large;
     }
+   
+   .text{
+        top: 100px;
+    }
+    
+   /*Y finalmente las animaciones*/
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @-webkit-keyframes fade{
+        from{opacity:.4}
+        to{opacity:1}
+    }
+    
+    @keyframes fade{
+        from{opacity:.4}
+        to{opacity:1}
+   }
+}
+
 }
