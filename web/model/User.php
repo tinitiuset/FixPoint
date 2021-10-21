@@ -38,6 +38,8 @@ class User
     /**
      * @param $id int ID of user to be retrieved from the database.
      */
+
+    /*Aqui habria que meter el id como una cadena de caracteres*/
     function getUser(int $id)
     {
          $query = "SELECT * FROM `usuario` WHERE `dni` LIKE '".$id."' ";
