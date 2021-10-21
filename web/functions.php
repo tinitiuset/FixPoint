@@ -12,6 +12,7 @@ function getHeader($headerArgs = null) : void
         <!-- Comprobar metas
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <title>'.$headerArgs['title'].'</title>
     ';
     foreach ($headerArgs['styles'] as $style){
@@ -36,7 +37,7 @@ function navbar(): string
     return '
     <header>
         <div class="container">
-            <a class="logo" href="index.php"><img src="../web/img/Logo-250px.png" alt="FixPoint LOGO"></a>
+            <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
         </div>
         <nav id="site-nav" class="site-nav">
             <div class="catalogo"><a href="">Catálogo</a></div>
