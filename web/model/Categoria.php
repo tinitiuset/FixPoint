@@ -32,7 +32,7 @@ class Categoria {
         Connection::executeQuery($query);
     }
 
-    public function feleteCategoria(int $idCategoria) {
+    public function deleteCategoria(int $idCategoria) {
         $query = "DELETE FROM 'categoria' WHERE 'idCategoria' LIKE '" . $idCategoria . "'";
         $Categoria = Connection::executeQuery($query);
     }
