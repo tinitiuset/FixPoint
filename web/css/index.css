@@ -125,7 +125,7 @@ body {
     .floatText {
         font-size: 30px;
         padding: 0 100px;
-        margin-top: 5vw;
+        margin-top: 2vw;
         line-height: 40px;
     }
 
@@ -142,11 +142,11 @@ body {
         font-size: 20px;
     }
     .fade {
-        height: 1000px;
+        height: 600px;
     }
 
     .slideshow-container{
-        height: 1000px;
+        height: 600px;
     }
 
 /*-------------------------------Versión Web-------------------------------------*/
