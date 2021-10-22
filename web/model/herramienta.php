@@ -57,10 +57,28 @@ class herramienta
 
     public function changeAvailability()
     {
-        $query = "UPDATE `herramienta` SET `disponible` = '" . ($this->getActivo() ^ 1) . "' 
+        $query = "UPDATE `herramienta` SET `disponible` = '" . ($this->getDisponible() ^ 1) . "' 
                   WHERE `herramienta`.`id_herramienta` = '" . $this->getIdHerramienta() . "'; ";
-        $this->setActivo(!$this->getDisponible());
+        $this->getDisponible(!$this->getDisponible());
         Connection::executeQuery($query)->execute();
+    }
+
+    // public function updateHerramienta(int $id_herramienta) {
+    //     $query = "UPDATE herramienta 
+    //     SET nombre = '" . $this->getNombre() . "', 
+    //     modelo = '" . $this->getModelo() . "',
+    //     marca = '" . $this->getMarca() . "',
+    //     disponible = '" . $this->getDisponible() . "',
+    //     observaciones = '" . $this->getObservaciones() . "',
+    //     idCategoria = (SELECT idCategoria FROM categoria WHERE ) '" . $this->getIdCategoria() . "'
+    //     WHERE id_herramienta LIKE '" . $id_herramienta . "' ";
+
+    //     Connection::executeQuery($query);
+    // }
+
+    public function deleteHerramienta(int $id_herramienta) {
+        $query = "DELETE FROM herramienta WHERE id_herramienta LIKE '" . $id_herramienta . "'";
+        Connection::executeQuery($query);
     }
 
     /**

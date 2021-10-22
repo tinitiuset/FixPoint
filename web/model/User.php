@@ -90,8 +90,8 @@ class User
         Connection::executeQuery($query)->execute();
     }
 
-    public function deleteUser() {
-        $query = "DELETE FROM user WHERE dni LIKE '" . $this->getDni() . "'";
+    public function deleteUser(int $dni) {
+        $query = "DELETE FROM user WHERE dni LIKE '" . $dni . "'";
         Connection::executeQuery($query);
     }
 
