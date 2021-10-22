@@ -69,6 +69,18 @@ class User
         Connection::executeQuery($query);
     }
 
+    public function updateUser(int $dni) {
+        $query = "UPDATE usuario
+        SET dni = '" . $this->getDni() . "', 
+        nombre = '" . $this->getNombre() . "',
+        apellidos = '" . $this->getApellidos() . "',
+        password = '" . $this->getPassword() . "',
+        email = '" . $this->getEmail() . "'
+        WHERE dni LIKE '" . $dni . "' ";
+
+        Connection::executeQuery($query);
+    }
+
     public function activateUser()
     {
 
@@ -76,6 +88,11 @@ class User
                   WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
         $this->setActivo(!$this->getActivo());
         Connection::executeQuery($query)->execute();
+    }
+
+    public function deleteUser() {
+        $query = "DELETE FROM user WHERE dni LIKE '" . $this->getDni() . "'";
+        Connection::executeQuery($query);
     }
 
     /**

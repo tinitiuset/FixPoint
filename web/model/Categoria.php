@@ -27,23 +27,23 @@ class Categoria {
     {
         $query = "INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES 
                                         ('" . $this->getIdCategoria() . "',
-                                         '" . $this->getNombre() . "',
+                                         '" . $this->getNombre() . "'
                                          );";
         Connection::executeQuery($query);
     }
 
     public function updateCategoria(int $idCategoria) {
-        $query = "UPDATE 'categoria' 
-        SET idCategoria = ' . $this->getIdCategoria() . ', 
-        nombre = ' . $this->getNombre() . ' 
+        $query = "UPDATE categoria 
+        SET idCategoria = '" . $this->getIdCategoria() . "', 
+        nombre = '" . $this->getNombre() . "' 
         WHERE dni LIKE '" . $idCategoria . "' ";
 
         Connection::executeQuery($query);
     }
 
     public function deleteCategoria(int $idCategoria) {
-        $query = "DELETE FROM 'categoria' WHERE 'idCategoria' LIKE '" . $idCategoria . "'";
-        
+        $query = "DELETE FROM categoria WHERE 'idCategoria' LIKE '" . $idCategoria . "'";
+
         Connection::executeQuery($query);
     }
 

@@ -26,23 +26,23 @@ class creadorguia {
     public function createCreadorGuia()
     {
         $query = "INSERT INTO `creadorguia` (`dni`, `numFicha`) VALUES 
-                                        ('" . $this->getDni() . "',
-                                         '" . $this->getNumFicha() . "',
+                                        ((SELECT dni FROM usuario WHERE dni LIKE '" . $this->getDni() . "'),
+                                         (SELECT numFicha FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "')
                                          );";
         Connection::executeQuery($query);
     }
 
     public function updateCreadorGuia(int $dni) {
-        $query = "UPDATE 'creadorguia' 
-        SET dni = ' . $this->getDni() . ', 
-        numFicha = ' . $this->getNumFicha() . ' 
+        $query = "UPDATE creadorguia 
+        SET dni = (SELECT dni FROM usuario WHERE dni LIKE '" . $this->getDni() . "'), 
+        numFicha = (SELECT numFicha FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "') 
         WHERE dni LIKE '" . $dni . "' ";
 
         Connection::executeQuery($query);
     }
 
     public function deleteCreadorGuia(int $dni) {
-        $query = "DELETE FROM 'creadorguia' WHERE 'dni' LIKE '" . $dni . "'";
+        $query = "DELETE FROM creadorguia WHERE 'dni' LIKE '" . $dni . "'";
         Connection::executeQuery($query);
     }
 
