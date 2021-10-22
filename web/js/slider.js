@@ -21,9 +21,9 @@ document.getElementById('back').onclick = cambioImagen;
 var imagenes = [];
 var textoH2 = ["¿Qué es FixPoint?","¿Qué es una biblioteca de herramientas?","¿Cuál es el objetivo de FixPoint?"];
 var texto = [
-"FixPoint es una iniciativa circular sostenible, que busca provocar un cambio en el sistema de sobreproducción, luchando por una economía circular con nuestra <span class=\"bold\">biblioteca de herramientas</span>.",
-"FixPoint es una biblioteca como otra cualquiera. Te conviertes en mienbro y después puedes tomar prestadas las herramientas.",
-"Promover una ciudad más sostenible, mediante el intercambio de herramientas y conocimientos, para alargar la vida útil de las cosas. Puedes ser parte de ésta iniciativa haciendo donación de material a nuestra Biblioteca de herramientas"
+"FixPoint es una iniciativa que busca luchar por una economía circular con nuestra <span class=\"bold\">biblioteca de herramientas</span>.",
+"FixPoint es una biblioteca como otra cualquiera. Hazte miembro y alquila las herramientas que necesites.",
+"Alargar la vida útil de las cosas. Puedes colaborar con esta iniciativa donando tus viejas herramientas  "
 ];
    
 imagenes[0] = './img/back01.jpg';

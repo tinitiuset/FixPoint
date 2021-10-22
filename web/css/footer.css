@@ -1,63 +1,83 @@
+/* MÓVILES */
+
 footer {
     background-color: black;
     color: white;
-    padding-top: 1vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
-    padding-bottom: 1vw;
+    padding: 10px 5px;
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
-}
-
-.footerAsideizquierda * {
-    margin: 0.4vw;
-}
-
-.footerSectionCentro * {
-    margin: 0.4vw;
-}
-
-.footerAsideDerecha * {
-    margin: 0.4vw;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
 }
 
 .footerAsideizquierda {
-    text-align: left;
+    text-align: center;
+    margin-top: 5vw;
+   
+}
+
+.footerAsideizquierda > p > a {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
 }
 
 .footerSectionCentro {
     text-align: center;
 }
 
+.footerSectionCentro > p{
+    font-size: 20px;
+    margin: 10px;
+}
+
 .footerAsideDerecha {
-    text-align: right;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footerAsideDerecha  > p {
+    font-size: 20px;
 }
 
 .footerAsideDerecha a {
     color: green;
+    text-decoration: none;
 }
 
 .footerAsideDerecha a:hover {
     color: lightgreen;
+    text-decoration: none;
 }
 
+#logoByN {
+    width: 50%;
+    margin-top: 20px;
+}
+
+
 /* TABLETS */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     footer {
-        background-color: black;
-        color: white;
-        padding-top: 1vw;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        padding-bottom: 1vw;        
-        display: grid;
         grid-template-columns: auto auto auto;
         grid-template-rows: auto;
     }
     
+    .footerAsideizquierda * {
+        margin: 0.4vw;
+    }
+    
+    .footerSectionCentro * {
+        margin: 0.4vw;
+    }
+    
+    .footerAsideDerecha * {
+        margin: 0.4vw;
+    }
+    
     .footerAsideizquierda {
         text-align: left;
+        margin-top: 20px;
+        margin-left: 20px;
     }
     
     .footerSectionCentro {
@@ -66,25 +86,31 @@ footer {
     
     .footerAsideDerecha {
         text-align: right;
+        margin-right: 20px;
     }
+    
+  
 }
 
-/* MÓVILES */
-@media (max-width: 484px) {
-    footer {
-        background-color: black;
-        color: white;
-        padding-top: 1vw;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        padding-bottom: 1vw;        
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto auto auto;
-        gap: 1vw;
+@media only screen and (min-width:1200px){
+   
+    .footerAsideizquierda {
+        margin-top: 20px;
+        margin-left: 20px;
+        line-height: 20px;
     }
 
-    footer * {
-        text-align: center;
+    .footerAsideizquierda * {
+        margin: 0.2vw;
     }
+    
+    .footerSectionCentro * {
+        margin: 0.2vw;
+    }
+    
+    .footerAsideDerecha * {
+        margin: 0.2vw;
+    }  
+    
 }
+

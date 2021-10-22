@@ -139,12 +139,12 @@ function footer() : string
     return '
     <footer>
         <aside class="footerAsideizquierda">
-            <p>Aviso legal</p>
-            <p>Política de cookies</p>
-            <p>Mapa web</p>
+            <p><a href="">Aviso legal</a></p>
+            <p><a href="">Política de cookies</a></p>
+            <p><a href="">Mapa web</a></p>
         </aside>
         <section class="footerSectionCentro">
-            <img src="./img/LogoFix(b&w).png" alt="FixPoint">
+            <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">
             <p>© 2021 FixPoint - Todos los derechos reservados</p>
         </section>
         <aside class="footerAsideDerecha">

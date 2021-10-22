@@ -24,10 +24,8 @@ function getContent () {
         <img src="./img/back01.jpg" id="slider">
             <div class="text">
                 <h2 id="titulo">¿Qué es FixPoint?</h2>
-                <p class="floatText" id="parrafo">FixPoint es una iniciativa circular sostenible, 
-                que busca provocar un cambio en el sistema de sobreproducción, 
-                luchando por una economía circular con nuestra 
-                <span class="bold">biblioteca de herramientas</span>.</p>
+                <p class="floatText" id="parrafo">FixPoint es una iniciativa que busca luchar por una economía circular 
+                con nuestra <span class=\"bold\">biblioteca de herramientas</span>.</p>
                 <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
             </div>
     </div>
