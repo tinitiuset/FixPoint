@@ -32,9 +32,19 @@ class Categoria {
         Connection::executeQuery($query);
     }
 
+    public function updateCategoria(int $idCategoria) {
+        $query = "UPDATE 'categoria' 
+        SET idCategoria = ' . $this->getIdCategoria() . ', 
+        nombre = ' . $this->getNombre() . ' 
+        WHERE dni LIKE '" . $idCategoria . "' ";
+
+        Connection::executeQuery($query);
+    }
+
     public function deleteCategoria(int $idCategoria) {
         $query = "DELETE FROM 'categoria' WHERE 'idCategoria' LIKE '" . $idCategoria . "'";
-        $Categoria = Connection::executeQuery($query);
+        
+        Connection::executeQuery($query);
     }
 
     /**
