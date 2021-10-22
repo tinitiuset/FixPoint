@@ -44,7 +44,7 @@ function navbar(): string
             <div class="catalogo"><a href="">Catálogo</a></div>
             <div class="Guías"><a href="">Guías despiece</a></div>
             <div class="Donar"><a href="">Donar herramientas</a></div>
-            <div class="Contacto"><a href="">Contacto <i class="fas fa-envelope"></i></a></div>
+            <div class="Contacto"><a id="iniciarSesionTablet" href="#">Contacto <i class="fas fa-envelope"></i></a></div>
             <div class="Login" id="Login">
                 <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
                 <div class="icon-bar"></div>
@@ -188,7 +188,7 @@ function iniciarSesion()
                     <label for="correo">Correo electrónico</label><br>
                     <input type="email" placeholder="Email@ejemplo.com" name="correo"
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com"><br><br>
-                    <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>>
+                    <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>
                     <input type="password" name="pass" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
@@ -216,12 +216,12 @@ function footer(): string
     return '
     <footer>
         <aside class="footerAsideizquierda">
-            <p>Aviso legal</p>
-            <p>Política de cookies</p>
-            <p>Mapa web</p>
+            <p><a href="">Aviso legal</a></p>
+            <p><a href="">Política de cookies</a></p>
+            <p><a href="">Mapa web</a></p>
         </aside>
         <section class="footerSectionCentro">
-            <img src="./img/LogoFix(b&w).png" alt="FixPoint">
+            <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">
             <p>© 2021 FixPoint - Todos los derechos reservados</p>
         </section>
         <aside class="footerAsideDerecha">
