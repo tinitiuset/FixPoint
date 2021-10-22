@@ -111,7 +111,7 @@ function iniciarSesion(){
                     <label for="correo">Correo electrónico</label><br>
                     <input type="email" placeholder="Email@ejemplo.com" name="correo"
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com"><br><br>
-                    <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>>
+                    <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>
                     <input type="password" name="pass" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
