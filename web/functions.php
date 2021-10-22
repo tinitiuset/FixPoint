@@ -68,7 +68,7 @@ function crearUsuario(): string
         <div class="modalContenidoCrear">
             <div class="modalHeaderCrear">
                 <span class="cerrar">&times;</span>
-                <h1>Crear Cuenta</h1>
+                <h1 id="tituloCrear">Crear Cuenta</h1>
                 <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
             </div>
             <div class="modalBodyCrear">
@@ -180,7 +180,7 @@ function iniciarSesion()
         <div class="modalContenido">
             <div class="modalHeader">
                 <span class="cerrar">&times;</span>
-                <h1>Iniciar Sesión</h1>
+                <h1 id="tituloIniciar">Iniciar Sesión</h1>
                 <p>Nuevo? <a class="enlace" href="">Crear una cuenta</a></p>
             </div>
             <div class="modalBody">
