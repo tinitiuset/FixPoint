@@ -68,7 +68,7 @@ function crearUsuario(): string
         <div class="modalContenido">
             <div class="modalHeader">
                 <span class="cerrar">&times;</span>
-                <h2>Crear Cuenta</h2>
+                <h1>Crear Cuenta</h1>
                 <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
             </div>
             <div class="modalBody">
