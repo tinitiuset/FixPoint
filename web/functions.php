@@ -1,11 +1,13 @@
 <?php
+use Grupo3\FixPoint\Connection;
 
 
 function getHeader($headerArgs = null): void
 {
     session_start();
+    funcionalidadRegistro();
     $structure = '
-<?php use Grupo3\FixPoint\Connection; ?>
+
     <!DOCTYPE html>
     <html lang="es">
     <head>
@@ -62,7 +64,7 @@ function navbar(): string
 
 function crearUsuario(): string
 {
-    return prueba() . '
+    return '
     <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
         <div class="modalContenidoCrear">
@@ -103,10 +105,8 @@ function crearUsuario(): string
     ';
 }
 
-function prueba()
-{
-    return
-        require 'Connection.php';
+function funcionalidadRegistro(){
+    require './Connection.php';
 
     $mensajeError = '';
 
@@ -155,6 +155,9 @@ function prueba()
 
         if (!$numFilasSqlEmail && !$numFilasSqlDni) {
 
+
+            echo "entre";
+
             /*HASHEAMOS la contraseña por seguridad*/
             $password = password_hash($password, PASSWORD_BCRYPT);
             $insertUsuario = "INSERT INTO usuario (nombre,apellidos, dni,email, password)
@@ -169,8 +172,7 @@ function prueba()
             }
         }
 
-    };
-
+    }
 }
 
 function iniciarSesion()
