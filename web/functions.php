@@ -1,10 +1,11 @@
 <?php
 
 
-function getHeader($headerArgs = null) : void
+function getHeader($headerArgs = null): void
 {
     session_start();
     $structure = '
+<?php use Grupo3\FixPoint\Connection; ?>
     <!DOCTYPE html>
     <html lang="es">
     <head>
@@ -13,13 +14,13 @@ function getHeader($headerArgs = null) : void
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-        <title>'.$headerArgs['title'].'</title>
+        <title>' . $headerArgs['title'] . '</title>
     ';
-    foreach ($headerArgs['styles'] as $style){
-        $structure .= '<link rel="stylesheet" href="'. $style.'">';
+    foreach ($headerArgs['styles'] as $style) {
+        $structure .= '<link rel="stylesheet" href="' . $style . '">';
     }
-    foreach ($headerArgs['scripts'] as $script){
-        $structure .= '<script src="'. $script.'"></script> ';
+    foreach ($headerArgs['scripts'] as $script) {
+        $structure .= '<script src="' . $script . '"></script> ';
     }
     $structure .= '
     </head>
@@ -61,7 +62,7 @@ function navbar(): string
 
 function crearUsuario(): string
 {
-    return '
+    return prueba() . '
     <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
         <div class="modalContenido">
@@ -71,33 +72,109 @@ function crearUsuario(): string
                 <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
             </div>
             <div class="modalBody">
-                <form action="" method="post">
+                <form action="" method="post" id="formularioRegistro">
                     <label for="dni">DNI:</label><br>
-                    <input type="text" name="dni" required><br>
+                    <input type="text" name="dni" id="dni" required><br>
                     <label for="nombre">Nombre:</label><br>
-                    <input type="text" name="nombre" required><br>
+                    <input type="text" name="nombre" id="nombre" required><br>
                     <label for="apellidos">Apellidos:</label><br>
-                    <input type="text" name="apellidos" required><br>
-                    <label for="correo">Correo electrónico:</label><br>
-                    <input type="email" placeholder="Email@ejemplo.com" name="correo" 
+                    <input type="text" name="apellidos" id="apellidos" required><br>
+                    <label for="email">Correo electrónico:</label><br>
+                    <input type="email" id="email" placeholder="Email@ejemplo.com" name="email" 
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
                     <p>Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
-                    <label for="contrasena">Contraseña:</label><br>
-                    <input type="password" name="contrasena" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+                    <label for="password">Contraseña:</label><br>
+                    <input type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 
                     o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
-                    <label for="confirmarContrasena">Confirmar contraseña:</label><br>
-                    <input type="password" name="confirmarContrasena"><br><br>
+                    <label for="passwordConfirm">Confirmar contraseña:</label><br>
+                    <input type="password" name="passwordConfirm"><br><br>
                     <input type="submit" value="Crear cuenta"><br>
                     <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
                 </form>
+                <div class="alert alert-danger" id="alertwarning" role="alert">
+            <p><?= $mensajeError ?></p>
+
+
+    </div>
             </div>
         </div>
     </div>
     ';
 }
 
-function iniciarSesion(){
+function prueba()
+{
+    return
+        require 'Connection.php';
+
+    $mensajeError = '';
+
+    /* Conseguimos datos */
+
+
+    if (!empty($_REQUEST['apellidos']) &&
+        !empty($_REQUEST['nombre']) &&
+        !empty($_REQUEST['dni']) &&
+        !empty($_REQUEST['email']) &&
+        !empty($_REQUEST['passwordConfirm']) &&
+        !empty($_REQUEST['password']
+        )) {
+
+        $apellidos = $_REQUEST['apellidos'];
+        $nombre = $_REQUEST['nombre'];
+        $dni = $_REQUEST['dni'];
+        $email = $_REQUEST['email'];
+        $password = $_REQUEST['passwordConfirm'];
+        $passwordConfirm = $_REQUEST['password'];
+
+
+        /*Comprobar si existe ese email o dni ya que son unique*/
+
+        $queryEmail = "select email from usuario where email = '$email'";
+
+        $sqlEmail = Connection::executeQuery($queryEmail);
+
+        $numFilasSqlEmail = $sqlEmail->fetchAll();
+
+        $queryDni = "SELECT dni FROM usuario where dni='$dni';";
+
+        $sqlDni = Connection::executeQuery($queryDni);
+
+
+        $numFilasSqlDni = $sqlDni->fetchAll();
+
+
+        if ($numFilasSqlEmail) {
+            $mensajeError .= '- El EMAIL que está intentando registrar ya existe.<br>';
+        }
+        if ($numFilasSqlDni) {
+            $mensajeError .= '- El DNI que está intentando registrar ya existe.<br>';
+        }
+
+
+        if (!$numFilasSqlEmail && !$numFilasSqlDni) {
+
+            /*HASHEAMOS la contraseña por seguridad*/
+            $password = password_hash($password, PASSWORD_BCRYPT);
+            $insertUsuario = "INSERT INTO usuario (nombre,apellidos, dni,email, password)
+                        VALUES ('$nombre', '$apellidos','$dni','$email','$password')";
+
+            /*Ejecutamos consulta*/
+
+            if (Connection::executeQuery($insertUsuario)) {
+                $mensajeError = 'Usuario creado correctamente';
+            } else {
+                $mensajeError = 'ERROR al crear el usuario, contacte con el administrador.';
+            }
+        }
+
+    };
+
+}
+
+function iniciarSesion()
+{
     return '
     <div class="modalIniciarSesion" id="modalIniciar">
         <div class="modalContenido">
@@ -126,7 +203,7 @@ function iniciarSesion(){
 function getFooter($footerArgs = null)
 {
     $structure = footer();
-    $structure .='
+    $structure .= '
     </body>
     </html>
     ';
@@ -134,7 +211,7 @@ function getFooter($footerArgs = null)
     echo($structure);
 }
 
-function footer() : string
+function footer(): string
 {
     return '
     <footer>

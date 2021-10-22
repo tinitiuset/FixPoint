@@ -76,7 +76,7 @@ if (!empty($_REQUEST['apellidos']) &&
 <head>
     <meta charset="utf-8">
     <title>SignUp</title>
-    <script src="js/scriptRegistro.js"></script>
+    <script src="../web/JS/scriptRegistro.js"></script>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>

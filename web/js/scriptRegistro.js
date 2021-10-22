@@ -6,6 +6,7 @@ function validarFormulario(evento) {
     /*Para que el formulario no haga el submit hasta que yo quiera*/
     evento.preventDefault();
 
+
     if (validarDni(document.getElementsByName('dni')[0].value)
         && validarApellidos(document.getElementsByName('apellidos')[0].value)
         && validarNombre(document.getElementsByName('nombre')[0].value)
@@ -33,6 +34,7 @@ function validarFormulario(evento) {
         }
         if (!validarApellidos(document.getElementsByName('apellidos')[0].value)) {
             mensaje += '- Rellena los apellidos correctamente';
+
         }
         if (!validarEmail(document.getElementsByName('email')[0].value)) {
             mensaje += '- El email no es correcto';
