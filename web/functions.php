@@ -66,12 +66,12 @@ function crearUsuario(): string
     <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
         <div class="modalContenidoCrear">
-            <div class="modalHeader">
+            <div class="modalHeaderCrear">
                 <span class="cerrar">&times;</span>
                 <h1>Crear Cuenta</h1>
                 <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
             </div>
-            <div class="modalBody">
+            <div class="modalBodyCrear">
                 <form action="" method="post" id="formularioRegistro">
                     <label for="dni">DNI:</label><br>
                     <input type="text" name="dni" id="dni" required><br>

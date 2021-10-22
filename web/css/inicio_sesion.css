@@ -44,7 +44,7 @@ padding: 2px 2px;
 border-radius: 0px 0px 15px 15px;
 }
 
-.modalContenido {
+.modalContenido, .modalContenidoCrear{
 width: 400px;
 height: 500px;
 background-color: white;
@@ -54,6 +54,11 @@ border: 1px solid #888;
 margin: 0px auto;
 border-radius: 15px;
 }
+
+.modalContenidoCrear {
+  width: 500px;
+  height: 600px;
+  }
 
 /* Botón de cerrar */
 .cerrar {
