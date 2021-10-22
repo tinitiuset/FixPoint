@@ -65,7 +65,7 @@ function crearUsuario(): string
     return prueba() . '
     <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
-        <div class="modalContenido">
+        <div class="modalContenidoCrear">
             <div class="modalHeader">
                 <span class="cerrar">&times;</span>
                 <h1>Crear Cuenta</h1>

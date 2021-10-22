@@ -45,13 +45,13 @@ border-radius: 0px 0px 15px 15px;
 }
 
 .modalContenido {
+width: 400px;
+height: 500px;
 background-color: white;
 text-align: center;
 padding: 0;
-/*width: 25%;*/
-height: auto;
 border: 1px solid #888;
-margin: 15% auto;
+margin: 0px auto;
 border-radius: 15px;
 }
 
