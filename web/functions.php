@@ -16,7 +16,7 @@ function getHeader($headerArgs = null): void
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-        <title>' . $headerArgs['title'] . '</title>
+        <title>' . $headerArgs['title'] . '</title>    
     ';
     foreach ($headerArgs['styles'] as $style) {
         $structure .= '<link rel="stylesheet" href="' . $style . '">';
@@ -91,7 +91,7 @@ function crearUsuario(): string
                     o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <label for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input type="password" name="passwordConfirm"><br><br>
-                    <input type="submit" value="Crear cuenta"><br>
+                    <input type="submit" formaction="#modal"  value="Crear cuenta"><br>
                     <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
                 </form>
                 <div class="alert alert-danger" id="alertwarning" role="alert">
@@ -188,13 +188,15 @@ function iniciarSesion()
             <div class="modalBody">
                 <form action="" method="post">
                     <label for="correo">Correo electrónico</label><br>
+                    <!--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
                     <input class="redondeado" type="email" placeholder="Email@ejemplo.com" name="correo"
-                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com"><br><br>
+                    required title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com"><br><br>
                     <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>
-                    <input class="redondeado" type="password" name="pass" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+                    <!--pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"-->
+                    <input class="redondeado" type="password" name="pass" 
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
-                    <p><input type="submit" class="btn-iniciarSesion" value="Iniciar sesión"></p><br>
+                    <p><input type="submit" formaction="#modalIniciar" class="btn-iniciarSesion" value="Iniciar sesión"></p><br>
                 </form>
             </div>
         </div>
@@ -234,5 +236,15 @@ function footer(): string
         </aside>
     </footer>
     ';
+}
+
+function handleLogin($post) {
+    if (isset($post['correo'])){
+        var_dump("el correo existe");
+    }
+    if (isset($post['pass'])){
+        var_dump("la contrasenya existe");
+    }
+
 }
 
