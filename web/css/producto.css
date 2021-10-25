@@ -1,0 +1,37 @@
+.product-container-text-wrapper {
+    width: 80%;
+    margin: 50px auto;
+}
+.product-container-text {
+    text-align: center;
+    font-size: 21px;
+    line-height: 32px;
+    color: rgb(26,26,26);
+
+}
+
+.product-wrapper {
+    width: 80%;
+    margin: auto;
+    background-color: red;
+}
+
+.product-wrapper > .product {
+    width: 100%;
+    background-color: green;
+    display: inline-grid;
+    grid-template: "imagen alquilar"
+                   "detalles detalles";
+}
+.product-wrapper > .product > .imagen {
+    width: 100%;
+    background-color: yellow;
+}
+.product-wrapper > .product > .alquilar {
+    width: 100%;
+    background-color: orange;
+}
+.product-wrapper > .product > .detalles {
+    width: 100%;
+    background-color: magenta;
+}

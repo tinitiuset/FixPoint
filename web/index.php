@@ -1,7 +1,7 @@
 <?php
 require "functions.php";
 
-handleLogin($_POST);
+
 $args = [
     'title' => 'Index',
     'styles' => [
@@ -20,7 +20,7 @@ $args = [
 ];
 
 function getContent () {
-
+    Kint\Kint::dump($_SESSION);
     $content= '
     <div class="slideshow-container">
         <div class="slider fade">

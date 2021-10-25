@@ -1,10 +1,16 @@
 <?php
+
+require_once "./model/User.php";
+require_once "./Connection.php";
+
 use Grupo3\FixPoint\Connection;
+use Grupo3\FixPoint\model\User;
 
 
 function getHeader($headerArgs = null): void
 {
     session_start();
+    Kint\Kint::dump($_SESSION);
     funcionalidadRegistro();
     $structure = '
 
@@ -43,7 +49,7 @@ function navbar(): string
             <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
         </div>
         <nav id="site-nav" class="site-nav">
-            <div class="catalogo"><a href="">Catálogo</a></div>
+            <div class="catalogo"><a href="./productos.php">Catálogo</a></div>
             <div class="Guías"><a href="">Guías despiece</a></div>
             <div class="Donar"><a href="">Donar herramientas</a></div>
             <div class="Contacto"><a id="iniciarSesionTablet" href="#">Contacto <i class="fas fa-envelope"></i></a></div>
@@ -105,8 +111,8 @@ function crearUsuario(): string
     ';
 }
 
-function funcionalidadRegistro(){
-    require './Connection.php';
+function funcionalidadRegistro()
+{
 
     $mensajeError = '';
 
@@ -177,6 +183,9 @@ function funcionalidadRegistro(){
 
 function iniciarSesion()
 {
+    if (isset($_POST['correo']) && isset($_POST['pass'])) {
+        $msg = handleIniciarSesion($_POST['correo'], $_POST['pass']);
+    }
     return '
     <div class="modalIniciarSesion" id="modalIniciar">
         <div class="modalContenido">
@@ -196,7 +205,8 @@ function iniciarSesion()
                     <input class="redondeado" type="password" name="pass" 
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
-                    <p><input type="submit" formaction="#modalIniciar" class="btn-iniciarSesion" value="Iniciar sesión"></p><br>
+                    <p><input type="submit" formaction="#modalIniciar" class="btn-iniciarSesion" value="Iniciar sesión"></p>
+                    <p>' . $msg . '</p>
                 </form>
             </div>
         </div>
@@ -238,13 +248,24 @@ function footer(): string
     ';
 }
 
-function handleLogin($post) {
-    if (isset($post['correo'])){
-        var_dump("el correo existe");
+function handleIniciarSesion($correo, $pass)
+{
+    try {
+        $user = new User();
+        $user->getUser($correo, $pass);
+        if ($user->getDni() == null) {
+            return "Email o Contrasenya incorrectos.";
+        } else {
+            $_SESSION["logged"] = true;
+            $_SESSION["user"] = $user;
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri#");
+            exit();
+        }
+    } catch (Exception $e) {
+        return $e;
     }
-    if (isset($post['pass'])){
-        var_dump("la contrasenya existe");
-    }
-
 }
 

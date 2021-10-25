@@ -25,11 +25,12 @@ class User
     private $activo;
 
     /**
-     * @param $id int ID of user to be retrieved from the database.
+     * @param string $correo
+     * @param string $pass
      */
-    function getUser(int $id)
+    function getUser(string $correo, string $pass)
     {
-         $query = "SELECT * FROM `usuario` WHERE `dni` LIKE '".$id."' ";
+         $query = "SELECT * FROM `usuario` WHERE `password` LIKE '".$pass."' AND `email` LIKE '".$correo."';";
          $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
          $this->setDni($User['dni']);
          $this->setNombre($User['nombre']);
@@ -38,9 +39,6 @@ class User
          $this->setPassword(null);
          $this->setEmail($User['email']);
          $this->setActivo($User['activo']);
-
-         Kint::dump($this);
-
     }
 
     public function createUser()
