@@ -1,11 +1,15 @@
 <?php
-use Grupo3\FixPoint\Connection;
+
+
+require_once './model/User.php';
+
+ use Grupo3\FixPoint\Connection;
+
 
 
 function getHeader($headerArgs = null): void
 {
     session_start();
-    funcionalidadRegistro();
     $structure = '
 
     <!DOCTYPE html>
@@ -64,6 +68,16 @@ function navbar(): string
 
 function crearUsuario(): string
 {
+    /* Logica para mostrar el mensaje que devuelve la funcionalidad de registro*/
+    $errMessage = '';
+    if (isset($_POST['apellidos'])){
+        $errMessage = '
+        <div class="alert alert-danger" role="alert">
+        '.handleRegister($_POST).'
+                </div>';
+    }
+
+
     return '
     <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
@@ -95,10 +109,10 @@ function crearUsuario(): string
                     <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
                 </form>
                 <div class="alert alert-danger" id="alertwarning" role="alert">
-            <p><?= $mensajeError ?></p>
-
-
-    </div>
+                    
+                </div>
+                '.$errMessage.'
+                
             </div>
         </div>
     </div>
@@ -106,27 +120,30 @@ function crearUsuario(): string
 }
 
 function funcionalidadRegistro(){
-    require './Connection.php';
+
 
     $mensajeError = '';
 
     /* Conseguimos datos */
 
 
-    if (!empty($_REQUEST['apellidos']) &&
-        !empty($_REQUEST['nombre']) &&
-        !empty($_REQUEST['dni']) &&
-        !empty($_REQUEST['email']) &&
-        !empty($_REQUEST['passwordConfirm']) &&
-        !empty($_REQUEST['password']
+
+    if (!empty($_POST['apellidos']) &&
+        !empty($_POST['nombre']) &&
+        !empty($_POST['dni']) &&
+        !empty($_POST['email']) &&
+        !empty($_POST['passwordConfirm']) &&
+        !empty($_POST['password']
         )) {
 
-        $apellidos = $_REQUEST['apellidos'];
-        $nombre = $_REQUEST['nombre'];
-        $dni = $_REQUEST['dni'];
-        $email = $_REQUEST['email'];
-        $password = $_REQUEST['passwordConfirm'];
-        $passwordConfirm = $_REQUEST['password'];
+        echo "hola";
+
+        $apellidos = $_POST['apellidos'];
+        $nombre = $_POST['nombre'];
+        $dni = $_POST['dni'];
+        $email = $_POST['email'];
+        $password = $_POST['passwordConfirm'];
+        $passwordConfirm = $_POST['password'];
 
 
         /*Comprobar si existe ese email o dni ya que son unique*/
@@ -153,10 +170,8 @@ function funcionalidadRegistro(){
         }
 
 
+
         if (!$numFilasSqlEmail && !$numFilasSqlDni) {
-
-
-            echo "entre";
 
             /*HASHEAMOS la contraseña por seguridad*/
             $password = password_hash($password, PASSWORD_BCRYPT);
@@ -173,6 +188,7 @@ function funcionalidadRegistro(){
         }
 
     }
+    return $mensajeError;
 }
 
 function iniciarSesion()
@@ -248,3 +264,9 @@ function handleLogin($post) {
 
 }
 
+function handleRegister($post) {
+
+    $var = funcionalidadRegistro();
+    return $var;
+
+}

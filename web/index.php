@@ -1,7 +1,9 @@
 <?php
 require "functions.php";
 
+
 handleLogin($_POST);
+
 $args = [
     'title' => 'Index',
     'styles' => [
