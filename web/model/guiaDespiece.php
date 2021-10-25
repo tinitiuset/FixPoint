@@ -22,6 +22,24 @@ class guiaDespiece
         $this->averias = $averias;
         $this->solucion = $solucion;
     }
+
+    function getGuiaDespiece(int $numFicha)
+    {
+         $query = "SELECT * FROM `guiadespiece` WHERE `numFicha` LIKE '" . $numFicha . "' ";
+         $guiaDespiece = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+         $this->setNumFicha($guiaDespiece['numFicha']);
+         $this->setFecha($guiaDespiece['fecha']);
+         $this->setNombreMaquina($guiaDespiece['nombreMaquina']);
+         $this->setRevisada($guiaDespiece['revisada']);
+         $this->setOcurrencia($guiaDespiece['ocurrencia']);
+         $this->setPropuesta($guiaDespiece['propuesta']);
+         $this->setAverias($guiaDespiece['averias']);
+         $this->setSolucion($guiaDespiece['solucion']);
+
+         Kint::dump($this);
+
+    }
+
     /* La diferencia entre ambos create es que si la creas as admin
     la guia estara revisada directamente, si no estara sin revisar y por
     ende no será publicada hasta que lo esté*/
@@ -56,7 +74,30 @@ class guiaDespiece
     }
 
     public function guiaRevisada(){
+        $query = "UPDATE `guiadespiece` SET `revisada` = '" . ($this->getRevisada() ^ 1) . "' 
+                  WHERE `guiadespiece`.`numFicha` = '" . $this->getNumFicha() . "'; ";
         $this->revisada = 1;
+        Connection::executeQuery($query)->execute();
+    }
+
+    // Actualiza la guía, excepto el parámetro "revisada"
+    public function updateGuiaDespiece() {
+        $query = "UPDATE guiadespiece
+        SET numFicha = '" . $this->getNumFicha() . "', 
+        fecha = '" . $this->getFecha() . "', 
+        nombreMaquina = '" . $this->getNombreMaquina() . "', 
+        ocurrencia = '" . $this->getOcurrencia() . "', 
+        propuesta = '" . $this->getPropuesta() . "', 
+        averias = '" . $this->getAverias() . "', 
+        solucion = '" . $this->getSolucion() . "', 
+        WHERE numFicha LIKE '" . $this->getNumFicha() . "' ";
+
+        Connection::executeQuery($query);
+    }
+
+    public function deleteGuiaDespiece() {
+        $query = "DELETE FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "'";
+        Connection::executeQuery($query);
     }
 
     /**
