@@ -63,18 +63,18 @@ class herramienta
         Connection::executeQuery($query)->execute();
     }
 
-    // public function updateHerramienta(int $id_herramienta) {
-    //     $query = "UPDATE herramienta 
-    //     SET nombre = '" . $this->getNombre() . "', 
-    //     modelo = '" . $this->getModelo() . "',
-    //     marca = '" . $this->getMarca() . "',
-    //     disponible = '" . $this->getDisponible() . "',
-    //     observaciones = '" . $this->getObservaciones() . "',
-    //     idCategoria = (SELECT idCategoria FROM categoria WHERE ) '" . $this->getIdCategoria() . "'
-    //     WHERE id_herramienta LIKE '" . $id_herramienta . "' ";
+    public function updateHerramienta(int $id_herramienta) {
+        $query = "UPDATE herramienta 
+        SET nombre = '" . $this->getNombre() . "', 
+        modelo = '" . $this->getModelo() . "',
+        marca = '" . $this->getMarca() . "',
+        disponible = '" . $this->getDisponible() . "',
+        observaciones = '" . $this->getObservaciones() . "',
+        idCategoria = (SELECT idCategoria FROM categoria WHERE idCategoria LIKE '" . $this->getIdCategoria() . "')
+        WHERE id_herramienta LIKE '" . $id_herramienta . "' ";
 
-    //     Connection::executeQuery($query);
-    // }
+        Connection::executeQuery($query);
+    }
 
     public function deleteHerramienta(int $id_herramienta) {
         $query = "DELETE FROM herramienta WHERE id_herramienta LIKE '" . $id_herramienta . "'";
