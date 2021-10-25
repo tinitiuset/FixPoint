@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function validarFormulario(evento) {
-    /*Para que el formulario no haga el submit hasta que yo quiera*/
-    evento.preventDefault();
-
 
     if (validarDni(document.getElementsByName('dni')[0].value)
         && validarApellidos(document.getElementsByName('apellidos')[0].value)
@@ -15,18 +12,13 @@ function validarFormulario(evento) {
             document.getElementsByName('passwordConfirm')[0].value)
     ) {
 
-        /*Submiteamos el formulario*/
-        this.submit();
-
-        /*Este mensaje no sale por el submit de cuando es correcto*/
-        var mensaje = 'Usuario registrado correctamente';
-
+    console.log("Comprobaciones js ok")
 
 
     } else {
 
 
-        var mensaje = '';
+        var mensaje = ' ';
 
         if (!validarDni(document.getElementsByName('dni')[0].value)) {
             mensaje += '- El dni no es correcto';
