@@ -1,5 +1,8 @@
 <?php
 use Grupo3\FixPoint\Connection;
+use Grupo3\FixPoint\model\User;
+
+require "./model/User.php";
 
 
 function getHeader($headerArgs = null): void
@@ -18,7 +21,7 @@ function getHeader($headerArgs = null): void
         <title>' . $headerArgs['title'] . '</title>    
     ';
     foreach ($headerArgs['styles'] as $style) {
-        $structure .= '<link rel="stylesheet" href="' . $style . '">';
+        $structure .= '<link rel="stylesheet" href="'.$style.'">';
     }
     foreach ($headerArgs['scripts'] as $script) {
         $structure .= '<script src="' . $script . '"></script> ';
@@ -35,21 +38,31 @@ function getHeader($headerArgs = null): void
 
 function navbar(): string
 {
-
-    return '
+    $structureNavBar = '
     <header>
-        <div class="container-contact">
-            <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
-        </div>
-        <nav id="site-nav" class="site-nav">
-            <div class="catalogo"><a href="./productos.php">Catálogo</a></div>
-            <div class="Guías"><a href="">Guías despiece</a></div>
-            <div class="Donar"><a href="">Donar herramientas</a></div>
-            <div class="Contacto"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
-            <div class="Login" id="Login">
-                <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
-                <div class="icon-bar"></div>
-                <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
+    <div class="container">
+        <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
+    </div>
+    <nav id="site-nav" class="site-nav">
+        <div class="catalogo"><a href="">Catálogo</a></div>
+        <div class="Guías"><a href="">Guías despiece</a></div>
+        <div class="Donar"><a href="">Donar herramientas</a></div>
+        <div class="Contacto"><a id="iniciarSesionTablet" href="#">Contacto <i class="fas fa-envelope"></i></a></div>
+        <div class="Login" id="Login">
+    ';
+    if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
+        $structureNavBar .= '
+            <a class="imgUsuario" href="#"><img src="./img/user.png" alt="usuario"></a>
+        ';
+    } else {
+        $structureNavBar .= '
+            <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
+            <div class="icon-bar"></div>
+            <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
+        ';
+    }
+
+    $structureNavBar .= '
             </div>
         </nav>
         <div  class="iconoLogin"><a href=""><i class="far fa-user"></i></a></div>
@@ -59,6 +72,8 @@ function navbar(): string
         </div>
     </header>
     ';
+
+    return $structureNavBar;
 }
 
 function crearUsuario(): string
@@ -188,6 +203,7 @@ function funcionalidadRegistro(){
 
 function iniciarSesion()
 {
+    $msg = "";
     if (isset($_POST['correo']) && isset($_POST['pass'])) {
         $msg = handleIniciarSesion($_POST['correo'], $_POST['pass']);
     }
