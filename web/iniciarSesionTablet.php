@@ -15,7 +15,7 @@ $args = [
 function getContent () {
 
     $content= '
-    <div class="container">
+    <div class="container-contact">
         
     </div>';
     echo $content;

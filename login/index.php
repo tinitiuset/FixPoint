@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 // Comprobamos si la sesion existe y si no le devolvemos a el login
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {

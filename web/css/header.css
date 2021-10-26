@@ -128,7 +128,7 @@ nav > div {
 
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
-    .container{
+    .container-contact{
         margin-left: 20px;
     }
     .Login {

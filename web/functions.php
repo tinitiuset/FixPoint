@@ -43,14 +43,14 @@ function navbar(): string
 
     return '
     <header>
-        <div class="container">
+        <div class="container-contact">
             <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
         </div>
         <nav id="site-nav" class="site-nav">
             <div class="catalogo"><a href="">Catálogo</a></div>
             <div class="Guías"><a href="">Guías despiece</a></div>
             <div class="Donar"><a href="">Donar herramientas</a></div>
-            <div class="Contacto"><a id="iniciarSesionTablet" href="#">Contacto <i class="fas fa-envelope"></i></a></div>
+            <div class="Contacto"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
             <div class="Login" id="Login">
                 <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
                 <div class="icon-bar"></div>
