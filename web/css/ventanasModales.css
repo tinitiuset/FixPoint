@@ -1,0 +1,145 @@
+/*                     Elementos Comunes                 */
+@font-face {
+  font-family: 'Patinio Futura';
+  src: url('../res/Patinio Futura.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+h1 {
+  font-family: 'Patinio Futura', serif;
+}
+
+form {
+  padding-top: 20px;
+}
+
+/*--------------------------------------- Version Movil ---------------------------------------------*/
+#tituloIniciar {
+  padding: 25px;
+}
+
+.redondeado {
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  border: 0.5px solid gray;
+  margin-bottom: 50px;
+  margin-top: 5px;
+}
+
+.enlace {
+  text-decoration: none;
+  color: #1975f1;
+}
+
+#recuperar {
+  padding-left: 125px;
+}
+
+.modalIniciarSesion, .modalCrearSesion  {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(7, 7, 7, 0.363)
+}
+
+.modalHeader, .modalHeaderCrear {
+  background-color: whitesmoke;
+  padding: 2px 2px;
+  border-radius: 15px;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+}
+
+.modalHeaderCrear {
+  height: 20%;
+}
+
+.modalBody, .modalBodyCrear {
+  background-color: rgb(235, 235, 235);
+  padding: 2px 2px;
+  border-radius: 0px 0px 15px 15px;
+  width: 100%;
+  height: 70%;
+}
+
+.modalBodyCrear {
+  height: 80%;
+}
+
+.modalContenido, .modalContenidoCrear {
+  width: 400px;
+  height: 500px;
+  background-color: white;
+  text-align: center;
+  padding: 0;
+  /*border: 1px solid #888;*/
+  margin: 0px auto;
+  border-radius: 15px;
+}
+
+.modalContenidoCrear {
+  width: 500px;
+  height: 600px;
+}
+
+/* Botón de cerrar */
+.cerrar {
+  color: gray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 7px;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+  color: black;
+  background-color: rgb(187, 187, 187);
+  height: auto;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0px 15px 0px 15px;
+}
+
+.btn-iniciarSesion, .btnCrearCuenta {
+  color: white;
+  background-color: #1975f1;
+  padding: 12px 25px;
+  border: none;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.textoForm {
+  font-size: 15px;
+}
+
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem
+}
+
+.alert-danger {
+  background-color: lightblue;
+  border-color: #f5c2c7
+}
+/*-------------------------------------------version tablet------------------------------------*/
+@media (min-width:768px){
+
+}
+
+/*-------------------------------Versión Web-------------------------------------*/
+@media only screen and (min-width:1200px){
+
+}

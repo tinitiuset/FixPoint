@@ -95,7 +95,7 @@ function crearUsuario(): string
             <div class="modalHeaderCrear">
                 <span class="cerrar">&times;</span>
                 <h1 id="tituloCrear">Crear Cuenta</h1>
-                <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
+                <p>¿Has estado aquí antes? <a href="http://" class="enlace">Inicia sesión</a></p>
             </div>
             <div class="modalBodyCrear" id="modalBodyCrear">
                 <form action="" method="post" id="formularioRegistro">
@@ -115,8 +115,8 @@ function crearUsuario(): string
                     o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <label for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input type="password" name="passwordConfirm"><br><br>
-                    <input type="submit" formaction="#modal"  value="Crear cuenta"><br>
-                    <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
+                    <input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"><br>
+                    <p>Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace" >política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
                 </form>
 
                 '.$errMessage.'
