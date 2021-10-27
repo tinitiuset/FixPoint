@@ -22,12 +22,12 @@ create table categoria
 create table herramienta
 (
     id_herramienta int primary key auto_increment,
-    nombre         varchar(15)  not null unique,
-    modelo         varchar(15)  not null,
-    marca          varchar(15)  not null,
+    nombre         varchar(200)  not null unique,
+    modelo         varchar(70)  ,
+    marca          varchar(70)  not null,
     disponible     boolean      not null,
     foto           varchar(200) not null,
-    observaciones  varchar(60),
+    observaciones  varchar(255),
     idCategoria    int          not null,
     constraint fk_idCategoria_herramienta foreign key (idCategoria)
         references categoria (idCategoria)
@@ -85,4 +85,12 @@ create table paso
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
 VALUES ('00000000A', 'Administrador', 'Administrador', '1', '$2y$10$jIBlHmuScr/y2', 'administracion@fixpoint.com');
 
-/*INSERCIONES TABLA HERRAMIENTAS*/
+
+/*INSERCIONES TABLA CATEGORIA*/
+INSERT INTO `categoria` (`nombre`)
+values ('basicas');
+
+
+/*INSERCIONES TABLA HERRAMIENTA*/
+INSERT INTO `herramienta` (`nombre`,`marca`,`disponible`,`foto`,`observaciones`,`idCategoria`)
+values ('Alicate de corte 19mm','acesa',true, './img/herramientas/9ea708f30946ed382aa78859a2b0aadfdb9023dd.jpg','Alicate de corte marca ACESA fabricado en españa.' , 1);
