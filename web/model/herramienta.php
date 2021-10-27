@@ -39,6 +39,8 @@ class herramienta
         Connection::executeQuery($query);
     }
 
+
+
     public function getHerramienta(int $idHerr)
     {
         $query = "select * from `herramienta` where 
