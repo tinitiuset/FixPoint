@@ -29,9 +29,23 @@ function getContent()
     </div>
     <div class="product-wrapper">
         <div class="product">
-            <div class="imagen">Imagen</div>
-            <div class="alquilar">Alquilar</div>
-            <div class="detalles">Detalles</div>
+            <div class="imagen-wrapper">
+            <img src="./img/herramienta.png" alt="Herramienta">
+            </div>
+            <div class="alquilar-wrapper">
+                <div class="alquilar">
+                <div>
+                <span class="product-id">#34</span> -
+                <span class="product-title">Taladro</span>
+                </div>
+                <div class="boton-wrapper">
+                <a class="boton" href="">
+                Alquilar
+                </a>
+                </div>
+                </div>
+            </div>
+            <div class="detalles-wrapper">Detalles</div>
         </div>
     </div>
     ';

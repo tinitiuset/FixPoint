@@ -13,25 +13,65 @@
 .product-wrapper {
     width: 80%;
     margin: auto;
-    background-color: red;
 }
 
 .product-wrapper > .product {
     width: 100%;
-    background-color: green;
-    display: inline-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
     grid-template: "imagen alquilar"
                    "detalles detalles";
 }
-.product-wrapper > .product > .imagen {
+.product-wrapper > .product > .imagen-wrapper {
+    grid-area: imagen;
     width: 100%;
-    background-color: yellow;
+    height: 100%;
+    border: 1px solid rgb(230,230,230);
+
 }
-.product-wrapper > .product > .alquilar {
+.product-wrapper > .product > .imagen-wrapper > img{
+    max-width: 400px;
+    display:block;
+    margin:auto;
+}
+.product-wrapper > .product > .alquilar-wrapper {
+    grid-area: alquilar;
     width: 100%;
-    background-color: orange;
+    height: 100%;
+    border: 1px solid rgb(230,230,230);
+
 }
-.product-wrapper > .product > .detalles {
+.product-wrapper > .product > .alquilar-wrapper > .alquilar {
+
+}
+.product-wrapper > .product > .alquilar-wrapper > .alquilar > *{
+    font-size: 21px;
+    line-height: 32px;
+    color: rgb(26,26,26);
+    text-align: center;
+}
+.product-wrapper > .product > .detalles-wrapper {
+    grid-area: detalles;
+    border: 1px solid rgb(230,230,230);
     width: 100%;
-    background-color: magenta;
+    height: 100%;
 }
+
+.alquilar > .boton-wrapper {
+
+}
+.alquilar > .boton-wrapper > .boton {
+    width: 60%;
+    height: 100%;
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 14px;
+    color: #000000;
+    background-color: #eec51f;
+    border-radius: 8px;
+    font-family: "proxima-nova-soft", sans-serif;
+    text-decoration: none;
+    transition: box-shadow 200ms ease-out;
+}
+
