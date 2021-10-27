@@ -1,0 +1,131 @@
+@media (min-width: 0px) {
+    .container-contact-general {
+
+        grid-template-areas:
+    'map map map'
+    'bottomInf bottomInf bottomInf'
+    'ubication ubication ubication'
+        ;
+    }
+
+    .contact-info{
+        font-size: xx-small;
+    }
+
+    .scheduleTable {
+        text-align: center;
+    }
+
+    .contact-info{
+        margin-top: 2vh;
+    }
+
+}
+
+@media (min-width: 700px) {
+    .container-contact-general {
+
+        grid-template-areas:
+    'map map'
+    'bottomInf ubication';
+    }
+    .contact-info{
+        font-size: medium;
+    }
+
+
+
+}
+
+
+@media (min-width: 1025px) {
+    .container-contact-general {
+
+        grid-template-areas:
+    'map ubication'
+    'bottomInf bottomInf';
+    }
+
+}
+
+.container-contact-general {
+    display: grid;
+    margin-top: 1rem;
+    /*
+    background-color: #eec51f;
+    */
+    grid-template-columns: 2fr 1fr;
+
+}
+
+.container-contact-general * {
+    color: black;
+}
+
+.map-container {
+    /*
+    background-color: blue;
+    */
+    height: 100% !important;;
+    width: 100% !important;;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+}
+
+.map-container iframe {
+
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.contact-info {
+    list-style: none;
+    /*
+    background-color: #1975f1;
+    */
+    height: 100% !important;
+    width: 100% !important;
+    font-size: large;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.map-container {
+
+    grid-area: map;
+}
+
+.map-ubication {
+
+
+    grid-area: ubication;
+
+}
+
+.bottom-information {
+
+
+    grid-area: bottomInf;
+
+}
+
+.contact-info li {
+    padding-bottom: 1rem;
+}
+
+.pimg {
+    float: left;
+}
+
+.bottom-information {
+    margin-top: 1vw;
+    /*
+    background-color: red;
+    */
+    height: 200px;
+    width: 100% !important;
+}
+

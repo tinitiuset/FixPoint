@@ -128,7 +128,7 @@ nav > div {
 
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
-    .container{
+    .container-contact{
         margin-left: 20px;
     }
     .Login {
@@ -144,7 +144,7 @@ nav > div {
 
     .menu-toggle{
         display:none ; /*con esto eliminamos la hamburguesa*/
-    } 
+    }
 
     .Login > div {
         display: inline-block;
@@ -179,6 +179,11 @@ nav > div {
         margin-left: 0;
    
     } 
+
+    .imgUsuario {
+        height: 2.6vw;
+        width: auto;
+    }
 
     .icon-bar {
         flex-shrink: 0;
