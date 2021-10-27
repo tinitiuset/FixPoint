@@ -108,7 +108,7 @@ function crearUsuario(): string
                     <label for="email">Correo electrónico:</label><br>
                     <input type="email" id="email" placeholder="Email@ejemplo.com" name="email" 
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
-                    <p>Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
+                    <p id="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
                     <label for="password">Contraseña:</label><br>
                     <input type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 

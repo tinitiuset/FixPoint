@@ -14,9 +14,17 @@ form {
   padding-top: 20px;
 }
 
+label {
+  font-size: 15px;
+}
+
 /*--------------------------------------- Version Movil ---------------------------------------------*/
-#tituloIniciar {
+#tituloInicia {
   padding: 25px;
+}
+
+#tituloCrear {
+  padding: 20px;
 }
 
 .redondeado {
@@ -25,6 +33,15 @@ form {
   height: 40px;
   border: 0.5px solid gray;
   margin-bottom: 50px;
+  margin-top: 5px;
+}
+
+.inputCrear {
+  border-radius: 5px;
+  width: 300px;
+  height: 20px;
+  border: 0.5px solid gray;
+  margin-bottom: 20px;
   margin-top: 5px;
 }
 
@@ -120,6 +137,10 @@ form {
 
 .textoForm {
   font-size: 15px;
+}
+
+#aviso {
+  color: darkgrey;
 }
 
 .alert {
