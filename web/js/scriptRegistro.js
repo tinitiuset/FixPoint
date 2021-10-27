@@ -17,6 +17,7 @@ function validarFormulario(evento) {
 
     } else {
 
+        evento.preventDefault();
 
         var mensaje = ' ';
 
@@ -38,11 +39,17 @@ function validarFormulario(evento) {
             document.getElementsByName('passwordConfirm')[0].value)) {
             mensaje += '- Las contraseñas no coinciden';
         }
+        /* CREACION DE ELEMENTO CON EL DOM */
+        const element = document.getElementById("modalBodyCrear");
+        const createDiv = document.createElement("div");
+        createDiv.appendChild(document.createTextNode(mensaje));
+        createDiv.setAttribute('class', 'alert alert-danger');
+        createDiv.setAttribute('id', 'alertwarning');
+        createDiv.setAttribute('role', 'alert');
+        element.appendChild(createDiv);
 
     }
-    let element = document.getElementById('alertwarning');
-    element.innerHTML = mensaje;
-    element.style.visibility = 'visible';
+
 
 }
 

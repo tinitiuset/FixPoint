@@ -97,7 +97,7 @@ function crearUsuario(): string
                 <h1 id="tituloCrear">Crear Cuenta</h1>
                 <p>¿Has estado aquí antes? <a href="http://">Inicia sesión</a></p>
             </div>
-            <div class="modalBodyCrear">
+            <div class="modalBodyCrear" id="modalBodyCrear">
                 <form action="" method="post" id="formularioRegistro">
                     <label for="dni">DNI:</label><br>
                     <input type="text" name="dni" id="dni" required><br>
@@ -118,9 +118,7 @@ function crearUsuario(): string
                     <input type="submit" formaction="#modal"  value="Crear cuenta"><br>
                     <p>Al unirte a FixPoint, aceptas nuestra <a href="http://">política de privacidad</a> y <a href="http://">términos</a>.</p>
                 </form>
-                <div class="alert alert-danger" id="alertwarning" role="alert">
-                    
-                </div>
+
                 '.$errMessage.'
                 
             </div>

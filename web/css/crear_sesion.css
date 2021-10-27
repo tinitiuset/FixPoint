@@ -49,9 +49,7 @@
   cursor: pointer;
 }
 
-#alertwarning{
-    visibility: hidden;
-}
+
 .alert {
     position: relative;
     padding: 1rem 1rem;
