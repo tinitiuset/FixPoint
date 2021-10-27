@@ -215,11 +215,11 @@ function iniciarSesion()
             </div>
             <div class="modalBody">
                 <form action="" method="post">
-                    <label for="correo">Correo electrónico</label><br>
+                    <label class="textoForm" for="correo">Correo electrónico</label><br>
                     <!--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
                     <input class="redondeado" type="email" placeholder="Email@ejemplo.com" name="correo"
                     required title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com"><br><br>
-                    <label for="pass">Contraseña <a href="" class="enlace">Se te olvidó?</a></label>
+                    <label class="textoForm" for="pass">Contraseña <a href="" id="recuperar" class="enlace">Se te olvidó?</a></label>
                     <!--pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"-->
                     <input class="redondeado" type="password" name="pass" 
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.

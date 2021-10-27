@@ -9,17 +9,17 @@
     background-color: rgba(7, 7, 7, 0.363)
 }
 
-.modalHeader {
+.modalHeaderCrear {
   background-color: whitesmoke;
   padding: 2px 2px;
 }
 
-.modalBody {
+.modalBodyCrear {
   background-color: rgb(235, 235, 235);
   padding: 2px 2px;
 }
 
-.modalContenido {
+.modalContenidoCrear {
   background-color: #fefefe;
   text-align: center;
   padding: 0;
