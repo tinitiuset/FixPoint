@@ -18,16 +18,17 @@ create table categoria
     idCategoria int primary key auto_increment,
     nombre      varchar(15) unique
 );
-
+/*LAS FOTOS DE LAS HERRAMIENTAS SE GUARDAN EN IMG/HERRAMIENTAS*/
 create table herramienta
 (
     id_herramienta int primary key auto_increment,
-    nombre         varchar(15) not null unique,
-    modelo         varchar(15) not null,
-    marca          varchar(15) not null,
-    disponible     boolean     not null,
+    nombre         varchar(15)  not null unique,
+    modelo         varchar(15)  not null,
+    marca          varchar(15)  not null,
+    disponible     boolean      not null,
+    foto           varchar(200) not null,
     observaciones  varchar(60),
-    idCategoria    int         not null,
+    idCategoria    int          not null,
     constraint fk_idCategoria_herramienta foreign key (idCategoria)
         references categoria (idCategoria)
         on update cascade
@@ -83,3 +84,5 @@ create table paso
 /* USUARIO ADMINISTRADOR*/
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
 VALUES ('00000000A', 'Administrador', 'Administrador', '1', '$2y$10$jIBlHmuScr/y2', 'administracion@fixpoint.com');
+
+/*INSERCIONES TABLA HERRAMIENTAS*/
