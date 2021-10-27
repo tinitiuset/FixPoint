@@ -1,4 +1,14 @@
 document.onreadystatechange = function () {
+    if(window.location.hash.substring(1) === 'modalIniciar') {
+        document.getElementById("modal").style.display = "none";
+    } else if (window.location.hash.substring(1) === 'modal') {
+        document.getElementById("modalIniciar").style.display = "none";
+
+    }
+    else {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("modalIniciar").style.display = "none";
+    }
     if (document.readyState == "complete") {
         let txtCrearSesion = document.getElementById("unirse");
         let modalCrearSesion = document.getElementById("modal");

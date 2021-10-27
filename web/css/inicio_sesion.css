@@ -1,70 +1,106 @@
 @font-face {
-    font-family: 'Patinio Futura';
-    src: url('../res/Patinio Futura.ttf') format('truetype');
-    font-style: normal;
-    font-weight: normal;
+  font-family: 'Patinio Futura';
+  src: url('../res/Patinio Futura.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
 }
 
 h1 {
-    font-family: 'Patinio Futura', serif;
+  font-family: 'Patinio Futura', serif;
+}
+
+#tituloIniciar {
+  padding: 25px;
+}
+
+.redondeado {
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  margin-top: 20px;
+  border: 0.5px solid gray;
 }
 
 .enlace {
-    text-decoration: none;
-    color: #1975f1;
+  text-decoration: none;
+  color: #1975f1;
 }
 
 .btn-iniciarSesion {
-    color: white;
-    background-color:#1975f1; 
+  color: white;
+  background-color: #1975f1;
+  padding: 12px 25px;
+  margin-top: 50px;
+  border: none;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
+
 .modalIniciarSesion {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(7, 7, 7, 0.363)
-  }
+  /*
+  display: none;
+  */
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(7, 7, 7, 0.363)
+}
 
 .modalHeader {
-  background-color: whitesmoke;
-  padding: 2px 2px;
+background-color: whitesmoke;
+padding: 2px 2px;
+border-radius: 15px;
+width: 100%;
+height: 30%;
+align-items: center;
+
 }
 
 .modalBody {
-  background-color: rgb(235, 235, 235);
-  padding: 2px 2px;
+background-color: rgb(235, 235, 235);
+padding: 2px 2px;
+border-radius: 0px 0px 15px 15px;
+width: 100%;
+height: 70%;
 }
 
-.modalContenido {
-  background-color: #fefefe;
-  text-align: center;
-  padding: 0;
-  width: 25%;
-  height: auto;
-  border: 1px solid #888;
-  margin: 15% auto;
+.modalContenido, .modalContenidoCrear{
+width: 400px;
+height: 500px;
+background-color: white;
+text-align: center;
+padding: 0;
+/*border: 1px solid #888;*/
+margin: 0px auto;
+border-radius: 15px;
 }
+
+.modalContenidoCrear {
+  width: 500px;
+  height: 600px;
+  }
 
 /* Botón de cerrar */
 .cerrar {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
+  color: gray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 7px;
+}
+
 .cerrar:hover,
 .cerrar:focus {
-  color: black;
-  background-color: rgb(187, 187, 187);
-  height: auto;
-  text-decoration: none;
-  cursor: pointer;
+color: black;
+background-color: rgb(187, 187, 187);
+height: auto;
+text-decoration: none;
+cursor: pointer;
+border-radius: 0px 15px 0px 15px;
 }

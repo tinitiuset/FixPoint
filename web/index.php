@@ -1,5 +1,7 @@
 <?php
 require "functions.php";
+
+
 $args = [
     'title' => 'Index',
     'styles' => [
@@ -13,24 +15,22 @@ $args = [
         'js/menu.js',
         'js/slider.js',
         'js/modales.js',
+        'js/scriptRegistro.js',
     ]
 ];
 
 function getContent () {
-
     $content= '
     <div class="slideshow-container">
         <div class="slider fade">
-        <img alt="slider" src="../web/img/back01.jpg" id="slider">
+        <img src="./img/back01.jpg" id="slider">
             <div class="text">
-                <h2>¿Qué es FixPoint?</h2>
-                <p>FixPoint es una iniciativa circular sostenible, 
-                que busca provocar un cambio en el sistema de sobreproducción, 
-                luchando por una economía circular con nuestra 
-                biblioteca de herramientas.</p>
+                <h2 id="titulo">¿Qué es FixPoint?</h2>
+                <p class="floatText" id="parrafo">FixPoint es una iniciativa que busca luchar por una economía circular 
+                con nuestra <span class=\"bold\">biblioteca de herramientas</span>.</p>
+                <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
             </div>
     </div>
-        <button class="btnDonar">Donar Herramientas</button>
         </div>
             <a class="back" id="back">&#10094</a>
             <a class="next" id="next">&#10095</a>
