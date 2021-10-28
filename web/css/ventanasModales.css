@@ -43,7 +43,7 @@ p {
 }
 
 .textoFormCrear {
-  padding-left: 100px;
+  padding-left: 75px;
 }
 
 .aviso {
@@ -61,10 +61,10 @@ p {
 
 .inputCrear {
   border-radius: 5px;
-  width: 300px;
+  width: 250px;
   height: 30px;
   border: 0.5px solid gray;
-  margin: 5px 100px;
+  margin: 5px 75px;
 }
 
 .enlace {
@@ -126,7 +126,7 @@ p {
 }
 
 .modalContenidoCrear {
-  width: 500px;
+  width: 400px;
   height: 640px;
 }
 
@@ -173,6 +173,18 @@ p {
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
 
+  .modalContenidoCrear {
+    width: 500px;
+  }
+
+  .inputCrear {
+    width: 300px;
+    margin: 5px 100px;
+  }
+
+  .textoFormCrear {
+    padding-left: 100px;
+  }
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
