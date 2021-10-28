@@ -146,7 +146,6 @@ function funcionalidadRegistro(){
         !empty($_POST['password']
         )) {
 
-        echo "hola";
 
         $apellidos = $_POST['apellidos'];
         $nombre = $_POST['nombre'];

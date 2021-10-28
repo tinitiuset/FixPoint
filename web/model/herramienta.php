@@ -10,16 +10,17 @@ require __DIR__ . '/../Connection.php';
 
 class herramienta
 {
-    private $id_herramienta, $nombre, $modelo, $marca, $disponible, $observaciones, $idCategoria;
+    private $id_herramienta, $nombre, $modelo, $marca, $disponible, $foto, $observaciones, $idCategoria;
 
     /*Id herramienta es un auto increment de sql*/
 
-    public function __construct($nombre, $modelo, $marca, $disponible, $observaciones, $idCategoria)
+    public function __construct($nombre, $modelo, $marca, $disponible, $foto, $observaciones, $idCategoria)
     {
         $this->nombre = $nombre;
         $this->modelo = $modelo;
         $this->marca = $marca;
         $this->disponible = $disponible;
+        $this->foto = $foto;
         $this->observaciones = $observaciones;
         $this->idCategoria = $idCategoria;
     }
@@ -27,18 +28,18 @@ class herramienta
     public function createTool()
     {
         $query = "INSERT INTO `herramienta` ( `nombre`,
-                           `modelo`, `marca`, `disponible`, `observaciones`, `idCategoria`) VALUES 
+                           `modelo`, `marca`, `disponible`, `foto`,`observaciones`, `idCategoria`) VALUES 
                                         (
                                          '" . $this->getNombre() . "',
                                          '" . $this->getModelo() . "',
                                          '" . $this->getMarca() . "',
                                          '" . $this->getDisponible() . "',
+                                         '" . $this->getFoto() . "',
                                          '" . $this->getObservaciones() . "',
                                          '" . $this->getIdCategoria() . "'
                                          );";
         Connection::executeQuery($query);
     }
-
 
 
     public function getHerramienta(int $idHerr)
@@ -50,6 +51,7 @@ class herramienta
         $this->setNombre($tool['nombre']);
         $this->setModelo($tool['modelo']);
         $this->setMarca($tool['marca']);
+        $this->setFoto($tool['foto']);
         $this->setDisponible($tool['disponible']);
         $this->setObservaciones($tool['observaciones']);
         $this->setIdCategoria($tool['idCategoria']);
@@ -65,7 +67,8 @@ class herramienta
         Connection::executeQuery($query)->execute();
     }
 
-    public function updateHerramienta(int $id_herramienta) {
+    public function updateHerramienta(int $id_herramienta)
+    {
         $query = "UPDATE herramienta 
         SET nombre = '" . $this->getNombre() . "', 
         modelo = '" . $this->getModelo() . "',
@@ -78,9 +81,26 @@ class herramienta
         Connection::executeQuery($query);
     }
 
-    public function deleteHerramienta(int $id_herramienta) {
+    public function deleteHerramienta(int $id_herramienta)
+    {
         $query = "DELETE FROM herramienta WHERE id_herramienta LIKE '" . $id_herramienta . "'";
         Connection::executeQuery($query);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * @param mixed $foto
+     */
+    public function setFoto($foto): void
+    {
+        $this->foto = $foto;
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 require "functions.php";
+
 use Grupo3\FixPoint\Connection;
 
 
@@ -20,31 +21,83 @@ $args = [
     ]
 ];
 
-/*despues del submit*/
 
-    /*Comprobar que no exista esa herramienta*/
 
-    /*Guardar img y hashearla en img/herramientas */
+function getContent()
+{
 
-    /*insertar en bbdd*/
-
-function getContent () {
-
-    /*CONSEGUIMOS LAS HERREMIENTAS DE BBDD*/
+    /*CONSEGUIMOS LAS CATEGORIAS DE BBDD*/
     $query = Connection::executeQuery("select * from categoria")->fetchAll();
     $options = '';
-    foreach ($query as $category){
-        $options .= '<option value='.$category['idCategoria'].'>'.$category['nombre'].'</option>';
+    $mensajeError = '';
+    foreach ($query as $category) {
+        $options .= '<option value=' . $category['idCategoria'] . '>' . $category['nombre'] . '</option>';
+    }
+
+    /*despues del submit*/
+
+    if (!empty($_POST['name'])) {
+        /*Comprobar que no exista esa herramienta*/
+        $mensajeError = '';
+
+        $toolName = $_POST['name'];
+        $queryToolByName = "select * from herramienta where nombre = '$toolName'";
+
+        $sqlTool = Connection::executeQuery($queryToolByName);
+
+        $rowsInSql = $sqlTool->fetchAll();
+
+
+        if ($rowsInSql) {
+            $mensajeError = '<div class="row"><div class="alert alert-danger" role="alert">
+            - Ya existe una herramienta con ese nombre.
+                </div></div>';
+        } else {
+            /*Guardar img y hashearla en img/herramientas */
+
+
+            $uploaddir = 'img/herramientas/';
+            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+            $temp = explode(".", $_FILES["image"]["name"]);
+
+            /*time() -> unix timestamp*/
+
+            $newfilename = sha1(time()) . '.' . end($temp);
+
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir.$newfilename);
+
+
+            $herramienta = new Grupo3\FixPoint\model\herramienta(
+                $toolName,
+                $_POST['brand'],
+                $_POST['model'],
+                true,
+                $newfilename,
+                $_POST['observations'],
+                $_POST['category']
+            );
+
+
+            /*insertar en bbdd*/
+            $herramienta.createTool();
+            $mensajeError = '<div class="row"><div class="alert alert-danger" role="alert">
+            - Herramienta insertada correctamente
+                </div></div>';
+        }
     }
 
 
-    $content= '
+
+
+    $content = '
 <div class="containerGeneralCreateTool">
 
     <h2>Insertar herramienta</h2>
 
 <div class="containerCreateTool">
-  <form action="/action_page.php">
+  <form action="crearHerramienta.php" method="post" enctype="multipart/form-data"> 
     <div class="row">
       <div class="col-25">
         <label for="name">Nombre <span class="cRed">*</span></label>
@@ -58,7 +111,7 @@ function getContent () {
         <label for="brand">Marca</label>
       </div>
       <div class="col-75">
-        <input type="text" id="brand" placeholder="Dexter" pattern=".{0,69}">
+        <input type="text" id="brand" name="brand" placeholder="Dexter" pattern=".{0,69}">
       </div>
     </div>
     <div class="row">
@@ -85,7 +138,7 @@ function getContent () {
       <div class="col-75">
       
         <select id="category" name="category" required>
-          '.$options.'
+          ' . $options . '
         </select>
       </div>
     </div>
@@ -103,6 +156,7 @@ function getContent () {
       <input type="submit" value="Insertar">
     </div>
   </form>
+  '.$mensajeError.'
   <p><span class="cRed">*</span> Campos obligatorios.</p>
 
 </div>
