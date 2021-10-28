@@ -11,7 +11,7 @@ h1 {
 }
 
 form {
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 label {
@@ -19,13 +19,14 @@ label {
 }
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
-#tituloInicia {
+#tituloIniciar {
   padding: 25px;
 }
 
 #tituloCrear {
-  padding: 20px;
+  padding: 15px 15px 5px 15px;
 }
+
 
 .redondeado {
   border-radius: 5px;
@@ -39,9 +40,9 @@ label {
 .inputCrear {
   border-radius: 5px;
   width: 300px;
-  height: 20px;
+  height: 30px;
   border: 0.5px solid gray;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   margin-top: 5px;
 }
 
@@ -66,6 +67,10 @@ label {
   background-color: rgba(7, 7, 7, 0.363)
 }
 
+.modalCrearSesion {
+  padding-top: 15px;
+}
+
 .modalHeader, .modalHeaderCrear {
   background-color: whitesmoke;
   padding: 2px 2px;
@@ -76,7 +81,7 @@ label {
 }
 
 .modalHeaderCrear {
-  height: 20%;
+  height: 15%;
 }
 
 .modalBody, .modalBodyCrear {
@@ -88,7 +93,7 @@ label {
 }
 
 .modalBodyCrear {
-  height: 80%;
+  height: 85%;
 }
 
 .modalContenido, .modalContenidoCrear {
@@ -97,14 +102,13 @@ label {
   background-color: white;
   text-align: center;
   padding: 0;
-  /*border: 1px solid #888;*/
   margin: 0px auto;
   border-radius: 15px;
 }
 
 .modalContenidoCrear {
   width: 500px;
-  height: 600px;
+  height: 640px;
 }
 
 /* Botón de cerrar */
@@ -139,8 +143,13 @@ label {
   font-size: 15px;
 }
 
-#aviso {
+.aviso {
   color: darkgrey;
+  padding: 5px 80px;
+}
+
+#dni {
+  padding-right: 300px;
 }
 
 .alert {

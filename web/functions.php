@@ -99,24 +99,24 @@ function crearUsuario(): string
             </div>
             <div class="modalBodyCrear" id="modalBodyCrear">
                 <form action="" method="post" id="formularioRegistro">
-                    <label for="dni">DNI:</label><br>
-                    <input type="text" name="dni" id="dni" required><br>
-                    <label for="nombre">Nombre:</label><br>
-                    <input type="text" name="nombre" id="nombre" required><br>
+                    <label clase="alingTxt" for="dni">DNI:</label><br>
+                    <input class="inputCrear" type="text" name="dni" id="dni" required><br>
+                    <label clase="alingTxt for="nombre">Nombre:</label><br>
+                    <input class="inputCrear" type="text" name="nombre" id="nombre" required><br>
                     <label for="apellidos">Apellidos:</label><br>
-                    <input type="text" name="apellidos" id="apellidos" required><br>
+                    <input class="inputCrear" type="text" name="apellidos" id="apellidos" required><br>
                     <label for="email">Correo electrónico:</label><br>
-                    <input type="email" id="email" placeholder="Email@ejemplo.com" name="email" 
+                    <input class="inputCrear" type="email" id="email" placeholder="Email@ejemplo.com" name="email" 
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
-                    <p id="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p><br>
+                    <p class="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p>
                     <label for="password">Contraseña:</label><br>
-                    <input type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+                    <input class="inputCrear" type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 
                     o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <label for="passwordConfirm">Confirmar contraseña:</label><br>
-                    <input type="password" name="passwordConfirm"><br><br>
+                    <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"><br>
-                    <p>Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace" >política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
+                    <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace" >política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
                 </form>
 
                 '.$errMessage.'
