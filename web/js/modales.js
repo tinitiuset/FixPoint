@@ -16,17 +16,13 @@ document.onreadystatechange = function () {
 
         txtCrearSesion.onclick = function spawn() {
             modalCrearSesion.style.display = "block";
+            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
         }
 
         // CERRAR MODAL
         btnCerrarModal.onclick = function () {
             modalCrearSesion.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modalCrearSesion) {
-                modalCrearSesion.style.display = "none";
-            }
+            document.querySelector("body").style.overflow = 'visible';
         }
 
         let txtIniciarSesion = document.getElementById("iniciarSesion");
@@ -36,17 +32,13 @@ document.onreadystatechange = function () {
         txtIniciarSesion.onclick = function spawn() {
             console.log("yay")
             modalIniciarSesion.style.display = "block";
+            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
         }
 
         // CERRAR MODAL
         btnCerrarModalSesion.onclick = function () {
             modalIniciarSesion.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modalIniciarSesion) {
-                modalIniciarSesion.style.display = "none";
-            }
+            document.querySelector("body").style.overflow = 'visible';
         }
     }
 }
