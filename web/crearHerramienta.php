@@ -1,7 +1,10 @@
 <?php
-require "functions.php";
 
 use Grupo3\FixPoint\Connection;
+use Grupo3\FixPoint\model\herramienta;
+
+
+require_once "functions.php";
 
 
 $args = [
@@ -33,7 +36,6 @@ function getContent()
     foreach ($query as $category) {
         $options .= '<option value=' . $category['idCategoria'] . '>' . $category['nombre'] . '</option>';
     }
-
     /*despues del submit*/
 
     if (!empty($_POST['name'])) {
@@ -56,20 +58,18 @@ function getContent()
             /*Guardar img y hashearla en img/herramientas */
 
 
-            $uploaddir = 'img/herramientas/';
-            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
-
+            $uploaddir = './img/herramientas/';
             $temp = explode(".", $_FILES["image"]["name"]);
 
             /*time() -> unix timestamp*/
 
-            $newfilename = sha1(time()) . '.' . end($temp);
+            $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
 
 
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir.$newfilename);
+            move_uploaded_file($_FILES['image']['tmp_name'], $newfilename);
 
 
-            $herramienta = new Grupo3\FixPoint\model\herramienta(
+            $herramienta = new herramienta(
                 $toolName,
                 $_POST['brand'],
                 $_POST['model'],
@@ -81,7 +81,7 @@ function getContent()
 
 
             /*insertar en bbdd*/
-            $herramienta.createTool();
+           $herramienta->createTool();
             $mensajeError = '<div class="row"><div class="alert alert-danger" role="alert">
             - Herramienta insertada correctamente
                 </div></div>';
@@ -97,7 +97,7 @@ function getContent()
     <h2>Insertar herramienta</h2>
 
 <div class="containerCreateTool">
-  <form action="crearHerramienta.php" method="post" enctype="multipart/form-data"> 
+  <form action="" method="post" enctype="multipart/form-data"> 
     <div class="row">
       <div class="col-25">
         <label for="name">Nombre <span class="cRed">*</span></label>
@@ -119,7 +119,7 @@ function getContent()
         <label for="model">Model</label>
       </div>
       <div class="col-75">
-        <input type="text" id="model" placeholder="X201" pattern=".{0,69}">
+        <input type="text" id="model" name="model" placeholder="X201" pattern=".{0,69}">
       </div>
     </div>
     <div class="row">

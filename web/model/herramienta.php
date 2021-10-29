@@ -6,7 +6,7 @@ use Grupo3\FixPoint\Connection;
 use Kint\Kint;
 use PDO;
 
-require __DIR__ . '/../Connection.php';
+require_once __DIR__ . '/../Connection.php';
 
 class herramienta
 {
@@ -25,7 +25,7 @@ class herramienta
         $this->idCategoria = $idCategoria;
     }
 
-    public function createTool()
+    public function createTool(): void
     {
         $query = "INSERT INTO `herramienta` ( `nombre`,
                            `modelo`, `marca`, `disponible`, `foto`,`observaciones`, `idCategoria`) VALUES 
@@ -39,6 +39,7 @@ class herramienta
                                          '" . $this->getIdCategoria() . "'
                                          );";
         Connection::executeQuery($query);
+
     }
 
 
