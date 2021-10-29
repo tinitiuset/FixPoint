@@ -41,13 +41,13 @@ function navbar(): string
     $structureNavBar = '
     <header>
     <div class="container">
-        <a class="logo" href="index.php"><img src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
+        <a class="logo" href="index.php"><img id="logoNavbar" src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
     </div>
     <nav id="site-nav" class="site-nav">
-        <div class="catalogo"><a href="productos.php">Catálogo</a></div>
-        <div class="Guías"><a href="">Guías despiece</a></div>
-        <div class="Donar"><a href="">Donar herramientas</a></div>
-        <div class="Contacto"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
+        <div class="linksNav"><a href="productos.php">Catálogo</a></div>
+        <div class="linksNav"><a href="">Guías despiece</a></div>
+        <div class="linksNav"><a href="">Donar herramientas</a></div>
+        <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
     ';
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {

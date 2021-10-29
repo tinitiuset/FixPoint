@@ -82,7 +82,7 @@ body {
     color: white;
     position: absolute;
     text-align: center;
-    top: 45vw;
+    top: 280px;
 }
 
 .floatText {
@@ -131,7 +131,7 @@ body {
     }
 
     .text{
-        top: 25vw;
+        top: 270px;
     }
 
     #titulo {
@@ -169,7 +169,7 @@ body {
     }
    
    .text{
-        top: 100px;
+        top: 50px;
     }
 
     .fade {

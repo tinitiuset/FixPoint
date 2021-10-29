@@ -8,8 +8,8 @@
   }
 
 body{
-    background: white; /* Le damos un color de fondo*/
-    font-family: 'Roboto', sans-serif; /* Cargamos la misma fuente en el body para todas las páginas*/
+    background: white; 
+    font-family: 'Roboto', sans-serif; 
 }
 
 header{
@@ -30,10 +30,6 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
 /*---------------Barra de Navegacion-----------------*/
-nav > div {
-    padding-right: 20px;
-}
-
 .iconoLogin {
     position: absolute;
     top: 2em;
@@ -50,7 +46,6 @@ nav > div {
 
 .Login {
     display: none;
-   
 }
 
 .logo{
@@ -58,17 +53,28 @@ nav > div {
 }
 
 .site-nav{
-    margin-top: 1%;
-    position: absolute; /* Le damos una posición absoluta */ 
-    right:0; /*lo colocamos en la esquina superior derecha*/
-    background:#334756; /* Le damos el mismo color que a la barra de navegación*/
-    clip-path: circle(0px at top right); /* le decimos que posición va a tener normal  */
-    transition: clip-path ease-in-out 700ms; /* le ponemos tiempo al efecto*/
+  display: none;
 }
 
-.site-nav-open{ /*utilizamos la utilidad clip-path:*/
-    clip-path: circle(150% at top right); /* al hacer click se abre
-                                         de manera circular*/
+.site-nav-open{ 
+    position: absolute;
+    top: 92px;
+    background-color: #334756;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition-duration: 3s;
+    transform: translateX(0px);
+}
+
+.linksNav {
+    padding: 10px;
+    width: 100%;
+}
+
+.linksNav:hover {
+    background-color: #394b58;
+    width: 100%;
 }
 
 .site-nav a{
@@ -138,6 +144,18 @@ nav > div {
 
 /*-------------------------------Versión Web-------------------------------------*/
 @media only screen and (min-width:1200px){
+    .site-nav{
+        margin-top: 1%;
+        position: absolute; /* Le damos una posición absoluta */ 
+        right:0; /*lo colocamos en la esquina superior derecha*/
+        background:#334756; /* Le damos el mismo color que a la barra de navegación*/
+       
+    }
+
+    .site-nav-open{ 
+        display: none;
+    }
+    
     .iconoLogin {
         display: none;
     }
