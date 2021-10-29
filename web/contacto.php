@@ -2,14 +2,13 @@
 require "functions.php";
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Contacto',
     'styles' => [
         'css/footer.css',
         'css/contacto.css',
         'css/index.css',
         'css/header.css',
-        'css/crear_sesion.css',
-        'css/inicio_sesion.css',
+        'css/ventanasModales.css', 
     ],
     'scripts' => [
         'js/menu.js',
