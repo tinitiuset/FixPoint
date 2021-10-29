@@ -8,7 +8,7 @@ create table usuario
     nombre        varchar(10) not null,
     apellidos     varchar(30) not null,
     administrador boolean     not null default false,
-    password      varchar(20) not null,
+    password      varchar(255) not null,
     email         varchar(30) not null unique,
     activo        boolean     not null default false
 );
@@ -82,8 +82,8 @@ create table paso
 );
 
 /* USUARIO ADMINISTRADOR*/
-INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
-VALUES ('00000000A', 'Administrador', 'Administrador', '1', '$2y$10$jIBlHmuScr/y2', 'administracion@fixpoint.com');
+/*INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
+VALUES ('00000000A', 'Administrador', 'Administrador', '1', '', 'administracion@fixpoint.com');*/
 
 
 /*INSERCIONES TABLA CATEGORIA*/
