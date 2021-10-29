@@ -103,7 +103,7 @@ function validarNombre(nombre) {
 
 function validarApellidos(apellidos) {
     if (validarSoloLetras(apellidos)) {
-        if (apellidos.length > 4 && apellidos.length < 30) {
+        if (apellidos.length > 1 && apellidos.length < 30) {
             return true;
         } else {
             return false;
