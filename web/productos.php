@@ -8,7 +8,7 @@ $args = [
         'css/footer.css',
         'css/index.css',
         'css/header.css',
-        'css/ventanasModales',
+        'css/ventanasModales.css',
         'css/productos.css',
     ],
     'scripts' => [
