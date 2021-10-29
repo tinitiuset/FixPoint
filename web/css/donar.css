@@ -1,0 +1,21 @@
+body {
+    background-color: white;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+}
+
+p {
+    text-align:left;
+    font-size: 20px;
+    
+}
+
+.imgHerramientas {
+    padding: 20px;
+    left: -25.1733%;
+    top: 0%;
+    height: 100%;
+}
