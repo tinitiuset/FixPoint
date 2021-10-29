@@ -3,13 +3,12 @@ require "functions.php";
 
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Productos',
     'styles' => [
         'css/footer.css',
         'css/index.css',
         'css/header.css',
-        'css/crear_sesion.css',
-        'css/inicio_sesion.css',
+        'css/ventanasModales',
         'css/productos.css',
     ],
     'scripts' => [
