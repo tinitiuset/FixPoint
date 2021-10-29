@@ -1,4 +1,5 @@
 <?php
+
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\User;
 
@@ -21,7 +22,7 @@ function getHeader($headerArgs = null): void
         <title>' . $headerArgs['title'] . '</title>    
     ';
     foreach ($headerArgs['styles'] as $style) {
-        $structure .= '<link rel="stylesheet" href="'.$style.'">';
+        $structure .= '<link rel="stylesheet" href="' . $style . '">';
     }
     foreach ($headerArgs['scripts'] as $script) {
         $structure .= '<script src="' . $script . '"></script> ';
@@ -80,11 +81,11 @@ function crearUsuario(): string
 {
     /* Logica para mostrar el mensaje que devuelve la funcionalidad de registro*/
     $errMessage = '';
-    if (isset($_POST['apellidos'])){
+    if (isset($_POST['apellidos'])) {
         $errMessage = '
-        <div class="alert alert-danger" role="alert">
-        '.handleRegister($_POST).'
-                </div>';
+        <p><div class="alert alert-danger" role="alert">
+        ' . handleRegister($_POST) . '
+                </div></p>';
     }
 
 
@@ -116,10 +117,12 @@ function crearUsuario(): string
                     <label class="textoFormCrear" for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <p><input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"></p>
+                    
                     <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace" >política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
+                    ' . $errMessage . '
                 </form>
 
-                '.$errMessage.'
+                
                 
             </div>
         </div>
@@ -127,13 +130,13 @@ function crearUsuario(): string
     ';
 }
 
-function funcionalidadRegistro(){
+function funcionalidadRegistro()
+{
 
 
     $mensajeError = '';
 
     /* Conseguimos datos */
-
 
 
     if (!empty($_POST['apellidos']) &&
@@ -144,14 +147,12 @@ function funcionalidadRegistro(){
         !empty($_POST['password']
         )) {
 
-        echo "hola";
 
         $apellidos = $_POST['apellidos'];
         $nombre = $_POST['nombre'];
         $dni = $_POST['dni'];
         $email = $_POST['email'];
-        $password = $_POST['passwordConfirm'];
-        $passwordConfirm = $_POST['password'];
+        $password = $_POST['password'];
 
 
         /*Comprobar si existe ese email o dni ya que son unique*/
@@ -178,13 +179,13 @@ function funcionalidadRegistro(){
         }
 
 
-
         if (!$numFilasSqlEmail && !$numFilasSqlDni) {
 
             /*HASHEAMOS la contraseña por seguridad*/
-            $password = password_hash($password, PASSWORD_BCRYPT);
-            $insertUsuario = "INSERT INTO usuario (nombre,apellidos, dni,email, password)
-                        VALUES ('$nombre', '$apellidos','$dni','$email','$password')";
+            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+
+            $insertUsuario = "INSERT INTO usuario (dni,nombre, apellidos, password, email)
+                        VALUES ('$dni', '$nombre','$apellidos','$hashedPass','$email')";
 
             /*Ejecutamos consulta*/
 
@@ -193,6 +194,7 @@ function funcionalidadRegistro(){
             } else {
                 $mensajeError = 'ERROR al crear el usuario, contacte con el administrador.';
             }
+
         }
 
     }
@@ -273,7 +275,7 @@ function handleIniciarSesion($correo, $pass)
         $user = new User();
         $user->getUser($correo, $pass);
         if ($user->getDni() == null) {
-            return "Email o Contrasenya incorrectos.";
+            return "Email y/o Contrasenña incorrectos.";
         } else {
             $_SESSION["logged"] = true;
             $_SESSION["user"] = $user;
@@ -289,7 +291,8 @@ function handleIniciarSesion($correo, $pass)
 
 }
 
-function handleRegister($post) {
+function handleRegister($post)
+{
 
     $var = funcionalidadRegistro();
     return $var;
