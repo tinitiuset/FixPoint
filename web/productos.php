@@ -18,7 +18,7 @@ $args = [
         'js/scriptRegistro.js',
     ]
 ];
-function createCard($title, $img, $id){
+function createCard($title, $img = '', $id){
     return '
     <!--CARD-->
         <div class="card-wrapper">
@@ -40,6 +40,7 @@ function createCard($title, $img, $id){
 }
 function getContent()
 {
+    $cards = "";
     for ($i=0; $i<15; $i++){
         $cards .= createCard("Taladro", "./img/herramienta.png", "");
     }
