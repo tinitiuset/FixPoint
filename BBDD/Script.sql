@@ -102,24 +102,24 @@ values ('corte');
 
 /*INSERCIONES TABLA HERRAMIENTA*/
 INSERT INTO `herramienta` (`nombre`, `marca`, `disponible`, `foto`, `observaciones`, `idCategoria`)
-values ('Alicate de corte 19mm', 'acesa', true, './img/herramientas/9ea708f30946ed382aa78859a2b0aadfdb9023dd.jpg',
+values ('Alicate de corte 19mm', 'acesa', true, '9ea708f30946ed382aa78859a2b0aadfdb9023dd.jpg',
         'Alicate de corte marca ACESA fabricado en españa.', 1);
 
 INSERT INTO `herramienta` (`nombre`, `disponible`, `foto`, `observaciones`, `idCategoria`)
-values ('Alicate de punta plana', true, './img/herramientas/aeaca574e059280aa9301c3bb827508fc301baed.jpg',
+values ('Alicate de punta plana', true, 'aeaca574e059280aa9301c3bb827508fc301baed.jpg',
         'Alicate de punta plana, buen estado.', 1);
 
 INSERT INTO `herramienta` (`nombre`, `marca`, `modelo`, `disponible`, `foto`, `idCategoria`)
 values ('Calibre Saturn 150mm', 'Mitutoyo', '150', true,
-        './img/herramientas/a20bf21c6ba3a2aaeab62f6c7d52b5433b806c7d.jpg'
+        'a20bf21c6ba3a2aaeab62f6c7d52b5433b806c7d.jpg'
            , 2);
 
 INSERT INTO `herramienta` (`nombre`, `marca`, `modelo`, `disponible`, `foto`, `observaciones`, `idCategoria`)
 values ('Taladro dexter power', 'dexter', 'power', true,
-        './img/herramientas/8a29b4659ea86c58453b1171daf5b85ff0a58c9d.jpg'
+        '8a29b4659ea86c58453b1171daf5b85ff0a58c9d.jpg'
            ,'Taladro percutor DEXTER POWER de 900W', 3);
 
 INSERT INTO `herramienta` (`nombre`, `marca`, `disponible`, `foto`, `observaciones`, `idCategoria`)
 values ('Radial HITACHI', 'HITACHI',  true,
-        './img/herramientas/17d8a84c40e361479eb34c954406da858f42fca7.jpg'
+        '17d8a84c40e361479eb34c954406da858f42fca7.jpg'
            ,'Radial HITACHI con maletin.', 4);

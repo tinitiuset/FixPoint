@@ -23,7 +23,7 @@ class Alquiler
 
     function getAlquiler(char $dni, int $id_herramienta)
     {
-        $query = "SELECT * FROM `alquiler` WHERE `dni` LIKE '".$dni."' ";
+        $query = "SELECT * FROM `alquiler` WHERE `dni` LIKE '".$dni."' AND `id_herramienta` LIKE '".$id_herramienta."' ";
         $Alquiler = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         $this->setDni($Alquiler['dni']);
         $this->setIdHerramienta($Alquiler['id_herramienta']);

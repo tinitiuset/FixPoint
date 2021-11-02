@@ -28,7 +28,7 @@ function createCard($title, $img, $id){
         <div class="card-wrapper">
             <div class="card">
                 <div class="image">
-                    <img src="'.$img.'" alt="'.$title.'">
+                    <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
                 </div>
                 <div class="title">
                      '.$title.'
