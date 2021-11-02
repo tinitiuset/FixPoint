@@ -52,8 +52,25 @@ function navbar(): string
         <div class="Login" id="Login">
     ';
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
+        $userName = $_SESSION["user"]->getNombre();
         $structureNavBar .= '
-            <a class="imgUsuario" id="imgUsuarioLogueado" href="#"><img src="./img/user.png" alt="usuario"></a>
+            
+            <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
+                <i class="fas fa-user"></i>
+                <p id="usernametext"></p>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <!--Rubrica js local storage-->
+            <script>
+                  // Store
+                localStorage.setItem("user", "' . $userName . '");
+                document.getElementById("usernametext").innerHTML += localStorage.getItem("user");
+
+            </script>
         ';
     } else {
         $structureNavBar .= '

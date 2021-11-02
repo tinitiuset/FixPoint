@@ -1,18 +1,19 @@
 /*                     Elementos Comunes                 */
 
+
 @font-face {
     font-family: 'Patinio Futura';
     src: url('../res/Patinio Futura.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
-  }
-
-body{
-    background: white; 
-    font-family: 'Roboto', sans-serif; 
 }
 
-header{
+body {
+    background: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
     font-family: 'Patinio Futura', serif;
     font-size: 18px;
     background: #334756; /*le damos un color de fondo a la barra de navegación*/
@@ -20,12 +21,13 @@ header{
     display: flex;
 }
 
-header::after{ /* Usamos este pseudo elemento y el clear both para indicar que queremos todos
-    los elementos flotantes dentro del contenedor*/
+header::after {
+    /* Usamos este pseudo elemento y el clear both para indicar que queremos todos
+       los elementos flotantes dentro del contenedor*/
 
     content: ''; /* El contenido lo dejamos vacio*/
     clear: both;
-   display: block;
+    display: block;
 }
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
@@ -33,14 +35,15 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
 .iconoLogin {
     position: absolute;
     top: 2em;
-    right: 5em; 
+    right: 5em;
 }
 
-.iconoLogin > a{
+.iconoLogin > a {
     color: white;
     text-decoration: none;
 }
-.iconoLogin > a:hover{
+
+.iconoLogin > a:hover {
     color: #1975f1;
 }
 
@@ -48,15 +51,15 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
     display: none;
 }
 
-.logo{
+.logo {
     margin: 0; /*como estaba en posicion relativa le damos margin 0 para posicionarlo arriba a la derecha*/
 }
 
-.site-nav{
-  display: none;
+.site-nav {
+    display: none;
 }
 
-.site-nav-open{ 
+.site-nav-open {
     position: absolute;
     top: 92px;
     background-color: #334756;
@@ -77,109 +80,112 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
     width: 100%;
 }
 
-.site-nav a{
+.site-nav a {
     color: white; /*Le damos color a los enlaces*/
     text-decoration: none; /* Se le quita la decoración del enlace por defecto*/
 }
 
 .site-nav a:hover,
-.site-nav a:focus{ /*cuando pasemos por encima o hagamos foco en él*/
+.site-nav a:focus { /*cuando pasemos por encima o hagamos foco en él*/
     color: #1975f1;
 }
 
 /* Esto va a ser donde se coloque la hamburguesa de nuestro menú*/
-.menu-toggle{
+.menu-toggle {
     padding: 1em;
     position: absolute;
     top: 1.5em;
-    right: .5em; 
+    right: .5em;
 }
 
 
 /* Hacemos una animacion girando las lineas para que sean aspas*/
-.menu-open .hamburger{ /*con esta clase hacemos girar las aspas debemos enlazarlo
-    en el javascript*/
+.menu-open .hamburger {
+    /*con esta clase hacemos girar las aspas debemos enlazarlo
+       en el javascript*/
     transform: rotate(45deg);
 }
 
-.menu-open .hamburger::before{
+.menu-open .hamburger::before {
     opacity: 0;
 }
 
-.menu-open .hamburger::after{
+.menu-open .hamburger::after {
     transform: translateY(-3px) rotate(-90deg);
 }
 
 /*configuramos el css para hacer un icono de menu tipo hambuerguesa*/
 .hamburger,
 .hamburger::before,
-.hamburger::after{
+.hamburger::after {
     content: '';
     display: block;
     background: white;
     height: 3px;
     width: 1.75em;
     border-radius: 3px;
-    transition: all ease-in-out 500ms; /*le añadimos una transición a todos los elementos
-    de 500 milisegundos para que tarde un poco mas en girar las aspas*/
+    transition: all ease-in-out 500ms;
+    /*le añadimos una transición a todos los elementos
+       de 500 milisegundos para que tarde un poco mas en girar las aspas*/
 }
 
-.hamburger::before{
+.hamburger::before {
     transform: translateY(-6px); /*asi tenemos las 3 rayas de nuestro menu*/
 }
 
-.hamburger::after{
+.hamburger::after {
     transform: translateY(3px); /*asi tenemos las 3 rayas de nuestro menu*/
 }
 
 /*-------------------------------------------version tablet------------------------------------*/
-@media (min-width:768px){
-    .container-contact{
+@media (min-width: 768px) {
+    .container-contact {
         margin-left: 20px;
     }
+
     .Login {
         display: none;
     }
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
-@media only screen and (min-width:1200px){
-    .site-nav{
+@media only screen and (min-width: 1200px) {
+    .site-nav {
         margin-top: 1%;
-        position: absolute; /* Le damos una posición absoluta */ 
-        right:0; /*lo colocamos en la esquina superior derecha*/
-        background:#334756; /* Le damos el mismo color que a la barra de navegación*/
-       
+        position: absolute; /* Le damos una posición absoluta */
+        right: 0; /*lo colocamos en la esquina superior derecha*/
+        background: #334756; /* Le damos el mismo color que a la barra de navegación*/
+
     }
 
-    .site-nav-open{ 
+    .site-nav-open {
         display: none;
     }
-    
+
     .iconoLogin {
         display: none;
     }
 
-    .menu-toggle{
-        display:none ; /*con esto eliminamos la hamburguesa*/
+    .menu-toggle {
+        display: none; /*con esto eliminamos la hamburguesa*/
     }
 
     .Login > div {
         display: inline-block;
     }
 
-    .Login-a{
+    .Login-a {
         padding-left: 20px;
         padding-right: 20px;
     }
-    
+
     .Login-a > a {
         color: white; /*Le damos color a los enlaces*/
         text-decoration: none;
     }
-    
+
     .Login-a > a:hover {
-        color: #1975f1; 
+        color: #1975f1;
     }
 
     .Login {
@@ -188,15 +194,15 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
         padding: inherit;
     }
 
-    .site-nav{
+    .site-nav {
         background: transparent;
         clip-path: initial;
         display: flex;
         position: relative;
         margin-top: 2em;
         margin-left: 0;
-   
-    } 
+
+    }
 
     .imgUsuario {
         height: 2.6vw;
@@ -207,16 +213,45 @@ header::after{ /* Usamos este pseudo elemento y el clear both para indicar que q
         flex-shrink: 0;
         width: 1px;
         height: 24px;
-        background:rgb(117, 114, 114);
+        background: rgb(117, 114, 114);
     }
 
 
     .site-nav a:hover,
-    .site-nav a:focus{
+    .site-nav a:focus {
         background: transparent;
     }
 }
 
+/* user icon styles*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #334756;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
-    
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#imgUsuarioLogueado i {
+}
