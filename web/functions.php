@@ -53,7 +53,7 @@ function navbar(): string
     ';
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         $structureNavBar .= '
-            <a class="imgUsuario" href="#"><img src="./img/user.png" alt="usuario"></a>
+            <a class="imgUsuario" id="imgUsuarioLogueado" href="#"><img src="./img/user.png" alt="usuario"></a>
         ';
     } else {
         $structureNavBar .= '
@@ -66,7 +66,7 @@ function navbar(): string
     $structureNavBar .= '
             </div>
         </nav>
-        <div  class="iconoLogin"><a href=""><i class="far fa-user"></i></a></div>
+        <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>
         <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu.js-->
             <div class="hamburger"></div>
@@ -94,9 +94,9 @@ function crearUsuario(): string
     <div class="modalCrearSesion" id="modal">
         <div class="modalContenidoCrear">
             <div class="modalHeaderCrear">
-                <span class="cerrar">&times;</span>
+                <span id="cerrarCrear" class="cerrar">&times;</span>
                 <h1 id="tituloCrear">Crear Cuenta</h1>
-                <p>¿Has estado aquí antes? <a href="http://" class="enlace">Inicia sesión</a></p>
+                <p>¿Has estado aquí antes? <a href="#" id="crearSesion_txtIniciar" class="enlace">Inicia sesión</a></p>
             </div>
             <div class="modalBodyCrear" id="modalBodyCrear">
                 <form action="" method="post" id="formularioRegistro">
@@ -213,7 +213,7 @@ function iniciarSesion()
             <div class="modalHeader">
                 <span class="cerrar">&times;</span>
                 <h1 id="tituloIniciar">Iniciar Sesión</h1>
-                <p>Nuevo? <a class="enlace" href="">Crear una cuenta</a></p>
+                <p>Nuevo? <a class="enlace" id="iniciarSesion_txtCrear" href="#">Crear una cuenta</a></p>
             </div>
             <div class="modalBody">
                 <form action="" method="post">
