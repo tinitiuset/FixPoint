@@ -78,11 +78,42 @@ legend {
     padding-left: 8px;
 }
 
+.btnEnviar {
+    color: white;
+    border: 2px solid #eec51f;
+    border-radius: 8px;
+    text-transform: uppercase;
+    background: #F79C14;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px 20px;
+}
+
+.btnEnviar:hover {
+    background-color: #eec51f;
+    color: black;
+    border: 3px solid black;
+    font-weight: 600;
+    padding: 16px 30px;
+}
+
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
-    .contenedor {
-        display: grid;
-    }
+    .imagen { grid-area: imagen;}
+    .parrafos { grid-area: parrafos;}
+    .formulario { grid-area: formulario;}
+
+   .container {
+       display: grid;
+       grid-template-areas: 
+       "imagen imagen"
+       "parrafos formulario"
+       ;
+   }
+
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
