@@ -115,7 +115,7 @@ function validarApellidos(apellidos) {
 
 function validarSoloLetras(texto) {
 
-    if (!/^[a-zA-Z]*$/g.test(texto)) {
+    if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(texto)) {
         /*alert("Invalid characters");*/
         return false;
     } else {
