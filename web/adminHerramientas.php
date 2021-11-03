@@ -66,6 +66,9 @@ function getEliminarHerramienta()
             foreach($_POST["checkbox"] as $value)
             {
                 /*Eliminar fotos*/
+                $getfoto = Connection::executeQuery('SELECT * from `herramienta` where `id_herramienta` = '.$value.';')->fetchAll();
+                unlink('./img/herramientas/'.$getfoto[0]['foto']);
+
 
                 /*Eliminar filas*/
                 Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = '.$value.';');
