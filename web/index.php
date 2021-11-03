@@ -20,7 +20,8 @@ $args = [
 ];
 
 function getContent () {
-    $content= '
+    Kint\Kint::dump($_SESSION);
+    $content= '    
     <div class="slideshow-container">
         <div class="slider fade">
         <img src="./img/back01.jpg" id="slider">
