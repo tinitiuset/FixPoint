@@ -70,7 +70,7 @@ function navbar(): string
                 '
             
             <div class="dropdown-content">
-                    <a href="crearHerramienta.php">Admin herramientas</a>
+                    <a href="adminHerramientas.php">Admin herramientas</a>
                     <a href="#">Admin usuarios</a>
                     <a href="#">Admin alquileres</a>
                 </div>
