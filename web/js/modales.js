@@ -25,8 +25,6 @@ document.onreadystatechange = function () {
         let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
         let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
 
-        alert("entro");
-
         txtCrearSesion.addEventListener("click", spawn);
         iniciarSesion_txtCrear.addEventListener("click", spawn);
         txtIniciarSesion.addEventListener("click", spawnIniciar);
