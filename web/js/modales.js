@@ -9,6 +9,7 @@ document.onreadystatechange = function () {
         document.getElementById("modal").style.display = "none";
         document.getElementById("modalIniciar").style.display = "none";
     }
+
     if (document.readyState == "complete") {
         // MODAL CREAR SESIÓN
         let txtCrearSesion = document.getElementById("unirse");
@@ -23,13 +24,17 @@ document.onreadystatechange = function () {
         let modalIniciarSesion = document.getElementById("modalIniciar");
         let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
         let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
-        
+
+        alert("entro");
+
         txtCrearSesion.addEventListener("click", spawn);
         iniciarSesion_txtCrear.addEventListener("click", spawn);
         txtIniciarSesion.addEventListener("click", spawnIniciar);
         iconIniciarSesion.addEventListener("click", spawnIniciar);
         crearSesion_txtIniciar.addEventListener("click", spawnIniciar);
-        imgUsuarioLogueado.addEventListener("click", spawnIniciar);
+        iconIniciarSesion.addEventListener("click", spawnIniciar);
+
+
 
         function spawn() {
             modalCrearSesion.style.display = "block";
@@ -42,6 +47,7 @@ document.onreadystatechange = function () {
 
         // CERRAR MODAL
         btnCerrarModal.onclick = function () {
+
             modalCrearSesion.style.display = "none";
             document.querySelector("body").style.overflow = 'visible';
         }
