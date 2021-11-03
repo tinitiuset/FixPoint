@@ -53,17 +53,36 @@ function navbar(): string
     ';
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         $userName = $_SESSION["user"]->getNombre();
-        $structureNavBar .= '
+        $isAdmin =  $_SESSION["user"]->getAdministrador();
+
+
+            $structureNavBar .=
+                '
             
             <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
-                <i class="fas fa-user"></i>
-                <p id="usernametext"></p>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                <p id="usernametext"><i class="fas fa-user"></i></p>
+                
+            
+            ';
+
+        if ($isAdmin){
+            $structureNavBar .=
+                '
+            
+            <div class="dropdown-content">
+                    <a href="crearHerramienta.php">Admin herramientas</a>
+                    <a href="#">Admin usuarios</a>
+                    <a href="#">Admin alquileres</a>
                 </div>
-            </div>
+                </div>
+            ';
+        }
+        else{
+            $structureNavBar .= ' </div>';
+        }
+
+        $structureNavBar .=
+            '
             <!--Rubrica js local storage-->
             <script>
                   // Store
@@ -290,7 +309,9 @@ function handleIniciarSesion($correo, $pass)
 {
     try {
         $user = new User();
+
         $user->getUser($correo, $pass);
+
         if ($user->getDni() == null) {
             return "Email y/o Contrasenña incorrectos.";
         } else {

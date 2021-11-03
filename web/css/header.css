@@ -231,9 +231,9 @@ header::after {
 
 .dropdown-content {
     display: none;
-    position: fixed;
+    position: sticky;
     background-color: #334756;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
@@ -253,5 +253,6 @@ header::after {
     display: block;
 }
 
-#imgUsuarioLogueado i {
+#imgUsuarioLogueado * {
+    color: white;
 }
