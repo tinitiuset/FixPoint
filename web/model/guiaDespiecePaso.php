@@ -1,9 +1,12 @@
 <?php
 
 namespace Grupo3\FixPoint\model;
-use Grupo3\FixPoint\Connection;
 
-require __DIR__ .'/../Connection.php';
+use Grupo3\FixPoint\Connection;
+use Kint\Kint;
+use PDO;
+
+require __DIR__ . '/../Connection.php';
 
 class paso
 {
@@ -18,6 +21,40 @@ class paso
         $this->setDetalle($detalle);
         $this->setNumPaso($numPaso);
         $this->setNumGuia($numGuia);
+    }
+
+    function getPaso(int $numGuia) {
+        $query = "SELECT * FROM paso WHERE numficha LIKE '" . $numGuia . "'";
+        $paso = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+        $this->setNumGuia($paso['numficha']);
+        $this->setNumPaso($paso['numpaso']);
+        $this->setFoto($paso['foto']);
+        $this->setDetalle($paso['detalle']);
+    }
+
+    public function createPaso(){
+        $query = "INSERT INTO `paso` (numpaso, numficha, detalle, foto) VALUES 
+                                        (
+                                         '" . $this->getNumPaso() . "',
+                                         '" . $this->getNumGuia() . "',
+                                         '" . $this->getDetalle() . "',
+                                         '" . $this->getFoto() . "'
+                                         );";
+        Connection::executeQuery($query);
+    }
+
+    public function updatePaso(int $numPaso, int $numGuia) {
+        $query = "UPDATE paso SET 
+        detalle = '" . $this->getDetalle() . "',
+        foto = '" . $this->getFoto() . "'
+        WHERE numficha LIKE '" . $numGuia . "' AND numpaso LIKE '" . $numPaso . "'";
+
+        Connection::executeQuery($query);
+    }
+
+    public function deletePaso() {
+        $query = "DELETE FROM paso WHERE numficha LIKE '" . $this->getNumGuia() . "' AND numpaso LIKE '" . $this->getNumPaso() . "'";
+        Connection::executeQuery($query);
     }
 
     /**

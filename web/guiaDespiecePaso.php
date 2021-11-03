@@ -1,8 +1,7 @@
 <?php
 
 use Grupo3\FixPoint\Connection;
-use Grupo3\FixPoint\model\paso;
-
+use Grupo3\FixPoint\model\guiaDespiecePaso;
 
 require_once "functions.php";
 
@@ -27,7 +26,6 @@ $args = [
 function getContent() {
 
     $arrayGuia = [];
-
     $content = '
     <section class="containerGeneralPaso">
         <h2>Insertar paso</h2>
@@ -54,9 +52,9 @@ function getContent() {
                 </div>
                 <div class="boton-wrapper">
                     <div class="row">
-                        <input type="reset" class="boton" id="botonCancelar" value="Cancelar">
-                        <input type="submit" class="boton" id="botonAñadirPaso" value="Añadir paso">
-                        <input type="submit" class="boton" id="botonAceptar" value="Aceptar">
+                        <input type="reset" class="botonGuiaPasoCancelar" id="botonGuiaPasoCancelar" value="Cancelar">
+                        <input type="submit" class="botonGuiaPaso" id="botonGuiaPasoAñadir" value="Añadir paso">
+                        <input type="submit" class="botonGuiaPaso" id="botonGuiaPasoAceptar" value="Aceptar">
                     </div>
                 </div>
             </form>
