@@ -31,6 +31,7 @@ function getContent()
 {
 
     $op = getCrearHerramienta();
+    $opTwo = getEliminarHerramienta();
 
     $content = '
     <div class="adminHerrContainer">
@@ -43,13 +44,74 @@ function getContent()
         </div>
         <div class="btnEliminarHerr">
             <button class="collapsible">Eliminar Herramienta</button>
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="content overfl">
+                '.$opTwo.'            
             </div>
         </div>
     </div>
     ';
     echo $content;
+}
+
+function getEliminarHerramienta()
+{
+    /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
+    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+    $tools = '';
+
+
+    /*despues del submit*/
+    if (isset($_POST["checkbox"])){
+        if($_POST["checkbox"]) {
+            foreach($_POST["checkbox"] as $value)
+            {
+                /*Eliminar fotos*/
+
+                /*Eliminar filas*/
+                Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = '.$value.';');
+            }
+
+        }
+    }
+
+
+    foreach ($query as $tool) {
+        $idCategoria = $tool['idCategoria'];
+        $queryCategory = Connection::executeQuery('SELECT * FROM `categoria` WHERE `idcategoria`='.$idCategoria.';')->fetchAll();
+
+        $tools .= '
+            <tr>
+                <td>'.$tool['id_herramienta'].'</td>
+                <td>'.$tool['nombre'].'</td>
+                <td>'.$tool['modelo'].'</td>
+                <td>'.$tool['marca'].'</td>
+                <td>'.$tool['observaciones'].'</td>
+                <td>'.$queryCategory[0]['nombre'].'</td>
+                <td><input type="checkbox" name="checkbox[]" id="checkbox[]" value="'.$tool['id_herramienta'].'"></td>
+            </tr>
+        ';
+    }
+
+    $content = '
+    <form action="" method="post">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Observaciones</th>
+            <th>Categoria</th>
+            <th>Seleccionar</th>
+        </tr>
+        '.$tools.'
+    </table><br>
+          <input type="submit" value="Eliminar">
+
+    </form>
+
+';
+    return $content;
 }
 
 function getCrearHerramienta()
@@ -119,9 +181,6 @@ function getCrearHerramienta()
 
     $content = '
 <div class="containerGeneralCreateTool">
-
-    <h2>Insertar herramienta</h2>
-
 <div class="containerCreateTool">
   <form action="" method="post" enctype="multipart/form-data"> 
     <div class="row">
