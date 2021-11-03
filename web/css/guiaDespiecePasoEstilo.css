@@ -1,0 +1,109 @@
+/* .boton-wrapper {
+    background-color: yellow;
+    height: 50px;
+}
+.boton-wrapper > .boton {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 14px;
+    color: #000000;
+    background-color: #eec51f;
+    border-radius: 8px;
+    font-family: "proxima-nova-soft", sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow 200ms ease-out;
+} */
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit], #botonCancelar {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover, #botonCancelar:hover {
+    background-color: #45a049;
+}
+
+.containerPaso {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.containerGeneralPaso *{
+    color: black ;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+textarea{
+    height: 200px;
+}
+
+@media screen and (min-width: 651px) and (max-width: 759px){
+    #fileIntroducirImagen{
+        padding-top: 4.7%;
+        padding-left: 3%;
+        padding-bottom: 4.7%;
+
+    }
+}
+
+@media screen and (min-width: 760px){
+    #fileIntroducirImagen{
+        padding-top: 2.5%;
+        padding-left: 1%;
+        padding-bottom: 2%;
+    }
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+    .col-25, .col-75, input[type=submit], #botonCancelar {
+        width: 100%;
+        margin-top: 0;
+    }
+}

@@ -1,4 +1,7 @@
 <?php
+
+use Grupo3\FixPoint\Connection;
+
 require "functions.php";
 
 
@@ -24,7 +27,7 @@ function createCard($title, $img = '', $id){
         <div class="card-wrapper">
             <div class="card">
                 <div class="image">
-                    <img src="'.$img.'" alt="'.$title.'">
+                    <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
                 </div>
                 <div class="title">
                      '.$title.'
@@ -40,9 +43,11 @@ function createCard($title, $img = '', $id){
 }
 function getContent()
 {
-    $cards = "";
-    for ($i=0; $i<15; $i++){
-        $cards .= createCard("Taladro", "./img/herramienta.png", "");
+    /*CONSEGUIMOS LAS HERREMIENTAS DE BBDD*/
+    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+    $cards = '';
+    foreach ($query as $tool){
+        $cards .= createCard($tool['nombre'], $tool['foto'], $tool['id_herramienta']);
     }
     $content = '
     <div class="product-container-text-wrapper">

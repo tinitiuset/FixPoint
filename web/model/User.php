@@ -24,14 +24,24 @@ class User
 
     private $activo;
 
+    function __construct($dni = '', $nombre = '', $apellidos= '', $password = '', $email = '', $administrador = 0, $activo = 0) {
+
+        $this->setDni($dni);
+        $this->setNombre($nombre);
+        $this->setApellidos($apellidos);
+        $this->setPassword($password);
+        $this->setEmail($email);
+        $this->setAdministrador($administrador);
+        $this->setActivo($activo);
+
+    }
     /**
      * @param string $correo
      * @param string $pass
      */
     function getUser(string $correo, string $pass)
     {
-
-         $query = "SELECT * FROM `usuario` WHERE `email` LIKE '".$correo."';";
+         $query = "SELECT * FROM `usuario` WHERE `password` LIKE '".$pass."' AND `email` LIKE '".$correo."';";
          $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         $isPasswordCorrect = password_verify($pass, $User['password']);
 
@@ -61,12 +71,30 @@ class User
         Connection::executeQuery($query);
     }
 
+    public function updateUser(int $dni) {
+        $query = "UPDATE usuario
+        SET dni = '" . $this->getDni() . "', 
+        nombre = '" . $this->getNombre() . "',
+        apellidos = '" . $this->getApellidos() . "',
+        password = '" . $this->getPassword() . "',
+        email = '" . $this->getEmail() . "'
+        WHERE dni LIKE '" . $dni . "' ";
+
+        Connection::executeQuery($query);
+    }
+
     public function activateUser()
     {
-        $query = "UPDATE `usuario` SET `activo` = '" . $this->getActivo() . "' 
+
+        $query = "UPDATE `usuario` SET `activo` = '" . ($this->getActivo() ^ 1) . "' 
                   WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
         $this->setActivo(!$this->getActivo());
         Connection::executeQuery($query)->execute();
+    }
+
+    public function deleteUser(int $dni) {
+        $query = "DELETE FROM user WHERE dni LIKE '" . $dni . "'";
+        Connection::executeQuery($query);
     }
 
     /**

@@ -3,7 +3,7 @@
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\User;
 
-require "./model/User.php";
+require_once "./model/User.php";
 
 
 function getHeader($headerArgs = null): void
