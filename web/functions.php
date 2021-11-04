@@ -95,13 +95,9 @@ function navbar(): string
 
     $structureNavBar .= '
             </div>
-        </nav>';
-    /*No mostrar el icono para loguearte en tablet y tfn si hay alguien logueado*/
-    if(isset($_SESSION["logged"]) && !$_SESSION["logged"] == true){
-
-        $structureNavBar .= ' <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
-    }
-$structureNavBar .= '
+        </nav>
+        <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>
+        
         <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu.js-->
             <div class="hamburger"></div>
