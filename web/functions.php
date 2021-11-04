@@ -96,8 +96,12 @@ function navbar(): string
     $structureNavBar .= '
             </div>
         </nav>
-        <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>
-        
+        ';
+    if (!isset($_SESSION["logged"])){
+        $structureNavBar .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
+    }
+
+$structureNavBar .= '      
         <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu.js-->
             <div class="hamburger"></div>
