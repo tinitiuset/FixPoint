@@ -53,36 +53,34 @@ function navbar(): string
     ';
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         $userName = $_SESSION["user"]->getNombre();
-        $isAdmin =  $_SESSION["user"]->getAdministrador();
+        $isAdmin = $_SESSION["user"]->getAdministrador();
 
-
-            $structureNavBar .=
-                '
-            
-            <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
-                <p id="usernametext"><i class="fas fa-user"></i></p>
-                
-            
-            ';
-
-        if ($isAdmin){
-            $structureNavBar .=
-                '
-            
-            <div class="dropdown-content">
-                    <a href="adminHerramientas.php">Admin herramientas</a>
-                    <a href="#">Admin usuarios</a>
-                    <a href="#">Admin alquileres</a>
-                </div>
-                </div>
-            ';
-        }
-        else{
-            $structureNavBar .= ' </div>';
-        }
 
         $structureNavBar .=
             '
+            
+            <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
+                <p id="usernametext"><i class="fas fa-user"></i></p>
+                <div class="dropdown-content">
+            
+            ';
+
+        if ($isAdmin) {
+            $structureNavBar .=
+                '
+            
+            
+                    <a href="administracion.php">Administracion</a>
+                     
+            ';
+        }
+
+
+        $structureNavBar .=
+            '
+<a href="">Logout</a>
+                </div>
+                </div>
             <!--Rubrica js local storage-->
             <script>
                   // Store

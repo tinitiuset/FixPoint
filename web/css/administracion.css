@@ -63,3 +63,7 @@ tr:nth-child(even) {
     overflow-x: auto;
     overflow-y: auto;
 }
+
+h2{
+    color: black;
+}

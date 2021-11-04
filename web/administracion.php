@@ -15,7 +15,7 @@ $args = [
         'css/index.css',
         'css/header.css',
         'css/crearHerramienta.css',
-        'css/adminHErramientas.css',
+        'css/administracion.css',
         'css/ventanasModales.css',
     ],
     'scripts' => [
@@ -23,7 +23,7 @@ $args = [
         'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
-        'js/adminHerr.js',
+        'js/administracion.js',
     ]
 ];
 
@@ -35,6 +35,7 @@ function getContent()
 
     $content = '
     <div class="adminHerrContainer">
+    <h2>Administracion de herramientas</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Crear Herramienta</button>
             <div class="content">
