@@ -274,7 +274,6 @@ function getActivarUsuario()
             '.$usuarios.'
         </table><br>
               <input type="submit" value="Activar">
-        
         </form>
         '.$mensajeActivarUsuario.'
     
