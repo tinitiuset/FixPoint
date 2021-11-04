@@ -83,6 +83,8 @@ function getEliminarHerramienta()
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
     $query = Connection::executeQuery("select * from herramienta")->fetchAll();
     $tools = '';
+    $mensajeEliminarHerramienta = '';
+
 
 
     /*despues del submit*/
@@ -100,6 +102,10 @@ function getEliminarHerramienta()
 
                 /*Refrescamos*/
                 $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+
+                $mensajeEliminarHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
+            - usuario eliminado correctamente
+                </div></div>';
 
 
 
@@ -141,7 +147,7 @@ function getEliminarHerramienta()
         '.$tools.'
     </table><br>
           <input type="submit" value="Eliminar">
-
+    '.$mensajeEliminarHerramienta.'
     </form>
 
 ';
@@ -153,8 +159,9 @@ function getEliminarUsuario()
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select * from usuario")->fetchAll();
         $usuarios = '';
-    
-    
+        $mensajeEliminarUsuario = '';
+
+
         /*despues del submit*/
         if (isset($_POST["checkboxUsuario"])){
             if($_POST["checkboxUsuario"]) {
@@ -166,6 +173,10 @@ function getEliminarUsuario()
 
                     /*refrescamos*/
                     $query = Connection::executeQuery("select * from usuario")->fetchAll();
+
+                    $mensajeEliminarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
+            - usuario eliminado correctamente
+                </div></div>';
 
                 }
     
@@ -199,8 +210,9 @@ function getEliminarUsuario()
             '.$usuarios.'
         </table><br>
               <input type="submit" value="Eliminar">
-    
+        
         </form>
+        '.$mensajeEliminarUsuario.'
     
     ';
         return $content;
