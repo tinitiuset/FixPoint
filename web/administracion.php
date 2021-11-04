@@ -32,7 +32,7 @@ function getContent()
 
     $op = getCrearHerramienta();
     $opTwo = getEliminarHerramienta();
-    /*$opTres = getActivarUsuario();*/
+    $opTres = getActivarUsuario();
     $opCuatro = getEliminarUsuario();
 
     $content = '
@@ -56,7 +56,7 @@ function getContent()
             <button type="button" class="collapsible">Activar Usuario</button>
             <div class="content">
             
-                '.$op.'
+                '.$opTres.'
              </div>
         </div>
         <div class="btnEliminarHerr">
@@ -213,6 +213,70 @@ function getEliminarUsuario()
         
         </form>
         '.$mensajeEliminarUsuario.'
+    
+    ';
+        return $content;
+    }
+
+
+function getActivarUsuario()
+    {
+        /*CONSEGUIMOS LOS DE BBDD*/
+        $query = Connection::executeQuery("select * from usuario")->fetchAll();
+        $usuarios = '';
+        $mensajeEliminarUsuario = '';
+
+
+        /*despues del submit*/
+        if (isset($_POST["checkboxUsuarioActivo"])){
+            if($_POST["checkboxUsuarioActivo"]) {
+                foreach($_POST["checkboxUsuarioActivo"] as $value)
+                {
+                    /* Activar usuario*/
+                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 1 WHERE `dni` = "'.$value.'";');
+                    
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+
+                    $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
+            - usuario activado correctamente
+                </div></div>';
+
+                }
+    
+            }
+        }
+    
+        foreach ($query as $usuario) {
+
+
+            $usuarios .= '
+                <tr>
+                    <td>'.$usuario['dni'].'</td>
+                    <td>'.$usuario['nombre'].'</td>
+                    <td>'.$usuario['apellidos'].'</td>
+                    <td>'.$usuario['email'].'</td>
+                    <td><input type="checkbox" name="checkboxUsuarioActivo[]" id="checkboxUsuarioActivo[]" value="'.$usuario["dni"].'"></td>
+                </tr>
+            ';
+        }
+
+        $content = '
+        <form action="administracion.php" method="post">
+        <table>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Seleccionar</th>
+            </tr>
+            '.$usuarios.'
+        </table><br>
+              <input type="submit" value="Activar">
+        
+        </form>
+        '.$mensajeActivarUsuario.'
     
     ';
         return $content;
