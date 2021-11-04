@@ -32,6 +32,8 @@ function getContent()
 
     $op = getCrearHerramienta();
     $opTwo = getEliminarHerramienta();
+    /*$opTres = getActivarUsuario();*/
+    $opCuatro = getEliminarUsuario();
 
     $content = '
     <div class="adminHerrContainer">
@@ -48,6 +50,28 @@ function getContent()
             <div class="content overfl">
                 '.$opTwo.'            
             </div>
+        </div>
+    <h2>Administracion de Usuarios</h2>
+        <div class="btnCrearContainer">
+            <button type="button" class="collapsible">Activar Usuario</button>
+            <div class="content">
+            
+                '.$op.'
+             </div>
+        </div>
+        <div class="btnEliminarHerr">
+            <button class="collapsible">Eliminar Usuario</button>
+            <div class="content overfl">
+                '.$opCuatro.'            
+            </div>
+        </div>
+    <h2>Administracion de alquileres</h2>
+        <div class="btnCrearContainer">
+            <button type="button" class="collapsible">Gestión de Alquiler</button>
+            <div class="content">
+            
+                '.$op.'
+             </div>
         </div>
     </div>
     ';
@@ -117,6 +141,58 @@ function getEliminarHerramienta()
 ';
     return $content;
 }
+
+function getEliminarUsuario()
+    {
+        /*CONSEGUIMOS LOS DE BBDD*/
+        $query = Connection::executeQuery("select * from usuario")->fetchAll();
+        $usuario = '';
+    
+    
+        /*despues del submit*/
+        if (isset($_POST["checkboxUsuario"])){
+            if($_POST["checkboxUsuario"]) {
+                foreach($_POST["checkboxUsuario"] as $value)
+                {
+                    /*Eliminar filas*/
+                    Connection::executeQuery('DELETE FROM `usuario` WHERE `dni` = "'.$value.'";');
+                }
+    
+            }
+        }
+    
+        foreach ($query as $usuario) {
+                      
+            $usuario .= '
+                <tr>
+                    <td>'.$usuario['dni'].'</td>
+                    <td>'.$usuario['nombre'].'</td>
+                    <td>'.$usuario['apellidos'].'</td>
+                    <td>'.$usuario['email'].'</td>
+                    <td><input type="checkbox" name="checkboxUsuario[]" id="checkboxUsuario[]" value="'.$usuario['dni'].'"></td>
+                </tr>
+            ';
+        }
+
+        $content = '
+        <form action="" method="post">
+        <table>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Seleccionar</th>
+            </tr>
+            '.$usuario.'
+        </table><br>
+              <input type="submit" value="Eliminar">
+    
+        </form>
+    
+    ';
+        return $content;
+    }
 
 function getCrearHerramienta()
 {
