@@ -79,25 +79,17 @@ legend {
 }
 
 .btnEnviar {
-    color: white;
+    color: black;
     border: 2px solid #eec51f;
     border-radius: 8px;
     text-transform: uppercase;
-    background: #F79C14;
+    background: #eec51f;
     padding: 16px 32px;
     text-align: center;
     font-size: 15px;
     cursor: pointer;
     text-decoration: none;
     margin: 10px 20px;
-}
-
-.btnEnviar:hover {
-    background-color: #eec51f;
-    color: black;
-    border: 3px solid black;
-    font-weight: 600;
-    padding: 16px 30px;
 }
 
 /*-------------------------------------------version tablet------------------------------------*/
