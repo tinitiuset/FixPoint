@@ -51,6 +51,7 @@ function navbar(): string
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
     ';
+    $isAdmin = false;
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         $userName = $_SESSION["user"]->getNombre();
         $isAdmin = $_SESSION["user"]->getAdministrador();
@@ -58,20 +59,15 @@ function navbar(): string
 
         $structureNavBar .=
             '
-            
             <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
                 <p id="usernametext"><i class="fas fa-user"></i></p>
                 <div class="dropdown-content">
-            
             ';
 
         if ($isAdmin) {
             $structureNavBar .=
                 '
-            
-            
                     <a href="administracion.php">Administracion</a>
-                     
             ';
         }
 
@@ -99,8 +95,13 @@ function navbar(): string
 
     $structureNavBar .= '
             </div>
-        </nav>
-        <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>
+        </nav>';
+    /*No mostrar el icono para loguearte en tablet y tfn si hay alguien logueado*/
+    if(isset($_SESSION["logged"]) && !$_SESSION["logged"] == true){
+
+        $structureNavBar .= ' <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
+    }
+$structureNavBar .= '
         <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu.js-->
             <div class="hamburger"></div>

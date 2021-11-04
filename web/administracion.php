@@ -97,6 +97,12 @@ function getEliminarHerramienta()
 
                 /*Eliminar filas*/
                 Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = '.$value.';');
+
+                /*Refrescamos*/
+                $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+
+
+
             }
 
         }
@@ -146,7 +152,7 @@ function getEliminarUsuario()
     {
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select * from usuario")->fetchAll();
-        $usuario = '';
+        $usuarios = '';
     
     
         /*despues del submit*/
@@ -156,26 +162,32 @@ function getEliminarUsuario()
                 {
                     /*Eliminar filas*/
                     Connection::executeQuery('DELETE FROM `usuario` WHERE `dni` = "'.$value.'";');
+
+
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+
                 }
     
             }
         }
     
         foreach ($query as $usuario) {
-                      
-            $usuario .= '
+
+
+            $usuarios .= '
                 <tr>
                     <td>'.$usuario['dni'].'</td>
                     <td>'.$usuario['nombre'].'</td>
                     <td>'.$usuario['apellidos'].'</td>
                     <td>'.$usuario['email'].'</td>
-                    <td><input type="checkbox" name="checkboxUsuario[]" id="checkboxUsuario[]" value="'.$usuario['dni'].'"></td>
+                    <td><input type="checkbox" name="checkboxUsuario[]" id="checkboxUsuario[]" value="'.$usuario["dni"].'"></td>
                 </tr>
             ';
         }
 
         $content = '
-        <form action="" method="post">
+        <form action="administracion.php" method="post">
         <table>
             <tr>
                 <th>DNI</th>
@@ -184,7 +196,7 @@ function getEliminarUsuario()
                 <th>Email</th>
                 <th>Seleccionar</th>
             </tr>
-            '.$usuario.'
+            '.$usuarios.'
         </table><br>
               <input type="submit" value="Eliminar">
     
