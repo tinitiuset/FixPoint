@@ -20,6 +20,8 @@ $args = [
         'js/menu.js',
         'js/modales.js',
         'js/scriptRegistro.js',
+        'js/logout.js',
+
     ]
 ];
 

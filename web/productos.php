@@ -19,6 +19,8 @@ $args = [
         'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
+        'js/logout.js',
+
     ]
 ];
 function createCard($title, $img = '', $id){

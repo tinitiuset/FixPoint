@@ -16,11 +16,12 @@ $args = [
         'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
+        'js/logout.js',
     ]
 ];
 
 function getContent () {
-    Kint\Kint::dump($_SESSION);
+/*    Kint\Kint::dump($_SESSION);*/
     $content= '    
     <div class="slideshow-container">
         <div class="slider fade">

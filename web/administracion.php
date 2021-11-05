@@ -24,6 +24,8 @@ $args = [
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/administracion.js',
+        'js/logout.js',
+
     ]
 ];
 
