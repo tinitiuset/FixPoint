@@ -92,6 +92,10 @@ legend {
     margin: 10px 20px;
 }
 
+#mensajeEnvio {
+    margin-left: 20px;
+}
+
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width:768px){
     .imagen { grid-area: imagen;}
