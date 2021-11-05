@@ -146,9 +146,8 @@ function crearUsuario(): string
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
                     <p class="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p>
                     <label class="textoFormCrear" for="password">Contraseña:</label><br>
-                    <input class="inputCrear" type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
-                    title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 
-                    o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
+                    <input class="inputCrear" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="La contraseña debe contener una mayuscula, una minuscula, un numero y como minimo 8 caracteres" required><br>
                     <label class="textoFormCrear" for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <p><input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"></p>
