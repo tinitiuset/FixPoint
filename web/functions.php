@@ -34,6 +34,7 @@ function getHeader($headerArgs = null): void
     $structure .= navbar();
     $structure .= crearUsuario();
     $structure .= iniciarSesion();
+    $structure .= confirmarGuia();
     echo($structure);
 }
 
@@ -46,7 +47,7 @@ function navbar(): string
     </div>
     <nav id="site-nav" class="site-nav">
         <div class="linksNav"><a href="productos.php">Catálogo</a></div>
-        <div class="linksNav"><a href="">Guías despiece</a></div>
+        <div class="linksNav"><a href="crearGuia.php">Guías despiece</a></div>
         <div class="linksNav"><a href="donarHerramientas.php">Donar herramientas</a></div>
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
@@ -339,13 +340,13 @@ function handleRegister($post)
 function confirmarGuia() {
     return '
     <div class="modalConfirmarGuia" id="modalConfirmarGuia">
-        <div class="modalContenido">
+        <div class="modalContenidoConfirmar">
             <div class="modalHeader">
                 <h1 id="tituloConfirmarGuia">¿Confirmar y añadir la guía creada?</h1>
             </div>
-            <div class="modalBody">
+            <div class="modalBodyConfirmar">
                 <form action="" method="post">
-                    <p><input type="button" class="btn-cancelarGuia" value="Cancelar"></p>
+                    <p><input type="submit" class="btn-cancelarGuia" value="Cancelar"></p>
                     <p><input type="submit" class="btn-aceptarGuia" value="Aceptar"></p>
                 </form>
             </div>

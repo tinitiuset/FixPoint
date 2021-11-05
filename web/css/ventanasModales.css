@@ -76,7 +76,7 @@ p {
   padding-left: 125px;
 }
 
-.modalIniciarSesion, .modalCrearSesion  {
+.modalIniciarSesion, .modalCrearSesion, .modalConfirmarGuia  {
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -116,7 +116,11 @@ p {
   height: 85%;
 }
 
-.modalContenido, .modalContenidoCrear {
+.modalBodyConfirmar {
+  height: 50%;
+}
+
+.modalContenido, .modalContenidoCrear, .modalContenidoConfirmar {
   width: 400px;
   height: 500px;
   background-color: white;
@@ -128,6 +132,11 @@ p {
 .modalContenidoCrear {
   width: 400px;
   height: 640px;
+}
+
+.modalContenidoConfirmar {
+  width: 400px;
+  height: 500px;
 }
 
 /* Botón de cerrar */

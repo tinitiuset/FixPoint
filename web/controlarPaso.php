@@ -3,8 +3,6 @@
 use Grupo3\FixPoint\model\guia;
 use Grupo3\FixPoint\model\paso;
 
-echo '<script src="js/modales.js"></script>';
-
 $arrayPaso = [];
 $cantidadPasos = 0;
 

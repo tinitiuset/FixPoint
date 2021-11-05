@@ -3,8 +3,7 @@
 use Grupo3\FixPoint\model\guiaDespiece;
 use Grupo3\FixPoint\model\paso;
 
-require_once "functions.php";
-
+require "functions.php";
 
 $args = [
     'title' => 'Index',
@@ -12,8 +11,7 @@ $args = [
         'css/footer.css',
         'css/index.css',
         'css/header.css',
-        'css/crear_sesion.css',
-        'css/inicio_sesion.css',
+        'css/ventanasModales.css',
         'css/guiaDespiecePasoEstilo.css'
     ],
     'scripts' => [
@@ -38,29 +36,29 @@ function getContent() {
             <form action="" method="post" enctype="multipart/form-data">
                 <input name="paso" type="hidden" value="1">
                 <div class="paso-wrapper">
-                    <div class="row">
-                        <div class="col-25">
+                    <div class="row-paso">
+                        <div class="col-25-paso">
                             <label for="introducirImagen">Imagen:</label>
                         </div>
-                        <div class="col-75">
-                            <input type="file" accept="image/*" name="introducirImagen" id="fileIntroducirImagen" required>
+                        <div class="col-75-paso">
+                            <input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required>
                             <!--Validar con js que es una imagen-->
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-25">
+                    <div class="row-paso">
+                        <div class="col-25-paso">
                             <label for="txtIntroducirDetalle">Detalles:</label>
                         </div>
-                        <div class="col-75">
+                        <div class="col-75-paso">
                             <textarea name="detalle" id="txtIntroducirDetalle" cols="50" rows="10" required></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="boton-wrapper">
-                    <div class="row">
-                        <input type="reset" class="boton" id="botonCancelar" value="Cancelar">
+                    <div class="row-paso">
+                        <input type="reset" class="boton" id="botonGuiaPasoCancelar" value="Cancelar">
                         <input type="submit" class="boton" id="botonAñadirPaso" formaction="./guiaDespiecePaso.php" value="Añadir paso">
-                        <input type="submit" class="boton" id="botonAceptar" formaction="./controlarPaso.php" value="Aceptar">
+                        <input type="submit" class="boton" name="aceptar" id="botonAceptar" formaction="./guiaDespiecePaso.php" value="Aceptar">
                     </div>
                 </div>
             </form>
@@ -86,7 +84,21 @@ if (isset($_POST['guia'])) {
     
     $_SESSION['guia'] = $guia;
 }
+if (isset($_POST["aceptar"])) {
+    crearGuia();
+}
 getContent();
 getFooter($args);
+
+function crearGuia() {
+    $uploaddir = './img/pasos/';
+    $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
+
+    /*time() -> unix timestamp*/
+
+    $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
+
+    move_uploaded_file($_FILES['introducirImagen']['tmp_name'], $newfilename);
+}
 
 ?>

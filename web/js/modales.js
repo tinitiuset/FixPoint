@@ -1,13 +1,19 @@
 document.onreadystatechange = function () {
     if(window.location.hash.substring(1) === 'modalIniciar') {
         document.getElementById("modal").style.display = "none";
-    } else if (window.location.hash.substring(1) === 'modal') {
+        document.getElementById("modalConfirmarGuia").style.display = "none";
+    } if (window.location.hash.substring(1) === 'modal') {
         document.getElementById("modalIniciar").style.display = "none";
+        document.getElementById("modalConfirmarGuia").style.display = "none";
 
+    } if (window.location.hash.substring(1) === 'modalConfirmarGuia') {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("modalIniciar").style.display = "none";
     }
     else {
         document.getElementById("modal").style.display = "none";
         document.getElementById("modalIniciar").style.display = "none";
+        document.getElementById("modalConfirmarGuia").style.display = "none";
     }
 
     if (document.readyState == "complete") {
@@ -25,13 +31,19 @@ document.onreadystatechange = function () {
         let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
         let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
 
+        // MODAL CONFIRMAR GUÍA
+        let botonAceptarPaso = document.getElementById("btn-AceptarGuia");
+        let botonAceptarGuia = document.getElementById("botonAceptar");
+        let botonCancelarPaso = document.getElementById("btn-cancelarGuia");
+        let modalConfirmarGuia = document.getElementById("modalConfirmarGuia");
+
         txtCrearSesion.addEventListener("click", spawn);
         iniciarSesion_txtCrear.addEventListener("click", spawn);
         txtIniciarSesion.addEventListener("click", spawnIniciar);
         iconIniciarSesion.addEventListener("click", spawnIniciar);
         crearSesion_txtIniciar.addEventListener("click", spawnIniciar);
-        iconIniciarSesion.addEventListener("click", spawnIniciar);
 
+        botonAceptarGuia.addEventListener("click", spawnConfirmar);
 
 
         function spawn() {
@@ -65,5 +77,17 @@ document.onreadystatechange = function () {
             modalIniciarSesion.style.display = "none";
             document.querySelector("body").style.overflow = 'visible';
         }
+
+        function spawnConfirmar() {
+            modalConfirmarGuia.style.display = "block";
+            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
+        }
+
+        // CERRAR MODAL
+        botonCancelarPaso.onclick = function () {
+            modalConfirmarGuia.style.display = "none";
+            document.querySelector("body").style.overflow = 'visible';
+        }
+
     }
 }
