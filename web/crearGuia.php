@@ -26,6 +26,8 @@ function getContent () {
 <div class="guiaContainer">
     <div class="guiaForm">
         <form action="" method="post" id="crearGuia">
+            <input name="guia" type="hidden" value="1">
+            <input name="fecha" type="hidden" value="'. time() .'">
             <label for="nombreMaquina">Nombre de la Maquina:</label>
             <input id="nombreMaquina" name="nombreMaquina" type="text">
             <label for="ocurrencia">Ocurrencia:</label>
@@ -40,7 +42,7 @@ function getContent () {
             <label for="solucion">Solucion:</label>
             <textarea id="solucion" name="solucion">
             </textarea>    
-            <input type="submit" formaction="./paso.php" class="btnCrearCuenta" value="Siguiente">                     
+            <input type="submit" formaction="./guiaDespiecePaso.php" class="btnCrearCuenta" value="Siguiente">                     
         </form>
     </div>
     <div class="guiaButtons">
