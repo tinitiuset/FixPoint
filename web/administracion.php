@@ -234,15 +234,30 @@ function getActivarUsuario()
             if($_POST["checkboxUsuarioActivo"]) {
                 foreach($_POST["checkboxUsuarioActivo"] as $value)
                 {
-                    /* Activar usuario*/
-                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 1 WHERE `dni` = "'.$value.'";');
+                    $estado = Connection::executeQuery('SELECT `activo` FROM `usuario` WHERE `dni` = "'.$value.'";')->fetchAll();
+                    
+                    if($estado[0]['activo']==0){
+                       /* Activar usuario*/
+                        Connection::executeQuery('UPDATE `usuario` SET `activo` = 1 WHERE `dni` = "'.$value.'";'); 
+
+                        /*refrescamos*/
+                        $query = Connection::executeQuery("select * from usuario")->fetchAll();
+
+                        $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
+                        usuario activado correctamente
+                        </div></div>';   
+                    } else {
+                     
+                    /* Desactivar usuario*/
+                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 0 WHERE `dni` = "'.$value.'";');
                     
                     /*refrescamos*/
                     $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
                     $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
-            - usuario activado correctamente
-                </div></div>';
+                    usuario desactivado correctamente
+                    </div></div>';
+                    }
 
                 }
     

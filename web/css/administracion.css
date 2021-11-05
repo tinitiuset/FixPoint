@@ -67,3 +67,7 @@ tr:nth-child(even) {
 h2{
     color: black;
 }
+
+.row {
+    margin-top: 20px;
+}
