@@ -1,8 +1,5 @@
 <?php
-session_start();
-unset($_SESSION["username"]);
-unset($_SESSION["password"]);
+    session_start();
+    unset($_SESSION["logged"]);
 
-echo 'Sesion limpiada';
-header('Refresh: 2; URL = login.php');
-?>
+    header('Refresh: 0; URL = index.php');
