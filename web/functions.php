@@ -75,7 +75,7 @@ function navbar(): string
         $structureNavBar .=
             '
                         <!--Varias funciones -->
-                    <a href="#" id="logOutBtn"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
+                    <a href="#" id="logOutBtn" onclick="logoutck();"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
                 </div>
                 </div>
             <!--Rubrica js local storage-->
@@ -334,22 +334,4 @@ function handleRegister($post)
     $var = funcionalidadRegistro();
     return $var;
 
-}
-
-function confirmarGuia() {
-    return '
-    <div class="modalConfirmarGuia" id="modalConfirmarGuia">
-        <div class="modalContenido">
-            <div class="modalHeader">
-                <h1 id="tituloConfirmarGuia">¿Confirmar y añadir la guía creada?</h1>
-            </div>
-            <div class="modalBody">
-                <form action="" method="post">
-                    <p><input type="button" class="btn-cancelarGuia" value="Cancelar"></p>
-                    <p><input type="submit" class="btn-aceptarGuia" value="Aceptar"></p>
-                </form>
-            </div>
-        </div>
-    </div>
-    ';
 }
