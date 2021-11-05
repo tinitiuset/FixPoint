@@ -41,19 +41,24 @@ class User
      */
     function getUser(string $correo, string $pass)
     {
-         $query = "SELECT * FROM `usuario` WHERE `password` LIKE '".$pass."' AND `email` LIKE '".$correo."';";
-         $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
-        $isPasswordCorrect = password_verify($pass, $User['password']);
+         $query = "SELECT * FROM `usuario` WHERE `email` LIKE '".$correo."';";
 
-         if ($isPasswordCorrect && $User['activo'] === '1'){
-             $this->setDni($User['dni']);
-             $this->setNombre($User['nombre']);
-             $this->setApellidos($User['apellidos']);
-             $this->setAdministrador($User['administrador']);
-             $this->setPassword(null);
-             $this->setEmail($User['email']);
-             $this->setActivo($User['activo']);
+         $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+
+         if ($User){
+             $isPasswordCorrect = password_verify($pass, $User['password']);
+
+             if ($isPasswordCorrect && $User['activo'] === '1'){
+                 $this->setDni($User['dni']);
+                 $this->setNombre($User['nombre']);
+                 $this->setApellidos($User['apellidos']);
+                 $this->setAdministrador($User['administrador']);
+                 $this->setPassword(null);
+                 $this->setEmail($User['email']);
+                 $this->setActivo($User['activo']);
+             }
          }
+
 
 
     }

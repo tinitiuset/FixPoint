@@ -5,11 +5,11 @@ use fixPoint;
 create table usuario
 (
     dni           char(9) primary key,
-    nombre        varchar(10) not null,
+    nombre        varchar(30) not null,
     apellidos     varchar(30) not null,
     administrador boolean     not null default false,
     password      varchar(255) not null,
-    email         varchar(30) not null unique,
+    email         varchar(50) not null unique,
     activo        boolean     not null default false
 );
 
@@ -80,6 +80,16 @@ create table paso
     constraint pk_paso primary key (numpaso, numficha),
     constraint fk_numFicha_paso foreign key (numFicha) references guiaDespiece (numFicha) on update cascade
 );
+
+create table solicitudDonacion
+(
+    id          int primary key auto_increment,
+    nombre      varchar(30) not null,
+    apellidos   varchar(30) not null,
+    email       varchar(50) not null,
+    telefono    int(9),
+    donacion    text
+)
 
 /* USUARIO ADMINISTRADOR*/
 /*INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)

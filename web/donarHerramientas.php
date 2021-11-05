@@ -1,4 +1,6 @@
 <?php
+use Grupo3\FixPoint\Connection;
+
 require "functions.php";
 
 
@@ -19,10 +21,45 @@ $args = [
     ]
 ];
 
+function comprobarYEnviar () {
+    var_dump($_REQUEST);
+        if (!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
+            $name = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $email = $_POST['email'];
+            $telf = $_POST['telefono'];
+            $msg = $_POST['donacion'];
+            Connection::executeQuery("INSERT INTO solicituddonacion (nombre, apellidos, email, telefono, donacion)
+            VALUES ('$name', '$apellidos', '$email', '$telf', '$msg')");
+
+            /* enviar email */ /*mirar - no funciona el mail*/
+            ini_set('SMTP','myserver');
+            ini_set('smtp_port',25);
+            mail(
+                "sonia.l.ortega@gmail.com",
+                "Nueva solicitud de donacion",
+                "Ha llegado una nueva solicitud de donacion con los siguientes datos:
+                Nombre: ".$name."
+                Apellidos: ".$apellidos."
+                Email: ".$email."
+                Teléfono: ".$telf."
+                Mensaje: ".$msg
+            );
+
+            return "Gracias por su colaboración, nos pondremos en contacto con usted";
+
+        } else {
+            /* Aqui hay que copiar la logica del formulario de crear usuario*/ 
+            return "faltan variables";
+        }
+
+}
+
 function getContent () {
 
-    if (isset($_POST['Enviar'])) {
-        if (!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['email']) && !empty($_POST[donacion])) {
+    
+   /* if (isset($_POST['Enviar'])) {
+        if (!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
             $name = $_POST['nombre'];
             $apellido = $_POST['apellido'];
             $email = $_POST['email'];
@@ -38,7 +75,9 @@ function getContent () {
     
         }
         
-    }
+    }*/
+
+
     
     $content= '
     <h1 id="tituloTools">¡Necesitamos herramientas!</h1>
@@ -76,8 +115,8 @@ function getContent () {
                         </div>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="apellido" id="apellido"><br>
-                                <span class="nombre">Apellido</span>
+                                <input class="inputForm" type="text" name="apellidos" id="apellidos"><br>
+                                <span class="nombre">Apellidos</span>
                             </label>
                         </div>
                     </fieldset>
@@ -96,9 +135,12 @@ function getContent () {
                         <label class="titulo">¿Qué le gustaría donar?
                             <span>*</span>
                             <textarea id="textArea" name="donacion"></textarea>
-                            <input class="btnEnviar" type="submit" value="Enviar">
                         </label>
                     </div>
+                    <p><div class="alert alert-danger" role="alert">
+                    ' . comprobarYEnviar() . '
+                    </div></p>
+                    <input class="btnEnviar" type="submit" value="Enviar">
                 </div>    
             </form>
         </div>

@@ -51,19 +51,32 @@ function navbar(): string
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
     ';
+    $isAdmin = false;
     if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
         $userName = $_SESSION["user"]->getNombre();
-        $structureNavBar .= '
-            
+        $isAdmin = $_SESSION["user"]->getAdministrador();
+
+
+        $structureNavBar .=
+            '
             <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
-                <i class="fas fa-user"></i>
-                <p id="usernametext"></p>
+                <p id="usernametext"><i class="fas fa-user"></i></p>
                 <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+            ';
+
+        if ($isAdmin) {
+            $structureNavBar .=
+                '
+                    <a href="administracion.php">Administracion</a>
+            ';
+        }
+
+
+        $structureNavBar .=
+            '
+                    <a href=""><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
                 </div>
-            </div>
+                </div>
             <!--Rubrica js local storage-->
             <script>
                   // Store
@@ -83,7 +96,12 @@ function navbar(): string
     $structureNavBar .= '
             </div>
         </nav>
-        <div  class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>
+        ';
+    if (!isset($_SESSION["logged"])){
+        $structureNavBar .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
+    }
+
+$structureNavBar .= '      
         <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu.js-->
             <div class="hamburger"></div>
@@ -128,9 +146,8 @@ function crearUsuario(): string
                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
                     <p class="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p>
                     <label class="textoFormCrear" for="password">Contraseña:</label><br>
-                    <input class="inputCrear" type="password" name="password" id="password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
-                    title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, 
-                    o un dígito. La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
+                    <input class="inputCrear" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="La contraseña debe contener una mayuscula, una minuscula, un numero y como minimo 8 caracteres" required><br>
                     <label class="textoFormCrear" for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <p><input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"></p>
@@ -290,7 +307,9 @@ function handleIniciarSesion($correo, $pass)
 {
     try {
         $user = new User();
+
         $user->getUser($correo, $pass);
+
         if ($user->getDni() == null) {
             return "Email y/o Contrasenña incorrectos.";
         } else {
