@@ -23,9 +23,10 @@ $args = [
 
     ]
 ];
-function createCard($title, $img = '', $id){
+function createCard($title, $img = '',$id){
     return '
     <!--CARD-->
+    <form action="" method="post" id="formularioAlquilar">
         <div class="card-wrapper">
             <div class="card">
                 <div class="image">
@@ -35,12 +36,11 @@ function createCard($title, $img = '', $id){
                      '.$title.'
                 </div>
                 <div class="boton-wrapper">
-                <a class="boton" href="'.$id.'">
-                Alquilar
-                </a>
+                <input type="submit" class="boton" value="Alquilar">
                 </div>
             </div>
         </div>
+    </form>
     ';
 }
 function getContent()

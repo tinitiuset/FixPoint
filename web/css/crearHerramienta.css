@@ -20,16 +20,17 @@ label {
 }
 
 input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
+    background-color: #eccc4b;
+    color: black;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #eec51f;
 }
 
 .containerCreateTool {

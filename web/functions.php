@@ -76,7 +76,7 @@ function navbar(): string
         $structureNavBar .=
             '
                         <!--Varias funciones -->
-                    <a href="#" id="logOutBtn"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
+                    <a href="#" id="logOutBtn" onclick="logoutck();"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
                 </div>
                 </div>
             <!--Rubrica js local storage-->
