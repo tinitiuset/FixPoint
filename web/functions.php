@@ -334,3 +334,21 @@ function handleRegister($post)
     return $var;
 
 }
+
+function confirmarGuia() {
+    return '
+    <div class="modalConfirmarGuia" id="modalConfirmarGuia">
+        <div class="modalContenido">
+            <div class="modalHeader">
+                <h1 id="tituloConfirmarGuia">¿Confirmar y añadir la guía creada?</h1>
+            </div>
+            <div class="modalBody">
+                <form action="" method="post">
+                    <p><input type="button" class="btn-cancelarGuia" value="Cancelar"></p>
+                    <p><input type="submit" class="btn-aceptarGuia" value="Aceptar"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    ';
+}

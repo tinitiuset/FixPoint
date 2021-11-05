@@ -3,7 +3,6 @@
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\paso;
 
-
 require_once "functions.php";
 
 
@@ -32,7 +31,7 @@ function getContent() {
     <section class="containerGeneralPaso">
         <h2>Insertar paso</h2>
         <div class="containerPaso">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="controlarPaso.php" method="post" enctype="multipart/form-data">
                 <div class="paso-wrapper">
                     <div class="row">
                         <div class="col-25">
