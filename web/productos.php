@@ -23,7 +23,7 @@ $args = [
 
     ]
 ];
-function createCard($title, $img = ''){
+function createCard($title, $img = '',$id){
     return '
     <!--CARD-->
     <form action="" method="post" id="formularioAlquilar">
