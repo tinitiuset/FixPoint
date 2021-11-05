@@ -1,6 +1,6 @@
 <?php
 
-use Grupo3\FixPoint\Connection;
+use Grupo3\FixPoint\model\guiaDespiece;
 use Grupo3\FixPoint\model\paso;
 
 require_once "functions.php";
@@ -23,6 +23,8 @@ $args = [
     ]
 ];
 
+
+
 function getContent() {
 
     $arrayGuia = [];
@@ -31,7 +33,8 @@ function getContent() {
     <section class="containerGeneralPaso">
         <h2>Insertar paso</h2>
         <div class="containerPaso">
-            <form action="controlarPaso.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
+                <input name="paso" type="hidden" value="1">
                 <div class="paso-wrapper">
                     <div class="row">
                         <div class="col-25">
@@ -54,7 +57,7 @@ function getContent() {
                 <div class="boton-wrapper">
                     <div class="row">
                         <input type="reset" class="boton" id="botonCancelar" value="Cancelar">
-                        <input type="submit" class="boton" id="botonAñadirPaso" value="Añadir paso">
+                        <input type="submit" class="boton" id="botonAñadirPaso" formaction="./guiaDespiecePaso.php" value="Añadir paso">
                         <input type="submit" class="boton" id="botonAceptar" value="Aceptar">
                     </div>
                 </div>
@@ -68,6 +71,17 @@ function getContent() {
 }
 
 getHeader($args);
+if (isset($_POST['guia'])) {
+    $guia = new guiaDespiece($_POST['fecha'], $_POST['nombreMaquina'], $_POST['ocurrencia'], $_POST['propuesta'], $_POST['averias'], $_POST['solucion']);
+    $_SESSION['guia'] = $guia;
+} elseif (isset($_POST['paso'])){
+    $paso = new paso('','','','');
+    $guia = $_SESSION['guia'];
+    $guia->setPasos(array_push($guia->getPasos(), $paso));
+    $_SESSION['guia'] = $guia;
+    Kint\Kint::dump($_SESSION['guia']);
+    Kint\Kint::dump($_POST);
+}
 getContent();
 getFooter($args);
 

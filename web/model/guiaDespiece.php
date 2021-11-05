@@ -6,11 +6,29 @@ use Grupo3\FixPoint\Connection;
 use Kint\Kint;
 use PDO;
 
-require __DIR__ . '/../Connection.php';
+require_once __DIR__ . '/../Connection.php';
 
 class guiaDespiece
 {
     private $numFicha, $fecha, $nombreMaquina, $revisada, $ocurrencia, $propuesta, $averias, $solucion;
+
+    private array $pasos = [];
+
+    /**
+     * @return array
+     */
+    public function getPasos(): array
+    {
+        return $this->pasos;
+    }
+
+    /**
+     * @param array $pasos
+     */
+    public function setPasos(array $pasos): void
+    {
+        $this->pasos = $pasos;
+    }
 
     public function __construct($fecha, $nombreMaquina, $ocurrencia, $propuesta, $averias, $solucion)
     {
