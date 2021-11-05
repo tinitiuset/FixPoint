@@ -58,7 +58,7 @@ function getContent() {
                     <div class="row">
                         <input type="reset" class="boton" id="botonCancelar" value="Cancelar">
                         <input type="submit" class="boton" id="botonAñadirPaso" formaction="./guiaDespiecePaso.php" value="Añadir paso">
-                        <input type="submit" class="boton" id="botonAceptar" value="Aceptar">
+                        <input type="submit" class="boton" id="botonAceptar" formaction="./controlarPaso.php" value="Aceptar">
                     </div>
                 </div>
             </form>
@@ -77,10 +77,12 @@ if (isset($_POST['guia'])) {
 } elseif (isset($_POST['paso'])){
     $paso = new paso('','','','');
     $guia = $_SESSION['guia'];
-    $guia->setPasos(array_push($guia->getPasos(), $paso));
+   
+    $pasos = $guia->getPasos();
+    array_push($pasos, $paso);
+    $guia->setPasos($pasos);
+    
     $_SESSION['guia'] = $guia;
-    Kint\Kint::dump($_SESSION['guia']);
-    Kint\Kint::dump($_POST);
 }
 getContent();
 getFooter($args);

@@ -21,7 +21,7 @@ $args = [
 ];
 
 function getContent () {
-    Kint\Kint::dump($_SESSION);
+    // Kint\Kint::dump($_SESSION);
     $content= '
 <div class="guiaContainer">
     <div class="guiaForm">
