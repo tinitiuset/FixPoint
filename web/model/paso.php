@@ -3,7 +3,7 @@
 namespace Grupo3\FixPoint\model;
 use Grupo3\FixPoint\Connection;
 
-require __DIR__ .'/../Connection.php';
+require_once __DIR__ .'/../Connection.php';
 
 class paso
 {
