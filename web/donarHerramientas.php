@@ -22,7 +22,6 @@ $args = [
 ];
 
 function comprobarYEnviar () {
-    var_dump($_REQUEST);
         if (!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
             $name = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
@@ -33,7 +32,7 @@ function comprobarYEnviar () {
             VALUES ('$name', '$apellidos', '$email', '$telf', '$msg')");
 
             /* enviar email */ /*mirar - no funciona el mail*/
-            ini_set('SMTP','myserver');
+           /* ini_set('SMTP','myserver');
             ini_set('smtp_port',25);
             mail(
                 "sonia.l.ortega@gmail.com",
@@ -43,41 +42,15 @@ function comprobarYEnviar () {
                 Apellidos: ".$apellidos."
                 Email: ".$email."
                 Teléfono: ".$telf."
-                Mensaje: ".$msg
-            );
+                Mensaje: ".$msg 
+            );*/
 
-            return "Gracias por su colaboración, nos pondremos en contacto con usted";
+            return "Gracias por su colaboración, nos pondremos en contacto con usted.";
 
-        } else {
-            /* Aqui hay que copiar la logica del formulario de crear usuario*/ 
-            return "faltan variables";
-        }
-
+        } 
 }
 
 function getContent () {
-
-    
-   /* if (isset($_POST['Enviar'])) {
-        if (!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
-            $name = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $email = $_POST['email'];
-            $msg = $_POST['donacion'];
-            $header = "From: noreply@example.com" . "r\n";
-            $header.= "Reply-To: noreply@example.com" . "r\n";
-            $header.= "X-Mailer: PHP/". phpversion();
-            $mail = @mail($mail, $nombre, $apellido, $msg, $header);
-            if ($mail) {
-                echo "<h4> El email se ha enviado correctamente</h4>";
-            }
-    
-    
-        }
-        
-    }*/
-
-
     
     $content= '
     <h1 id="tituloTools">¡Necesitamos herramientas!</h1>
@@ -109,13 +82,13 @@ function getContent () {
                         </legend>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="nombre" id="nombre"><br>
+                                <input class="inputForm" type="text" name="nombre" id="nombre" required><br>
                                 <span class="nombre">Primer nombre</span>
                             </label>
                         </div>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="apellidos" id="apellidos"><br>
+                                <input class="inputForm" type="text" name="apellidos" id="apellidos" required><br>
                                 <span class="nombre">Apellidos</span>
                             </label>
                         </div>
@@ -123,23 +96,33 @@ function getContent () {
                     <div>
                         <label class="titulo">Correo electrónico
                             <span>*</span>
-                            <input class="inputForm" type="text" name="email">
+                            <input class="inputForm" type="text" name="email" placeholder="Email@ejemplo.com" 
+                            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" requiered>
                         </label>
                     </div>
                     <div>
                         <label class="titulo">Número de teléfono
-                            <input class="inputForm" type="text" name="telefono">
+                            <input class="inputForm" type="text" name="telefono"
+                            placeholder="000 00 00 00" required pattern="[0-9]{9}">
                         </label>
                     </div>
                     <div>
                         <label class="titulo">¿Qué le gustaría donar?
                             <span>*</span>
-                            <textarea id="textArea" name="donacion"></textarea>
+                            <textarea id="textArea" name="donacion" required></textarea>
                         </label>
                     </div>
-                    <p><div class="alert alert-danger" role="alert">
+                    <?php if (!empty($mensajeEnvio)): ?>
+                        <p> <?= $mensajeEnvio ?></p>
+                    <?php endif; ?>
+
+                    </div>
+                    <p id="mensajeEnvio"><?= $mensajeEnvio ?>
                     ' . comprobarYEnviar() . '
-                    </div></p>
+                    </p>
+                    
+                    
+                    
                     <input class="btnEnviar" type="submit" value="Enviar">
                 </div>    
             </form>
