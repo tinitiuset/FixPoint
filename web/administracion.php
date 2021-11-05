@@ -36,6 +36,7 @@ function getContent()
     $opTwo = getEliminarHerramienta();
     $opTres = getActivarUsuario();
     $opCuatro = getEliminarUsuario();
+    $opCinco = getAdministrarAlquiler();
 
     $content = '
     <div class="adminHerrContainer">
@@ -72,7 +73,7 @@ function getContent()
             <button type="button" class="collapsible">Gestión de Alquiler</button>
             <div class="content">
             
-                '.$op.'
+                '.$opCinco.'
              </div>
         </div>
     </div>
@@ -226,7 +227,7 @@ function getActivarUsuario()
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select * from usuario")->fetchAll();
         $usuarios = '';
-        $mensajeEliminarUsuario = '';
+        $mensajeActivarUsuario = '';
 
 
         /*despues del submit*/
@@ -278,6 +279,98 @@ function getActivarUsuario()
               <input type="submit" value="Activar">
         </form>
         '.$mensajeActivarUsuario.'
+    
+    ';
+        return $content;
+    }
+
+function getAdministrarAlquiler()
+    {
+        /*CONSEGUIMOS LOS DE BBDD*/
+        $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+        $queryUsuario = Connection::executeQuery("select * from usuario")->fetchAll();
+        $queryAlquiler = Connection::executeQuery("select * from alquiler")->fetchAll();
+        $herramientas = '';
+        $usuarios = '';
+        $alquileres = '';
+        $mensajeGestionaHerramienta = '';
+
+
+        /*despues del submit*/
+        if (isset($_POST["checkboxHerramientaAlquilada"])){
+            if($_POST["checkboxHerramientaAlquilada"]) {
+                foreach($_POST["checkboxHerramientaAlquilada"] as $value)
+                {
+                    /* Cambiar estado alquiler herramienta*/
+                    Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramienta` = "'.$value.'";');
+                    
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+
+                    $mensajeGestionaHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
+                    - usuario activado correctamente
+                </div></div>';
+
+                }
+    
+            }
+        }
+    
+        foreach ($queryUsuario as $usuario) {
+
+
+            $usuarios .= '
+                <tr>
+                    <td>'.$usuario['dni'].'</td>
+                    <td>'.$usuario['nombre'].'</td>
+                    <td>'.$usuario['email'].'</td>
+                 
+                </tr>
+            ';
+        }
+
+        foreach ($query as $herremienta) {
+
+
+            $herramientas .= '
+                <tr>
+                    <td>'.$herramienta['id_herramienta'].'</td>
+                    <td>'.$herramienta['disponible'].'</td>
+                    <td><input type="checkbox" name="checkboxHerramientaAlquilada[]" id="checkboxHerramientaAlquilada[]" value="'.$herramienta["disponible"].'"></td>
+                </tr>
+            ';
+        }
+
+        foreach ($queryAlquiler as $alquiler) {
+
+
+            $alquileres .= '
+                <tr>
+                    <td>'.$alquiler['id_herramienta'].'</td>
+                    <td>'.$alquiler['disponible'].'</td>
+                </tr>
+            ';
+        }
+
+        $content = '
+        <form action="administracion.php" method="post">
+        <table>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Id Herramienta</th>
+                <th>Alquilado</th>
+                <th>FechaInicio</th>
+                <th>Dias</th>
+            </tr>
+            '.$usuarios.'
+            '.$herramientas.'
+            '.$alquileres.'
+        </table><br>
+              <input type="submit" value="Activar">
+        </form>
+        '.$mensajeGestionaHerramienta.'
     
     ';
         return $content;
