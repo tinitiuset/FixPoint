@@ -28,6 +28,7 @@ function getHeader($headerArgs = null): void
         $structure .= '<script src="' . $script . '"></script> ';
     }
     $structure .= '
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
     </head>
     <body>
     ';

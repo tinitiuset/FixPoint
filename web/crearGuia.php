@@ -22,47 +22,41 @@ $args = [
     ]
 ];
 
-function getContent () {
+function getContent()
+{
     // Kint\Kint::dump($_SESSION);
-    $content= '
+    $content = '
 <div class="guiaContainer">
-    <div class="guiaForm">
-        <form action="" method="post" id="crearGuia">
-            <input name="guia" type="hidden" value="1">
-            <input name="fecha" type="hidden" value="'. time() .'">
-            <label for="nombreMaquina">Nombre de la Maquina:</label>
-            <input id="nombreMaquina" name="nombreMaquina" type="text">
-            <label for="ocurrencia">Ocurrencia:</label>
-            <textarea id="ocurrencia" name="ocurrencia">
-            </textarea>
-            <label for="propuesta">Propuesta:</label>
-            <textarea id="propuesta" name="propuesta">
-            </textarea>
-            <label for="averias">Averias:</label>
-            <textarea id="averias" name="averias">
-            </textarea>
-            <label for="solucion">Solucion:</label>
-            <textarea id="solucion" name="solucion">
-            </textarea>    
-            <input type="submit" formaction="./guiaDespiecePaso.php" class="btnCrearCuenta" value="Siguiente">                     
-        </form>
-    </div>
-    <div class="guiaButtons">
-    <div class="boton-wrapper">
-                <a class="boton" href="">
-                Siguiente
-                </a>
-                </div>        
-    
-    <div class="boton-wrapper">
-                <a class="boton" href="">
-                Atras
-                </a>
-                </div>        
-    </div>
+        '. form().'
 </div>
 ';
     echo $content;
+}
+
+function form()
+{
+    $form = '
+<div class="form-style">
+<div class="form-style-heading">Crear una guia</div>
+<form action="" method="post" id="crearGuia">
+<input name="guia" type="hidden" value="1">
+<input name="fecha" type="hidden" value="' . time() . '">
+<label for="field1"><span>Nombre de la maquina <span class="required">*</span></span><input type="text" class="input-field" name="nombreMaquina" value="" required/></label>
+
+<label for="field2"><span>Ocurrencia <span class="required">*</span></span><textarea name="ocurrencia" class="textarea-field" required></textarea></label>
+<label for="field3"><span>Propuesta <span class="required">*</span></span><textarea name="propuesta" class="textarea-field" required></textarea></label>
+<label for="field4"><span>Averias <span class="required">*</span></span><textarea name="averias" class="textarea-field" required></textarea></label>
+<label for="field5"><span>Solucion <span class="required">*</span></span><textarea name="solucion" class="textarea-field" required></textarea></label>
+<div class="formButtons">
+    <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Siguiente" /></label>
+    &nbsp;
+    <label class="formButton"><span> </span><input type="reset" value="Reiniciar" /></label>
+</div>
+</form>
+</div>
+';
+    return $form;
+
 }
 
 getHeader($args);

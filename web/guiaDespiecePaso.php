@@ -3,7 +3,8 @@
 use Grupo3\FixPoint\model\guiaDespiece;
 use Grupo3\FixPoint\model\paso;
 
-require "functions.php";
+require_once "functions.php";
+
 
 $args = [
     'title' => 'Index',
@@ -12,7 +13,10 @@ $args = [
         'css/index.css',
         'css/header.css',
         'css/ventanasModales.css',
-        'css/guiaDespiecePasoEstilo.css'
+        'css/guiaDespiecePasoEstilo.css',
+        'css/crear_sesion.css',
+        'css/inicio_sesion.css',
+        'css/crearGuia.css',
     ],
     'scripts' => [
         'js/menu.js',
@@ -27,46 +31,37 @@ $args = [
 
 function getContent() {
 
-    $arrayGuia = [];
-
     $content = '
-    <section class="containerGeneralPaso">
-        <h2>Insertar paso</h2>
-        <div class="containerPaso">
-            <form action="" method="post" enctype="multipart/form-data">
-                <input name="paso" type="hidden" value="1">
-                <div class="paso-wrapper">
-                    <div class="row-paso">
-                        <div class="col-25-paso">
-                            <label for="introducirImagen">Imagen:</label>
-                        </div>
-                        <div class="col-75-paso">
-                            <input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required>
-                            <!--Validar con js que es una imagen-->
-                        </div>
-                    </div>
-                    <div class="row-paso">
-                        <div class="col-25-paso">
-                            <label for="txtIntroducirDetalle">Detalles:</label>
-                        </div>
-                        <div class="col-75-paso">
-                            <textarea name="detalle" id="txtIntroducirDetalle" cols="50" rows="10" required></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="boton-wrapper">
-                    <div class="row-paso">
-                        <input type="reset" class="boton" id="botonGuiaPasoCancelar" value="Cancelar">
-                        <input type="submit" class="boton" id="botonAñadirPaso" formaction="./guiaDespiecePaso.php" value="Añadir paso">
-                        <input type="submit" class="boton" name="aceptar" id="botonAceptar" formaction="./guiaDespiecePaso.php" value="Aceptar">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
+    <div class="guiaContainer">
+        '. form().'
+    </div>
     ';
 
     echo $content;
+
+}
+
+function form()
+{
+    return '
+<div class="form-style">
+    <div class="form-style-heading">Añadir un Paso</div>
+    <form action="" method="post" id="crearGuia">
+        <input name="paso" type="hidden" value="1">
+        <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="introducirImagen" id="fileIntroducirImagen" required/></label>
+        
+        <label for="field2"><span>Detalles <span class="required">*</span></span><textarea name="detalle" id="txtIntroducirDetalle" class="textarea-field" required></textarea></label>
+        
+        <div class="formButtons">
+            <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
+            &nbsp;
+            <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
+            &nbsp;
+            <label class="formButton"><span> </span><input type="submit" formaction="./controlarPaso.php" value="Aceptar"/></label>
+        </div>
+    </form>
+</div>
+';
 
 }
 
@@ -84,6 +79,8 @@ if (isset($_POST['guia'])) {
     
     $_SESSION['guia'] = $guia;
 }
+Kint\Kint::dump($_SESSION['guia']);
+
 if (isset($_POST["aceptar"])) {
     crearGuia();
 }
