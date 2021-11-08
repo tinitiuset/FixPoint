@@ -53,7 +53,7 @@ create table alquiler
 create table guiaDespiece
 (
     numFicha      int primary key auto_increment,
-    fecha         date    default current_timestamp,
+    fecha         timestamp    default current_timestamp,
     nombreMaquina varchar(15)           not null unique,
     revisada      boolean default false not null,
     ocurrencia    varchar(70)           not null,
@@ -80,10 +80,6 @@ create table paso
     constraint pk_paso primary key (numpaso, numficha),
     constraint fk_numFicha_paso foreign key (numFicha) references guiaDespiece (numFicha) on update cascade
 );
-
-/* USUARIO ADMINISTRADOR*/
-/*INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
-VALUES ('00000000A', 'Administrador', 'Administrador', '1', '', 'administracion@fixpoint.com');*/
 
 
 /*INSERCIONES TABLA CATEGORIA*/
