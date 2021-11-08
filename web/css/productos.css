@@ -82,7 +82,8 @@
     height: 50px;
 }
 
-.card > .boton-wrapper > .boton {
+.card > .boton-wrapper > .boton,
+.card > .boton-wrapper > .botonDesactivo  {
     width: 100%;
     height: 100%;
     border: 0;
@@ -100,3 +101,8 @@
     transition: box-shadow 200ms ease-out;
 }
 
+.card > .boton-wrapper > .botonDesactivo {
+    color: gray;
+    cursor: auto;
+
+}
