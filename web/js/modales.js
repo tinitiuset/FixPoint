@@ -31,19 +31,11 @@ document.onreadystatechange = function () {
         let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
         let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
 
-        // MODAL CONFIRMAR GUÍA
-        let botonAceptarPaso = document.getElementById("btn-AceptarGuia");
-        let botonAceptarGuia = document.getElementById("botonAceptar");
-        let botonCancelarPaso = document.getElementById("btn-cancelarGuia");
-        let modalConfirmarGuia = document.getElementById("modalConfirmarGuia");
-
         txtCrearSesion.addEventListener("click", spawn);
         iniciarSesion_txtCrear.addEventListener("click", spawn);
         txtIniciarSesion.addEventListener("click", spawnIniciar);
         iconIniciarSesion.addEventListener("click", spawnIniciar);
         crearSesion_txtIniciar.addEventListener("click", spawnIniciar);
-
-        botonAceptarGuia.addEventListener("click", spawnConfirmar);
 
 
         function spawn() {
@@ -63,7 +55,8 @@ document.onreadystatechange = function () {
         }
 
         function spawnIniciar() {
-            console.log("yay")
+            console.log("yay");
+            console.log(window.location.hash.substring(1).toString);
             modalIniciarSesion.style.display = "block";
             document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
 
@@ -78,16 +71,28 @@ document.onreadystatechange = function () {
             document.querySelector("body").style.overflow = 'visible';
         }
 
-        function spawnConfirmar() {
-            modalConfirmarGuia.style.display = "block";
-            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
-        }
+        // MODAL CONFIRMAR GUÍA
+        let botonAceptarPaso = document.getElementById("btn-AceptarGuia");
+        let botonAceptarGuia = document.getElementById("botonAceptar");
+        let botonCancelarPaso = document.getElementById("btn-cancelarGuia");
+        let modalConfirmarGuia = document.getElementById("modalConfirmarGuia");
 
-        // CERRAR MODAL
-        botonCancelarPaso.onclick = function () {
-            modalConfirmarGuia.style.display = "none";
-            document.querySelector("body").style.overflow = 'visible';
-        }
+        if (window.location.href.indexOf('guiaDespiecePaso.php') > -1) {
+            console.log("funciona");
+            botonAceptarGuia.addEventListener("click", spawnConfirmar);
+
+            function spawnConfirmar() {
+                modalConfirmarGuia.style.display = "block";
+                document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
+            }
+    
+            // CERRAR MODAL
+            botonCancelarPaso.onclick = function () {
+                modalConfirmarGuia.style.display = "none";
+                document.querySelector("body").style.overflow = 'visible';
+            }
+
+        }        
 
     }
 }
