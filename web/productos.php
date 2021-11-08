@@ -1,5 +1,6 @@
 <?php
-
+ require_once "model/User.php";
+use Grupo3\FixPoint\model\User;
 use Grupo3\FixPoint\Connection;
 
 require "functions.php";
@@ -24,12 +25,7 @@ $args = [
     ]
 ];
 
-
-
-    if(isset($_POST['btnReservar'])){
-    
-        $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
-    }
+  
 
 function createCard($title, $img = '',$id)
 {
@@ -106,5 +102,15 @@ function getContent()
 }
 
 getHeader($args);
+
+if(isset($_POST['btnReservar'])){
+    
+    $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
+    
+    $dniUser = $_SESSION["user"]->getDni();
+
+    echo($dniUser);
+}
+
 getContent();
 getFooter($args);
