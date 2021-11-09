@@ -1,5 +1,6 @@
 <?php
-
+ require_once "model/User.php";
+use Grupo3\FixPoint\model\User;
 use Grupo3\FixPoint\Connection;
 
 require "functions.php";
@@ -20,29 +21,63 @@ $args = [
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/logout.js',
-
+        'js/reservar.js',
     ]
 ];
-function createCard($title, $img = '',$id){
-    return '
-    <!--CARD-->
-    <form action="" method="post" id="formularioAlquilar">
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="image">
-                    <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
-                </div>
-                <div class="title">
-                     '.$title.'
-                </div>
-                <div class="boton-wrapper">
-                <input type="submit" class="boton" value="Alquilar">
+
+  
+
+function createCard($title, $img = '',$id)
+{
+    
+        $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$id.'";')->fetchAll();
+        
+        if($estado[0]['disponible']==0){
+
+        return '
+        <!--CARD-->
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="image">
+                        <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
+                    </div>
+                    <div class="title">
+                        '.$title.'
+                    </div>
+                    <div class="boton-wrapper">
+                    <button type="button" class="botonDesactivo" disabled>No Disponible</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-    ';
+        ';
+        } else {
+
+            return '
+            <!--CARD-->
+            <form action="" method="post" id="forAlquilar">
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="image">
+                            <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
+                        </div>
+                        <div class="title">
+                            '.$title.'
+                        </div>
+                        <div class="boton-wrapper">
+                        <input type="hidden" name="id" value="'.$id.'">
+                        <input type="submit" class="boton" onClick="mensaje()" value="Reservar" name="btnReservar">
+                        
+                        </div>
+                    </div>
+                </div>
+            </form>
+            ';
+
+        }
+
+    
 }
+
 function getContent()
 {
     /*CONSEGUIMOS LAS HERREMIENTAS DE BBDD*/
@@ -67,5 +102,15 @@ function getContent()
 }
 
 getHeader($args);
+
+if(isset($_POST['btnReservar'])){
+    
+    $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
+    
+    $dniUser = $_SESSION["user"]->getDni();
+
+    echo($dniUser);
+}
+
 getContent();
 getFooter($args);
