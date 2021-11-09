@@ -39,9 +39,8 @@ create table alquiler
     dni            char(9),
     id_herramienta int,
     fechaInicio    date not null,
-    dias           int  not null,
+    fechaFin       date not null,
     constraint pk_alquiler primary key (dni, id_herramienta),
-    constraint ch_dias check (dias > 0),
     constraint fk_DNI_alquiler foreign key (dni)
         references usuario (dni)
         on update cascade,
@@ -93,12 +92,26 @@ create table solicitudDonacion
 
 create table solicitudAlquiler
 (
-    dni         char(9),
-    nombre      varchar(30) not null,
-    apellidos   varchar(30) not null,
-    email       varchar(50) not null,
-    id_herramienta int
+    id_solicitud int primary key auto_increment,
+    dni                 char(9),
+    nombre              varchar(30) not null,
+    apellidos           varchar(30) not null,
+    email               varchar(50) not null,
+    id_herramienta      int,
+    disponible          boolean     not null default false,
+    alquiler_atendido   boolean     not null default false
+    
 );
+
+/* CREACION TRIGGER */
+ DELIMITER$$
+ CREATE TRIGGER alquiler_herramienta
+ AFTER INSERT ON solicitudAlquiler
+ FOR EACH ROW
+ BEGIN
+ INSERT INTO alquiler(dni, id_herramienta, fechaInicio)
+ VALUES(NEW.dni, NEW.id_herramienta,CURRENT_DATE());
+ END;$$
 
 
 /* USUARIO ADMINISTRADOR*/
