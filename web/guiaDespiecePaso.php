@@ -43,7 +43,7 @@ function form()
     return '
         <div class="form-style">
             <div class="form-style-heading">Añadir un Paso</div>
-            <form action="" method="post" id="crearGuia">
+            <form action="" method="POST" enctype="multipart/form-data" id="crearGuia" >
                 <input name="paso" type="hidden" value="1">
                 <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required/></label>
                 
@@ -63,15 +63,18 @@ function form()
 }
 
 getHeader($args);
+$_SESSION["imagenes"] = array();
 if (isset($_POST['guia'])) {
     $guia = new guiaDespiece($_POST['fecha'], $_POST['nombreMaquina'], $_POST['ocurrencia'], $_POST['propuesta'], $_POST['averias'], $_POST['solucion']);
     $_SESSION['guia'] = $guia;
 } elseif (isset($_POST['paso'])) {
-    echo 'funciona';
-    var_dump($_FILES);
     $uploaddir = './img/pasos/';
+    
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
-    $arrayImagenes[] = array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
+
+    /*time() -> unix timestamp*/
+    $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
+
     // array_push($arrayImagenes, array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename));
 
     $paso = new paso($newfilename, $_POST["detalle"], '', '');
@@ -82,11 +85,12 @@ if (isset($_POST['guia'])) {
     $guia->setPasos($pasos);
     
     $_SESSION['guia'] = $guia;
-    $_SESSION['imagenes'] = $arrayImagenes;
-
+    
     echo var_dump($_SESSION['imagenes']);
-    /*time() -> unix timestamp*/
-    $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
+    $_SESSION['imagenes'][] = array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
+
+    // echo var_dump($arrayImagenes);
+    echo var_dump($_SESSION['imagenes']);
 }
 // Kint\Kint::dump($_SESSION['guia']);
 
@@ -98,11 +102,12 @@ getFooter($args);
 
 function crearGuia() {
     echo 'entra en la función';
+    
     for ($contador = 0; $contador < count($_SESSION["imagenes"]); $contador++) {
         move_uploaded_file($_SESSION["imagenes"][$contador][0], $_SESSION["imagenes"][$contador][1]);
         // echo $value->getFoto() . '<br>';
     }
-    echo var_dump($_SESSION["imagenes"]);
+    // echo var_dump($_SESSION["imagenes"]);
 }
 
 ?>
