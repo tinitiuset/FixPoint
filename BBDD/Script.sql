@@ -89,7 +89,17 @@ create table solicitudDonacion
     email       varchar(50) not null,
     telefono    int(9),
     donacion    text
-)
+);
+
+create table solicitudAlquiler
+(
+    dni         char(9),
+    nombre      varchar(30) not null,
+    apellidos   varchar(30) not null,
+    email       varchar(50) not null,
+    id_herramienta int
+);
+
 
 /* USUARIO ADMINISTRADOR*/
 /*INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `administrador`, `password`, `email`)
