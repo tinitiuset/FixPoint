@@ -77,7 +77,7 @@ function createCard($title, $img = '',$id)
         }
     } else {
 
-        
+
         if($estado[0]['disponible']==0){
 
         return '
@@ -142,14 +142,23 @@ function getContent()
 }
 
 getHeader($args);
-
+    
 if(isset($_POST['btnReservar'])){
-    
+    //Kint\Kint::dump($_SESSION);
+    //Kint\Kint::dump($_POST);
     $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
-    
+    $id = $_POST['id'];
+
     if (isset($_SESSION["user"])) {
 
     $dniUser = $_SESSION["user"]->getDni();
+    $nomUser = $_SESSION["user"]->getNombre();
+    $apeUser = $_SESSION["user"]->getApellidos();
+    $emailUser = $_SESSION["user"]->getEmail();
+
+    Connection::executeQuery("INSERT INTO solicitudalquiler (dni, nombre, apellidos, email, id_herramienta)
+            VALUES ('$dniUser', '$nomUser', '$apeUser', '$emailUser', '$id')");
+    
 
     } 
 }
