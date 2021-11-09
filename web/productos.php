@@ -148,6 +148,8 @@ if(isset($_POST['btnReservar'])){
     //Kint\Kint::dump($_POST);
     $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
     $id = $_POST['id'];
+    $disponible = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$id.'";')->fetchAll();
+    $estadoHerramienta = $disponible[0]['disponible'];
 
     if (isset($_SESSION["user"])) {
 
@@ -156,10 +158,9 @@ if(isset($_POST['btnReservar'])){
     $apeUser = $_SESSION["user"]->getApellidos();
     $emailUser = $_SESSION["user"]->getEmail();
 
-    Connection::executeQuery("INSERT INTO solicitudalquiler (dni, nombre, apellidos, email, id_herramienta)
-            VALUES ('$dniUser', '$nomUser', '$apeUser', '$emailUser', '$id')");
+    Connection::executeQuery("INSERT INTO solicitudalquiler (dni, nombre, apellidos, email, id_herramienta, disponible)
+            VALUES ('$dniUser', '$nomUser', '$apeUser', '$emailUser', '$id', '$estadoHerramienta')");
     
-
     } 
 }
 
