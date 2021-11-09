@@ -13,9 +13,6 @@ $args = [
         'css/index.css',
         'css/header.css',
         'css/ventanasModales.css',
-        'css/guiaDespiecePasoEstilo.css',
-        'css/crear_sesion.css',
-        'css/inicio_sesion.css',
         'css/crearGuia.css',
     ],
     'scripts' => [
@@ -44,24 +41,24 @@ function getContent() {
 function form()
 {
     return '
-<div class="form-style">
-    <div class="form-style-heading">Añadir un Paso</div>
-    <form action="" method="post" id="crearGuia">
-        <input name="paso" type="hidden" value="1">
-        <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required/></label>
-        
-        <label for="field2"><span>Detalles <span class="required">*</span></span><textarea name="detalle" id="txtIntroducirDetalle" class="textarea-field" required></textarea></label>
-        
-        <div class="formButtons">
-            <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
-            &nbsp;
-            <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
-            &nbsp;
-            <label class="formButton"><span> </span><input type="submit" formaction="./controlarPaso.php" value="Aceptar"/></label>
+        <div class="form-style">
+            <div class="form-style-heading">Añadir un Paso</div>
+            <form action="" method="post" id="crearGuia">
+                <input name="paso" type="hidden" value="1">
+                <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required/></label>
+                
+                <label for="field2"><span>Detalles <span class="required">*</span></span><textarea name="detalle" id="txtIntroducirDetalle" class="textarea-field" required></textarea></label>
+                
+                <div class="formButtons">
+                    <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
+                    &nbsp;
+                    <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
+                    &nbsp;
+                    <label class="formButton"><span> </span><input type="submit" onClick="crearGuia()" name="aceptar" value="Aceptar"/></label>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-';
+    ';
 
 }
 
@@ -69,13 +66,13 @@ getHeader($args);
 if (isset($_POST['guia'])) {
     $guia = new guiaDespiece($_POST['fecha'], $_POST['nombreMaquina'], $_POST['ocurrencia'], $_POST['propuesta'], $_POST['averias'], $_POST['solucion']);
     $_SESSION['guia'] = $guia;
-} elseif (isset($_POST['paso'])){
+} elseif (isset($_POST['paso'])) {
+    echo 'funciona';
+    var_dump($_FILES);
     $uploaddir = './img/pasos/';
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
-
-    /*time() -> unix timestamp*/
-
-    $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
+    $arrayImagenes[] = array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
+    // array_push($arrayImagenes, array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename));
 
     $paso = new paso($newfilename, $_POST["detalle"], '', '');
     $guia = $_SESSION['guia'];
@@ -85,11 +82,11 @@ if (isset($_POST['guia'])) {
     $guia->setPasos($pasos);
     
     $_SESSION['guia'] = $guia;
-    
-    $arrayImagenes[] = array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
-    // array_push($arrayImagenes, array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename));
     $_SESSION['imagenes'] = $arrayImagenes;
+
     echo var_dump($_SESSION['imagenes']);
+    /*time() -> unix timestamp*/
+    $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
 }
 // Kint\Kint::dump($_SESSION['guia']);
 
@@ -100,6 +97,7 @@ getContent();
 getFooter($args);
 
 function crearGuia() {
+    echo 'entra en la función';
     for ($contador = 0; $contador < count($_SESSION["imagenes"]); $contador++) {
         move_uploaded_file($_SESSION["imagenes"][$contador][0], $_SESSION["imagenes"][$contador][1]);
         // echo $value->getFoto() . '<br>';
