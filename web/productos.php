@@ -31,7 +31,8 @@ function createCard($title, $img = '',$id)
 {
     
         $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$id.'";')->fetchAll();
-        
+    if (isset($_SESSION["user"])) {  
+
         if($estado[0]['disponible']==0){
 
         return '
@@ -74,7 +75,46 @@ function createCard($title, $img = '',$id)
             ';
 
         }
+    } else {
 
+        
+        if($estado[0]['disponible']==0){
+
+        return '
+        <!--CARD-->
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="image">
+                        <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
+                    </div>
+                    <div class="title">
+                        '.$title.'
+                    </div>
+                    <div class="boton-wrapper">
+                    <button type="button" class="botonDesactivo" disabled>No Disponible</button>
+                    </div>
+                </div>
+            </div>
+        ';
+        } else {
+        return '
+        <!--CARD-->
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="image">
+                        <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
+                    </div>
+                    <div class="title">
+                        '.$title.'
+                    </div>
+                    <div class="boton-wrapper">
+                    <button type="button" class="botonDesactivo" disabled>Disponible</button>
+                    </div>
+                </div>
+            </div>
+        ';
+        }
+    }
     
 }
 
@@ -107,9 +147,11 @@ if(isset($_POST['btnReservar'])){
     
     $estado = Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramienta` = "'.$_POST['id'].'";'); 
     
+    if (isset($_SESSION["user"])) {
+
     $dniUser = $_SESSION["user"]->getDni();
 
-    echo($dniUser);
+    } 
 }
 
 getContent();
