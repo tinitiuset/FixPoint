@@ -37,6 +37,11 @@ p {
   text-align: center;
 }
 
+#tituloConfirmarGuia {
+  padding: 25px;
+  text-align: center;
+}
+
 .textoForm {
   font-size: 15px;
   padding-left: 50px;
