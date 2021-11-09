@@ -37,6 +37,7 @@ function getContent()
     $opTres = getActivarUsuario();
     $opCuatro = getEliminarUsuario();
     $opCinco = getAdministrarAlquiler();
+    $opSeis = getActivarAlquilerHerramienta();
 
     $content = '
     <div class="adminHerrContainer">
@@ -52,6 +53,12 @@ function getContent()
             <button class="collapsible">Eliminar Herramienta</button>
             <div class="content overfl">
                 '.$opTwo.'            
+            </div>
+        </div>
+        <div class="btnActivarAlquiler">
+            <button class="collapsible">Activar Alquiler Herramienta</button>
+            <div class="content overfl">
+                '.$opSeis.'            
             </div>
         </div>
     <h2>Administracion de Usuarios</h2>
@@ -151,6 +158,75 @@ function getEliminarHerramienta()
     </table><br>
           <input type="submit" value="Eliminar">
     '.$mensajeEliminarHerramienta.'
+    </form>
+
+';
+    return $content;
+}
+
+function getActivarAlquilerHerramienta()
+{
+    /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
+    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+    $tools = '';
+    $mensajeActivarHerramienta = '';
+
+
+
+    /*despues del submit*/
+    if (isset($_POST["checkboxDisponible"])){
+        if($_POST["checkboxDisponible"]) {
+            foreach($_POST["checkboxDisponible"] as $value)
+            {
+                $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
+                    
+                    if($estado[0]['disponible']==0){
+                       /* Activar usuario*/
+                        Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
+
+                        /*refrescamos*/
+                        $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+
+                        $mensajeActivarHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
+                        Disponibilidad activada correctamente
+                        </div></div>';   
+                    }
+
+                }
+
+        }
+    }
+
+
+    foreach ($query as $tool) {
+        
+        $tools .= '
+            <tr>
+                <td>'.$tool['id_herramienta'].'</td>
+                <td>'.$tool['nombre'].'</td>
+                <td>'.$tool['modelo'].'</td>
+                <td>'.$tool['marca'].'</td>
+                <td>'.$tool['disponible'].'</td>
+                <td><input type="checkbox" name="checkboxDisponible[]" id="checkboxDisponible[]" value="'.$tool['id_herramienta'].'"></td>
+            </tr>
+        ';
+    }
+
+    $content = '
+    <form action="" method="post">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Disponible</th>
+            <th>Seleccionar</th>
+        </tr>
+        '.$tools.'
+    </table><br>
+          <input type="submit" value="Activar">
+    '.$mensajeActivarHerramienta.'
     </form>
 
 ';
@@ -314,12 +390,11 @@ function getAdministrarAlquiler()
             if($_POST["checkboxAlquilerAtendido"]) {
                 foreach($_POST["checkboxAlquilerAtendido"] as $value)
                 {
-                    $estado = Connection::executeQuery('SELECT `disponible` FROM `solicitudalquiler` WHERE `id_herramenta` = "'.$value.'";')->fetchAll();
+                    $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramenta` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['disponible']==0){
-                       /* Activar alquiler*/
-                        Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramenta` = "'.$value.'";'); 
-                        Connection::executeQuery('UPDATE `solicitudalquiler` SET `disponible` = 1 WHERE `id_herramenta` = "'.$value.'";'); 
+                       /* Alquiler atendido*/
+                        Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramenta` = "'.$value.'";'); 
 
                         /*refrescamos*/
                         $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
@@ -330,8 +405,8 @@ function getAdministrarAlquiler()
                     } else {
                      
                     /* Desactivar alquiler*/
-                    Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 0 WHERE `id_herramenta` = "'.$value.'";'); 
-                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `disponible` = 0 WHERE `id_herramenta` = "'.$value.'";'); 
+                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 0 WHERE `id_herramenta` = "'.$value.'";'); 
+                   
                     
                     /*refrescamos*/
                     $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
@@ -357,6 +432,7 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['email'].'</td>
                     <td>'.$alquiler['id_herramienta'].'</td>
                     <td>'.$alquiler['disponible'].'</td>
+                    <td>'.$alquiler['alquiler_atendido'].'</td>
                     <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["alquiler_atendido"].'"></td>
                     <td><input type="date" name=fechaInicio value="'.$alquiler["fechaInicio"].'"></td>
                     <td><input type="date" name=fechaFin value="'.$alquiler["fechaFin"].'"></td>
@@ -376,6 +452,7 @@ function getAdministrarAlquiler()
                 <th>Id_Herramienta</th>
                 <th>Disponibilidad</th>
                 <th>AlquilerAtendido</th>
+                <th>Activar/Desactivar</th>
                 <th>FechaInicio</th>
                 <th>FechaFin</th>
             </tr>

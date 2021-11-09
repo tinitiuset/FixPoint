@@ -92,13 +92,15 @@ create table solicitudDonacion
 
 create table solicitudAlquiler
 (
+    id_solicitud int primary key auto_increment,
     dni                 char(9),
     nombre              varchar(30) not null,
     apellidos           varchar(30) not null,
     email               varchar(50) not null,
     id_herramienta      int,
-    disponible          boolean     not null,
-    alquiler_atendido   boolean     not null
+    disponible          boolean     not null default false,
+    alquiler_atendido   boolean     not null default false
+    
 );
 
 /* CREACION TRIGGER */
