@@ -116,14 +116,12 @@ create table alquileres_eliminados
 
 
 /* CREACION TRIGGERS */
- DELIMITER$$
+
  CREATE TRIGGER alquiler_herramienta
  AFTER INSERT ON solicitudAlquiler
  FOR EACH ROW
- BEGIN
  INSERT INTO alquiler(dni, id_herramienta, fechaInicio)
  VALUES(NEW.dni, NEW.id_herramienta,CURRENT_DATE());
- END;$$
 
 CREATE TRIGGER ELIMALQ_AD 
 AFTER DELETE ON alquiler 

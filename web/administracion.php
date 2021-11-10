@@ -389,17 +389,11 @@ function getAdministrarAlquiler()
         $mensajeAlquilerGestionado = '';
         
         /*despues del submit*/
-
+        //Kint\Kint::dump($_POST);
         if (isset($_POSTº["checkboxAlquilerAtendido"])){
-
-           
             if($_POST["checkboxAlquilerAtendido"]) {
-                
-
                 foreach($_POST["checkboxAlquilerAtendido"] as $value)
                 {
-                    Kint\Kint::dump($_POST);
-                    echo $_POST["fechaInicio"];
                     $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['alquiler_atendido']==0){
@@ -407,7 +401,7 @@ function getAdministrarAlquiler()
                         Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
 
                         /*refrescamos*/
-                        //$query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+                        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                         $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
                         alquiler activado correctamente
@@ -444,8 +438,8 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['disponible'].'</td>
                     <td>'.$alquiler['alquiler_atendido'].'</td>
                     <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
-                    <td><input type="date" name=fechaInicio value="'.$alquiler["fechaInicio"].'"></td>
-                    <td><input type="date" name=fechaFin value="'.$alquiler["fechaFin"].'"></td>
+                    <td><input type="date" name="fechaInicio" value="'.$alquiler["fechaInicio"].'"></td>
+                    <td><input type="date" name="fechaFin" value="'.$alquiler["fechaFin"].'"></td>
                     
                 </tr>
             ';
