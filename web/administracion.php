@@ -64,7 +64,7 @@ function getContent()
     <h2>Administracion de Usuarios</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Activar Usuario</button>
-            <div class="content">
+            <div class="content overfl">
             
                 '.$opTres.'
              </div>
@@ -78,7 +78,7 @@ function getContent()
     <h2>Administracion de alquileres</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Gestión de Alquiler</button>
-            <div class="content">
+            <div class="content overfl">
             
                 '.$opCinco.'
              </div>
@@ -181,8 +181,10 @@ function getActivarAlquilerHerramienta()
                 $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['disponible']==0){
-                       /* Activar usuario*/
+                        /* Activar herramienta */
                         Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
+                        /* Borramos registro alquiler */
+                        Connection::executeQuery('DELETE FROM `alquiler` WHERE `alquiler`.`id_herramienta` = "'.$value.'";'); 
 
                         /*refrescamos*/
                         $query = Connection::executeQuery("select * from herramienta")->fetchAll();
