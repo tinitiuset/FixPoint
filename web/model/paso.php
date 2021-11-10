@@ -20,6 +20,16 @@ class paso
         $this->setNumGuia($numGuia);
     }
 
+    function createPaso() {
+        $query = "INSERT INTO `paso`(`numficha`, `detalle`, `foto`) VALUES 
+        ('" . $this->getNumGuia() . "',
+        '" . $this->getDetalle() . "',
+        '" . $this->getFoto() . "')
+        ";
+
+        Connection::executeQuery($query);
+    }
+
     /**
      * Get the value of foto
      */ 

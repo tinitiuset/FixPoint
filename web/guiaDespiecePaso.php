@@ -5,7 +5,6 @@ use Grupo3\FixPoint\model\paso;
 
 require_once "functions.php";
 
-
 $args = [
     'title' => 'Index',
     'styles' => [
@@ -52,9 +51,9 @@ function form()
                 <div class="formButtons">
                     <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
+                    <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="submit" onClick="crearGuia()" name="aceptar" value="Aceptar"/></label>
+                    <label class="formButton"><span> </span><input type="button" id="botonAceptar" name="accion" value="Aceptar"/></label>
                 </div>
             </form>
         </div>
@@ -63,51 +62,41 @@ function form()
 }
 
 getHeader($args);
-$_SESSION["imagenes"] = array();
 if (isset($_POST['guia'])) {
     $guia = new guiaDespiece($_POST['fecha'], $_POST['nombreMaquina'], $_POST['ocurrencia'], $_POST['propuesta'], $_POST['averias'], $_POST['solucion']);
     $_SESSION['guia'] = $guia;
-} elseif (isset($_POST['paso'])) {
-    $uploaddir = './img/pasos/';
-    
+}
+
+if (isset($_POST['paso'])) {
+    $uploaddir = './img/pasos/'; 
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
-
-    /*time() -> unix timestamp*/
     $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
-
-    // array_push($arrayImagenes, array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename));
-
-    $paso = new paso($newfilename, $_POST["detalle"], '', '');
+    
     $guia = $_SESSION['guia'];
-   
+    $paso = new paso($newfilename, $_POST["detalle"], '', $guia->getNumFicha());
+    
     $pasos = $guia->getPasos();
     array_push($pasos, $paso);
     $guia->setPasos($pasos);
     
     $_SESSION['guia'] = $guia;
+
+    move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
+    echo var_dump($_SESSION['guia']->getPasos());
     
-    echo var_dump($_SESSION['imagenes']);
-    $_SESSION['imagenes'][] = array($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
-
-    // echo var_dump($arrayImagenes);
-    echo var_dump($_SESSION['imagenes']);
 }
+
+if (isset($_POST['btnConfirmarPasoAceptar'])) {
+    echo 'funciona';
+    $_SESSION['guia']->createGuiaDespiece();
+    $pasos = $_SESSION['guia']->getPasos();
+    foreach ($pasos as $key => $value) {
+        $value->createPaso();   //Da un error PDO tocho y no sé por qué
+    }
+}
+
 // Kint\Kint::dump($_SESSION['guia']);
-
-if (isset($_POST["aceptar"])) {
-    crearGuia();
-}
 getContent();
 getFooter($args);
-
-function crearGuia() {
-    echo 'entra en la función';
-    
-    for ($contador = 0; $contador < count($_SESSION["imagenes"]); $contador++) {
-        move_uploaded_file($_SESSION["imagenes"][$contador][0], $_SESSION["imagenes"][$contador][1]);
-        // echo $value->getFoto() . '<br>';
-    }
-    // echo var_dump($_SESSION["imagenes"]);
-}
 
 ?>

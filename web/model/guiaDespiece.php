@@ -10,7 +10,7 @@ require_once __DIR__ . '/../Connection.php';
 
 class guiaDespiece
 {
-    private $numFicha, $fecha, $nombreMaquina, $revisada, $ocurrencia, $propuesta, $averias, $solucion;
+    private $numFicha, $nombreMaquina, $revisada, $ocurrencia, $propuesta, $averias, $solucion;
 
     private array $pasos = [];
 
@@ -30,9 +30,8 @@ class guiaDespiece
         $this->pasos = $pasos;
     }
 
-    public function __construct($fecha, $nombreMaquina, $ocurrencia, $propuesta, $averias, $solucion)
+    public function __construct($nombreMaquina, $ocurrencia, $propuesta, $averias, $solucion)
     {
-        $this->fecha = $fecha;
         $this->nombreMaquina = $nombreMaquina;
 
         $this->ocurrencia = $ocurrencia;
@@ -54,7 +53,7 @@ class guiaDespiece
          $this->setAverias($guiaDespiece['averias']);
          $this->setSolucion($guiaDespiece['solucion']);
 
-         Kint::dump($this);
+        //  Kint::dump($this);
 
     }
 
@@ -78,10 +77,8 @@ class guiaDespiece
     }
 
     public function createGuiaDespiece(){
-        $query = "INSERT INTO `guiadespiece` ( `fecha`,
-                           `nombreMaquina`, `ocurrencia`, `propuesta`, `averias`, `solucion`) VALUES 
+        $query = "INSERT INTO `guiadespiece` (`nombreMaquina`, `ocurrencia`, `propuesta`, `averias`, `solucion`) VALUES 
                                         (
-                                         '" . $this->getFecha() . "',
                                          '" . $this->getNombreMaquina() . "',
                                          '" . $this->getOcurrencia() . "',
                                          '" . $this->getPropuesta() . "',

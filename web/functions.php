@@ -347,8 +347,8 @@ function confirmarGuia() {
             </div>
             <div class="modalBodyConfirmar">
                 <form action="" method="post">
-                    <p><input type="submit" class="btn-cancelarGuia" value="Cancelar"></p>
-                    <p><input type="submit" class="btn-aceptarGuia" value="Aceptar"></p>
+                    <p><input type="submit" id="btn-cancelarGuia" value="Cancelar"></p>
+                    <p><input type="submit" id="btn-aceptarGuia"  formaction="./guiaDespiecePaso.php" name="btnConfirmarPasoAceptar" value="Aceptar"></p>
                 </form>
             </div>
         </div>
