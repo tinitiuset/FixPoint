@@ -311,6 +311,7 @@ function getActivarUsuario()
             if($_POST["checkboxUsuarioActivo"]) {
                 foreach($_POST["checkboxUsuarioActivo"] as $value)
                 {
+                    
                     $estado = Connection::executeQuery('SELECT `activo` FROM `usuario` WHERE `dni` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['activo']==0){
@@ -390,11 +391,12 @@ function getAdministrarAlquiler()
             if($_POST["checkboxAlquilerAtendido"]) {
                 foreach($_POST["checkboxAlquilerAtendido"] as $value)
                 {
-                    $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramenta` = "'.$value.'";')->fetchAll();
+                   
+                    $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
                     
-                    if($estado[0]['disponible']==0){
+                    if($estado[0]['alquiler_atendido']==0){
                        /* Alquiler atendido*/
-                        Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramenta` = "'.$value.'";'); 
+                        Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
 
                         /*refrescamos*/
                         $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
@@ -405,7 +407,7 @@ function getAdministrarAlquiler()
                     } else {
                      
                     /* Desactivar alquiler*/
-                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 0 WHERE `id_herramenta` = "'.$value.'";'); 
+                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 0 WHERE `id_herramienta` = "'.$value.'";'); 
                    
                     
                     /*refrescamos*/
@@ -433,7 +435,7 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['id_herramienta'].'</td>
                     <td>'.$alquiler['disponible'].'</td>
                     <td>'.$alquiler['alquiler_atendido'].'</td>
-                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["alquiler_atendido"].'"></td>
+                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
                     <td><input type="date" name=fechaInicio value="'.$alquiler["fechaInicio"].'"></td>
                     <td><input type="date" name=fechaFin value="'.$alquiler["fechaFin"].'"></td>
                     
