@@ -207,7 +207,7 @@ function getActivarAlquilerHerramienta()
                 <td>'.$tool['nombre'].'</td>
                 <td>'.$tool['modelo'].'</td>
                 <td>'.$tool['marca'].'</td>
-                <td>'.$tool['disponible'].'</td>
+                <td>'.($tool['disponible']==1 ? "Activa" : "Inactiva").'</td>
                 <td><input type="checkbox" name="checkboxDisponible[]" id="checkboxDisponible[]" value="'.$tool['id_herramienta'].'"></td>
             </tr>
         ';
@@ -345,14 +345,14 @@ function getActivarUsuario()
     
         foreach ($query as $usuario) {
 
-
+            
             $usuarios .= '
                 <tr>
                     <td>'.$usuario['dni'].'</td>
                     <td>'.$usuario['nombre'].'</td>
                     <td>'.$usuario['apellidos'].'</td>
                     <td>'.$usuario['email'].'</td>
-                    <td>'.$usuario['activo'].'</td>
+                    <td>'.($usuario['activo']==1 ? "Activo" : "Inactivo").'</td>
                     <td><input type="checkbox" name="checkboxUsuarioActivo[]" id="checkboxUsuarioActivo[]" value="'.$usuario["dni"].'"></td>
                 </tr>
             ';
@@ -386,15 +386,15 @@ function getAdministrarAlquiler()
         $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
         $alquileres = '';
         $mensajeAlquilerGestionado = '';
-        
+        //Kint\Kint::dump($_POST); 
         /*despues del submit*/
         if (isset($_POST["checkboxAlquilerAtendido"])){
             if($_POST["checkboxAlquilerAtendido"]) {
                 foreach($_POST["checkboxAlquilerAtendido"] as $value)
                 {
-                    $fechaActual = isset($_POST["fechaInicio"]) ? trim($_POST["fechaInicio"]) : "";
-                    
-                    $fechaDevolucion = isset($_POST["fechaFin"]) ? trim($_POST["fechaFin"]) : "";
+                    $posicionIdHerramienta = array_search($value, $_POST["idsHerramienta"]);
+                    $fechaActual = isset($_POST["fechaInicio"][$posicionIdHerramienta]) ? trim($_POST["fechaInicio"][$posicionIdHerramienta]) : "";
+                    $fechaDevolucion = isset($_POST["fechaFin"][$posicionIdHerramienta]) ? trim($_POST["fechaFin"][$posicionIdHerramienta]) : "";
                     
                     Connection::executeQuery("UPDATE alquiler SET fechaInicio='$fechaActual', fechaFin='$fechaDevolucion' WHERE `id_herramienta` = $value");
 
@@ -426,13 +426,10 @@ function getAdministrarAlquiler()
             }
         }
     
-        // Pendiente mirar en casa
-        //$fechaMinima = getdate();  
-        Kint\Kint::dump($fechaMinima); 
-
+        // utilizamos la funcion date() pasandole el formato deseado
+        $fechaMinima = date("Y-m-d", time());  
         foreach ($query as $alquiler) {
-
-                 
+   
             $alquileres.= '
                 <tr>
                     <td>'.$alquiler['dni'].'</td>
@@ -440,10 +437,10 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['apellidos'].'</td>
                     <td>'.$alquiler['email'].'</td>
                     <td>'.$alquiler['id_herramienta'].'</td>
-                    <td>'.$alquiler['disponible'].'</td>
-                    <td>'.$alquiler['alquiler_atendido'].'</td>
-                    <td><input type="date" min="'.$fechaMinima.'" max="2021-12-31" name="fechaInicio" value="'.$alquiler["fechaInicio"].'"></td>
-                    <td><input type="date" name="fechaFin" value="'.$alquiler["fechaFin"].'"></td>
+                    <td>'.($alquiler['disponible']==1 ? "Disponible" : "Reservada").'</td> 
+                    <td>'.($alquiler['alquiler_atendido']==1 ? "Atendido" : "No atendido").'</td>
+                    <td><input type="date" min="'.$fechaMinima.'" max="2021-12-31" name="fechaInicio[]" value="'.$alquiler["fechaInicio"].'"></td>
+                    <td><input type="date" name="fechaFin[]" value="'.$alquiler["fechaFin"].'"></td>
                     <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
                 </tr>
             ';
@@ -465,7 +462,13 @@ function getAdministrarAlquiler()
                 <th>Seleccionar</th>
             </tr>
             '.$alquileres.'
-        </table><br>
+        </table><br>';
+
+        foreach ($query as $alquiler) {
+            $content .= '<input type="hidden" name="idsHerramienta[]" value="'.$alquiler["id_herramienta"].'">';
+        }
+
+        $content .= '
               <input type="submit" value="Actualizar Datos">
         </form>
         '.$mensajeAlquilerGestionado.'
