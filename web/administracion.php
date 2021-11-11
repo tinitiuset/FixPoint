@@ -25,7 +25,6 @@ $args = [
         'js/scriptRegistro.js',
         'js/administracion.js',
         'js/logout.js',
-
     ]
 ];
 
@@ -389,35 +388,37 @@ function getAdministrarAlquiler()
         $mensajeAlquilerGestionado = '';
         
         /*despues del submit*/
-        //Kint\Kint::dump($_POST);
-        if (isset($_POSTº["checkboxAlquilerAtendido"])){
+        if (isset($_POST["checkboxAlquilerAtendido"])){
             if($_POST["checkboxAlquilerAtendido"]) {
                 foreach($_POST["checkboxAlquilerAtendido"] as $value)
                 {
+                    $fechaActual = isset($_POST["fechaInicio"]) ? trim($_POST["fechaInicio"]) : "";
+                    
+                    $fechaDevolucion = isset($_POST["fechaFin"]) ? trim($_POST["fechaFin"]) : "";
+                    
+                    Connection::executeQuery("UPDATE alquiler SET fechaInicio='$fechaActual', fechaFin='$fechaDevolucion' WHERE `id_herramienta` = $value");
+
                     $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['alquiler_atendido']==0){
+                      
                        /* Alquiler atendido*/
                         Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
-
+                        
                         /*refrescamos*/
                         $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                         $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
-                        alquiler activado correctamente
+                        Datos actualizados correctamente
                         </div></div>';   
                     } else {
                      
-                    /* Desactivar alquiler*/
-                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 0 WHERE `id_herramienta` = "'.$value.'";'); 
-                   
-                    
                     /*refrescamos*/
                     $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                     $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
-                    alquiler desactivado correctamente
-                    </div></div>';
+                        Datos actualizados correctamente
+                        </div></div>';
                     }
 
                 }
@@ -425,9 +426,13 @@ function getAdministrarAlquiler()
             }
         }
     
+        // Pendiente mirar en casa
+        //$fechaMinima = getdate();  
+        Kint\Kint::dump($fechaMinima); 
+
         foreach ($query as $alquiler) {
 
-
+                 
             $alquileres.= '
                 <tr>
                     <td>'.$alquiler['dni'].'</td>
@@ -437,10 +442,9 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['id_herramienta'].'</td>
                     <td>'.$alquiler['disponible'].'</td>
                     <td>'.$alquiler['alquiler_atendido'].'</td>
-                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
-                    <td><input type="date" name="fechaInicio" value="'.$alquiler["fechaInicio"].'"></td>
+                    <td><input type="date" min="'.$fechaMinima.'" max="2021-12-31" name="fechaInicio" value="'.$alquiler["fechaInicio"].'"></td>
                     <td><input type="date" name="fechaFin" value="'.$alquiler["fechaFin"].'"></td>
-                    
+                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
                 </tr>
             ';
         }
@@ -456,9 +460,9 @@ function getAdministrarAlquiler()
                 <th>Id_Herramienta</th>
                 <th>Disponibilidad</th>
                 <th>AlquilerAtendido</th>
-                <th>Activar/Desactivar</th>
                 <th>FechaInicio</th>
                 <th>FechaFin</th>
+                <th>Seleccionar</th>
             </tr>
             '.$alquileres.'
         </table><br>

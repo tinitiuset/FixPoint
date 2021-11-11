@@ -13,13 +13,13 @@ $args = [
         'css/ventanasModales.css',
         'css/donar.css',
     ],
-
     'scripts' => [
         'js/menu.js',
+        'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/logout.js',
-
+        'js/reservar.js',
     ]
 ];
 
