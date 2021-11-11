@@ -9,14 +9,12 @@ class paso
 {
     private $foto;
     private $detalle;
-    private $numPaso;
     private $numGuia;
 
-    function __construct($foto, $detalle, $numPaso, $numGuia)
+    function __construct($foto, $detalle, $numGuia)
     {
         $this->setFoto($foto);
         $this->setDetalle($detalle);
-        $this->setNumPaso($numPaso);
         $this->setNumGuia($numGuia);
     }
 
@@ -24,8 +22,8 @@ class paso
         $query = "INSERT INTO `paso`(`numficha`, `detalle`, `foto`) VALUES 
         ('" . $this->getNumGuia() . "',
         '" . $this->getDetalle() . "',
-        '" . $this->getFoto() . "')
-        ";
+        '" . $this->getFoto() . "'
+        )";
 
         Connection::executeQuery($query);
     }
@@ -66,26 +64,6 @@ class paso
     public function setDetalle($detalle)
     {
         $this->detalle = $detalle;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of numPaso
-     */ 
-    public function getNumPaso()
-    {
-        return $this->numPaso;
-    }
-
-    /**
-     * Set the value of numPaso
-     *
-     * @return  self
-     */ 
-    public function setNumPaso($numPaso)
-    {
-        $this->numPaso = $numPaso;
 
         return $this;
     }

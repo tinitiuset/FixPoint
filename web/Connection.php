@@ -6,6 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv;
 use PDO;
+use PDOException;
 
 class Connection
 {

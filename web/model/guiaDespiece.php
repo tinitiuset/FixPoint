@@ -88,6 +88,13 @@ class guiaDespiece
         Connection::executeQuery($query);
     }
 
+    public function recogerNumGuiaDeBD() {
+        $query = "SELECT MAX(`numFicha`) AS 'num' FROM `guiadespiece`";
+        $num = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+
+        $this->setNumFicha($num['num']);
+    }
+
     public function guiaRevisada(){
         $query = "UPDATE `guiadespiece` SET `revisada` = '" . ($this->getRevisada() ^ 1) . "' 
                   WHERE `guiadespiece`.`numFicha` = '" . $this->getNumFicha() . "'; ";

@@ -73,7 +73,7 @@ if (isset($_POST['paso'])) {
     $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
     
     $guia = $_SESSION['guia'];
-    $paso = new paso($newfilename, $_POST["detalle"], '', $guia->getNumFicha());
+    $paso = new paso($newfilename, $_POST["detalle"], '');
     
     $pasos = $guia->getPasos();
     array_push($pasos, $paso);
@@ -81,17 +81,19 @@ if (isset($_POST['paso'])) {
     
     $_SESSION['guia'] = $guia;
 
-    move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
-    echo var_dump($_SESSION['guia']->getPasos());
+    move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);  //Crea las imágenes en la ruta deseada
+    // echo var_dump($_SESSION['guia']->getPasos());
     
 }
 
 if (isset($_POST['btnConfirmarPasoAceptar'])) {
-    echo 'funciona';
-    $_SESSION['guia']->createGuiaDespiece();
+    $_SESSION['guia']->createGuiaDespiece();    //Se crea la guía en la base de datos
+    $_SESSION['guia']->recogerNumGuiaDeBD();    //Esta función recoge el id (numFicha) de la guía desde la BD, ya que se aplica automaticamente desde ahí y no desde aquí, de lo contrario el valor estaría vacío
     $pasos = $_SESSION['guia']->getPasos();
+
     foreach ($pasos as $key => $value) {
-        $value->createPaso();   //Da un error PDO tocho y no sé por qué
+        $value->setNumGuia($_SESSION['guia']->getNumFicha());   //Se añade el id de la guía a cada paso ya que de lo contrario estarían vacíos
+        $value->createPaso();   //Se crea el paso
     }
 }
 
