@@ -9,10 +9,11 @@ $args = [
         'css/footer.css',
         'css/contacto.css',
         'css/index.css',
+        'css/ventanasModales.css',
         'css/header.css',
         'css/crearHerramienta.css',
         'css/administracion.css',
-        'css/ventanasModales.css',
+        
     ],
     'scripts' => [
         'js/menu.js',

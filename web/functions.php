@@ -49,7 +49,7 @@ function navbar(): string
     <nav id="site-nav" class="site-nav">
         <div class="linksNav"><a href="productos.php">Catálogo</a></div>
         <div class="linksNav"><a href="crearGuia.php">Guías despiece</a></div>
-        <div class="linksNav"><a href="donarHerramientas.php">Donar herramientas</a></div>
+        <div class="linksNav"><a href="donarHerramientas.php">Donar Herramientas</a></div>
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
     ';
@@ -105,8 +105,8 @@ function navbar(): string
     }
 
 $structureNavBar .= '      
-        <div id="menu-toggle" class="menu-toggle"> <!-- Usamos javascript nativo por lo que añadimos un evento
-        en nuestro caso onClick que llama al menu.js-->
+        <div id="menu-toggle" class="menu-toggle" onclick="cambiarClase()"> <!-- Usamos javascript nativo por lo que añadimos un evento
+        en nuestro caso onClick que llama al menu-->
             <div class="hamburger"></div>
         </div>
     </header>
