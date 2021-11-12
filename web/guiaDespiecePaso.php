@@ -3,7 +3,7 @@
 use Grupo3\FixPoint\model\guiaDespiece;
 use Grupo3\FixPoint\model\paso;
 
-require_once "functions.php";
+require "functions.php";
 
 
 $args = [
