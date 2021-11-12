@@ -17,67 +17,69 @@ document.onreadystatechange = function () {
     }
 
     if (document.readyState == "complete") {
-        // MODAL CREAR SESIÓN
-        let txtCrearSesion = document.getElementById("unirse");
-        let iniciarSesion_txtCrear = document.getElementById("iniciarSesion_txtCrear");
-        let modalCrearSesion = document.getElementById("modal");
-        let btnCerrarModal = document.getElementById("cerrarCrear");
+        if (document.getElementById("unirse") != null && document.getElementById("iniciarSesion") != null) {
+            // MODAL CREAR SESIÓN
+            let txtCrearSesion = document.getElementById("unirse");
+            let iniciarSesion_txtCrear = document.getElementById("iniciarSesion_txtCrear");
+            let modalCrearSesion = document.getElementById("modal");
+            let btnCerrarModal = document.getElementById("cerrarCrear");
 
-        // MODAL INICIAR SESIÓN
-        let txtIniciarSesion = document.getElementById("iniciarSesion");
-        let iconIniciarSesion = document.getElementById("iconIniciarSesion");
-        let crearSesion_txtIniciar = document.getElementById("crearSesion_txtIniciar");
-        let modalIniciarSesion = document.getElementById("modalIniciar");
-        let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
-        let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
+            // MODAL INICIAR SESIÓN
+            let txtIniciarSesion = document.getElementById("iniciarSesion");
+            let iconIniciarSesion = document.getElementById("iconIniciarSesion");
+            let crearSesion_txtIniciar = document.getElementById("crearSesion_txtIniciar");
+            let modalIniciarSesion = document.getElementById("modalIniciar");
+            let imgUsuarioLogueado = document.getElementById("imgUsuarioLogueado");
+            let btnCerrarModalSesion = document.getElementsByClassName("cerrar")[1];
 
-        txtCrearSesion.addEventListener("click", spawn);
-        iniciarSesion_txtCrear.addEventListener("click", spawn);
-        txtIniciarSesion.addEventListener("click", spawnIniciar);
-        iconIniciarSesion.addEventListener("click", spawnIniciar);
-        crearSesion_txtIniciar.addEventListener("click", spawnIniciar);
+            txtCrearSesion.addEventListener("click", spawn);
+            iniciarSesion_txtCrear.addEventListener("click", spawn);
+            txtIniciarSesion.addEventListener("click", spawnIniciar);
+            iconIniciarSesion.addEventListener("click", spawnIniciar);
+            crearSesion_txtIniciar.addEventListener("click", spawnIniciar);
 
 
-        function spawn() {
-            modalCrearSesion.style.display = "block";
-            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
+            function spawn() {
+                modalCrearSesion.style.display = "block";
+                document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
 
-            if (modalIniciarSesion.style.display == "block") {
-                modalIniciarSesion.style.display = "none"
+                if (modalIniciarSesion.style.display == "block") {
+                    modalIniciarSesion.style.display = "none"
+                }
             }
-        }
 
-        // CERRAR MODAL
-        btnCerrarModal.onclick = function () {
+            // CERRAR MODAL
+            btnCerrarModal.onclick = function () {
 
-            modalCrearSesion.style.display = "none";
-            document.querySelector("body").style.overflow = 'visible';
-        }
-
-        function spawnIniciar() {
-            console.log("yay");
-            console.log(window.location.hash.substring(1).toString);
-            modalIniciarSesion.style.display = "block";
-            document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
-
-            if (modalCrearSesion.style.display == "block") {
-                modalCrearSesion.style.display = "none"
+                modalCrearSesion.style.display = "none";
+                document.querySelector("body").style.overflow = 'visible';
             }
-        }
 
-        // CERRAR MODAL
-        btnCerrarModalSesion.onclick = function () {
-            modalIniciarSesion.style.display = "none";
-            document.querySelector("body").style.overflow = 'visible';
+            function spawnIniciar() {
+                console.log("yay");
+                console.log(window.location.hash.substring(1).toString);
+                modalIniciarSesion.style.display = "block";
+                document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
+
+                if (modalCrearSesion.style.display == "block") {
+                    modalCrearSesion.style.display = "none"
+                }
+            }
+
+            // CERRAR MODAL
+            btnCerrarModalSesion.onclick = function () {
+                modalIniciarSesion.style.display = "none";
+                document.querySelector("body").style.overflow = 'visible';
+            }
+
         }
 
         // MODAL CONFIRMAR GUÍA
-        let botonAceptarPaso = document.getElementById("btn-AceptarGuia");
         let botonAceptarGuia = document.getElementById("botonAceptar");
         let botonCancelarPaso = document.getElementById("btn-cancelarGuia");
         let modalConfirmarGuia = document.getElementById("modalConfirmarGuia");
-
-        if (window.location.href.indexOf('guiaDespiecePaso.php') > -1) {
+        
+        if (window.location.href.search('guiaDespiecePaso.php')) {
             console.log("funciona");
             botonAceptarGuia.addEventListener("click", spawnConfirmar);
 
