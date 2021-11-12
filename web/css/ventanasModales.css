@@ -9,15 +9,9 @@
 h1 {
   font-family: 'Patinio Futura', serif;
 }
-
-form {
-  padding-top: 15px;
-}
-
 /*:nth-last-child(3) { //selector avanzado para seleccionar el tercero desde el ultimo elemento
   text-align: center;
 }*/
-
 label {
   font-size: 15px;
 }
