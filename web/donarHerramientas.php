@@ -32,22 +32,7 @@ function comprobarYEnviar () {
             $msg = $_POST['donacion'];
             Connection::executeQuery("INSERT INTO solicituddonacion (nombre, apellidos, email, telefono, donacion)
             VALUES ('$name', '$apellidos', '$email', '$telf', '$msg')");
-
-            /* enviar email */ /*mirar - no funciona el mail*/
-           /* ini_set('SMTP','myserver');
-            ini_set('smtp_port',25);
-            mail(
-                "sonia.l.ortega@gmail.com",
-                "Nueva solicitud de donacion",
-                "Ha llegado una nueva solicitud de donacion con los siguientes datos:
-                Nombre: ".$name."
-                Apellidos: ".$apellidos."
-                Email: ".$email."
-                Teléfono: ".$telf."
-                Mensaje: ".$msg 
-            );*/
-
-            return "Gracias por su colaboración, nos pondremos en contacto con usted.";
+        return "Gracias por su colaboración, nos pondremos en contacto con usted.";
 
         } 
 }
@@ -56,7 +41,7 @@ function getContent () {
     
     $content= '
     <h1 id="tituloTools">¡Necesitamos herramientas!</h1>
-    <div class="container">
+    <div class="containerDonar">
         <div Class="imagen">
             <img class="imgHerramientas" src="./img/herramienta.jpeg">
         </div>
@@ -84,13 +69,13 @@ function getContent () {
                         </legend>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="nombre" id="nombre" required><br>
+                                <input class="inputForm" type="text" name="nombre" id="nombreDonar" required><br>
                                 <span class="nombre">Primer nombre</span>
                             </label>
                         </div>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="apellidos" id="apellidos" required><br>
+                                <input class="inputForm" type="text" name="apellidos" id="apellidosDonar" required><br>
                                 <span class="nombre">Apellidos</span>
                             </label>
                         </div>
@@ -122,9 +107,6 @@ function getContent () {
                     <p id="mensajeEnvio"><?= $mensajeEnvio ?>
                     ' . comprobarYEnviar() . '
                     </p>
-                    
-                    
-                    
                     <input class="btnEnviar" type="submit" value="Enviar">
                 </div>    
             </form>

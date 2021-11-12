@@ -6,13 +6,11 @@ h1 {
     text-align: center;
 }
 
-p {
-    text-align:justify;
-}
 fieldset {
     border: 0 none;
     display: flex;
 }
+
 legend {
     margin: 0;
     padding-left: 8px;
@@ -35,6 +33,11 @@ legend {
     box-sizing: border-box;
     border-radius: 2px;
 }
+#nombreDonar, 
+#apellidosDonar {
+    margin-left: 0;
+}
+
 .imgHerramientas {
     padding: 20px;
     left: -25.1733%;
@@ -44,6 +47,7 @@ legend {
 .textDonar {
     padding: 20px;
     font-size: 20px;
+    text-align: justify;
 }
 .titulo {
     padding-left: 20px;
@@ -64,9 +68,6 @@ legend {
 
 #textArea {
     min-height: 100px;
-}
-#nombre, #apellidos {
-    margin: 0;
 }
 
 .nombreApellido {
@@ -105,7 +106,7 @@ legend {
     .parrafos { grid-area: parrafos;}
     .formulario { grid-area: formulario;}
 
-   .container {
+   .containerDonar {
        display: grid;
        grid-template-areas: 
        "imagen imagen"
