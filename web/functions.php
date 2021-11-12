@@ -5,22 +5,16 @@ use Grupo3\FixPoint\model\User;
 
 require_once "./model/User.php";
 
-
 function getHeader($headerArgs = null): void
 {
     session_start();
     $structure = '
-
     <!DOCTYPE html>
     <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <!-- Comprobar metas
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-        <title>' . $headerArgs['title'] . '</title>    
-    ';
+        <title>' . $headerArgs['title'] . '</title>';
     foreach ($headerArgs['styles'] as $style) {
         $structure .= '<link rel="stylesheet" href="' . $style . '">';
     }
@@ -28,10 +22,8 @@ function getHeader($headerArgs = null): void
         $structure .= '<script src="' . $script . '"></script> ';
     }
     $structure .= '
-    <script type="text/javascript" src="http://livejs.com/live.js"></script>
     </head>
-    <body>
-    ';
+    <body>';
     $structure .= navbar();
     $structure .= crearUsuario();
     $structure .= iniciarSesion();
@@ -41,7 +33,7 @@ function getHeader($headerArgs = null): void
 
 function navbar(): string
 {
-    $structureNavBar = '
+    $nav = '
     <header>
     <div class="container">
         <a class="logo" href="index.php"><img id="logoNavbar" src="./img/LogoFix-250px.png" alt="FixPoint LOGO"></a>
@@ -53,58 +45,46 @@ function navbar(): string
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
     ';
-    $isAdmin = false;
-    if (isset($_SESSION["logged"]) && $_SESSION["logged"] == true) {
+
+    if (isset($_SESSION["logged"]) == true) {
         $userName = $_SESSION["user"]->getNombre();
         $isAdmin = $_SESSION["user"]->getAdministrador();
-
-
-        $structureNavBar .=
-            '
+        $nav .= '
             <div class="imgUsuario dropdown" id="imgUsuarioLogueado" href="#">
                 <p id="usernametext"><i class="fas fa-user"></i></p>
                 <div class="dropdown-content">
             ';
 
-        if ($isAdmin) {
-            $structureNavBar .=
-                '
-                    <a href="administracion.php">Administracion</a>
-            ';
-        }
+        $isAdmin ? $nav .= '<a href="administracion.php">Administracion</a>' : '';
 
-
-        $structureNavBar .=
-            '
-                        <!--Varias funciones -->
-                    <a href="#" id="logOutBtn" onclick="logoutck();"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a>
+        $nav .= '
+                    <a href="#" id="logOutBtn" onclick="logoutck();"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
                 </div>
                 </div>
             <!--Rubrica js local storage-->
             <script>
-                  // Store
+                // LocalStorage
                 localStorage.setItem("user", "' . $userName . '");
                 document.getElementById("usernametext").innerHTML += localStorage.getItem("user");
-
             </script>
         ';
     } else {
-        $structureNavBar .= '
+        $nav .= '
             <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
             <div class="icon-bar"></div>
             <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
         ';
     }
 
-    $structureNavBar .= '
+    $nav .= '
             </div>
         </nav>
         ';
-    if (!isset($_SESSION["logged"])){
-        $structureNavBar .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
+    if (!isset($_SESSION["logged"])) {
+        $nav .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
     }
 
-$structureNavBar .= '      
+    $nav .= '      
         <div id="menu-toggle" class="menu-toggle" onclick="cambiarClase()"> <!-- Usamos javascript nativo por lo que añadimos un evento
         en nuestro caso onClick que llama al menu-->
             <div class="hamburger"></div>
@@ -112,7 +92,7 @@ $structureNavBar .= '
     </header>
     ';
 
-    return $structureNavBar;
+    return $nav;
 }
 
 function crearUsuario(): string
@@ -121,14 +101,14 @@ function crearUsuario(): string
     $errMessage = '';
     if (isset($_POST['apellidos'])) {
         $errMessage = '
-        <p><div class="alert alert-danger" role="alert">
-        ' . handleRegister($_POST) . '
-                </div></p>';
+        <p>
+            <div class="alert alert-danger" role="alert">
+                ' . funcionalidadRegistro() . '
+            </div>
+        </p>';
     }
-
-
+    /* Modal de Inicio de Sesion */
     return '
-    <!-- Modal creación de usuario -->
     <div class="modalCrearSesion" id="modal">
         <div class="modalContenidoCrear">
             <div class="modalHeaderCrear">
@@ -146,7 +126,8 @@ function crearUsuario(): string
                     <input class="inputCrear" type="text" name="apellidos" id="apellidos" required><br>
                     <label class="textoFormCrear" for="email">Correo electrónico:</label><br>
                     <input class="inputCrear" type="email" id="email" placeholder="Email@ejemplo.com" name="email" 
-                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
+                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                    title="Utiliza un correo válido, con esta estructura: Email@ejemplo.com"><br>
                     <p class="aviso">Utilizaremos tu correo electrónico para enviarte actualizaciones sobre tu contribución a la comunidad.</p>
                     <label class="textoFormCrear" for="password">Contraseña:</label><br>
                     <input class="inputCrear" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -154,43 +135,32 @@ function crearUsuario(): string
                     <label class="textoFormCrear" for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <p><input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"></p>
-                    
-                    <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace" >política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
+                    <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="http://" class="enlace">política de privacidad</a> y <a href="http://" class="enlace">términos</a>.</p>
                     ' . $errMessage . '
-                </form>
-
-                
-                
+                </form>                
             </div>
         </div>
-    </div>
-    ';
+    </div>';
 }
 
-function funcionalidadRegistro()
+function funcionalidadRegistro(): string
 {
-
-
     $mensajeError = '';
 
     /* Conseguimos datos */
-
 
     if (!empty($_POST['apellidos']) &&
         !empty($_POST['nombre']) &&
         !empty($_POST['dni']) &&
         !empty($_POST['email']) &&
         !empty($_POST['passwordConfirm']) &&
-        !empty($_POST['password']
-        )) {
-
-
+        !empty($_POST['password'])
+    ) {
         $apellidos = $_POST['apellidos'];
         $nombre = $_POST['nombre'];
         $dni = $_POST['dni'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-
 
         /*Comprobar si existe ese email o dni ya que son unique*/
 
@@ -204,9 +174,7 @@ function funcionalidadRegistro()
 
         $sqlDni = Connection::executeQuery($queryDni);
 
-
         $numFilasSqlDni = $sqlDni->fetchAll();
-
 
         if ($numFilasSqlEmail) {
             $mensajeError .= '- El EMAIL que está intentando registrar ya existe.<br>';
@@ -215,35 +183,26 @@ function funcionalidadRegistro()
             $mensajeError .= '- El DNI que está intentando registrar ya existe.<br>';
         }
 
-
         if (!$numFilasSqlEmail && !$numFilasSqlDni) {
-
             /*HASHEAMOS la contraseña por seguridad*/
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
-
             $insertUsuario = "INSERT INTO usuario (dni,nombre, apellidos, password, email)
-                        VALUES ('$dni', '$nombre','$apellidos','$hashedPass','$email')";
-
+                              VALUES ('$dni', '$nombre','$apellidos','$hashedPass','$email')";
             /*Ejecutamos consulta*/
-
-            if (Connection::executeQuery($insertUsuario)) {
-                $mensajeError = 'Usuario creado correctamente';
-            } else {
-                $mensajeError = 'ERROR al crear el usuario, contacte con el administrador.';
-            }
-
+            $mensajeError = Connection::executeQuery($insertUsuario) ?
+                'Usuario creado correctamente' : 'ERROR al crear el usuario, contacte con el administrador.';
         }
-
     }
     return $mensajeError;
 }
 
-function iniciarSesion()
+function iniciarSesion(): string
 {
     $msg = "";
     if (isset($_POST['correo']) && isset($_POST['pass'])) {
         $msg = handleIniciarSesion($_POST['correo'], $_POST['pass']);
     }
+    /* Modal iniciar sesion */
     return '
     <div class="modalIniciarSesion" id="modalIniciar">
         <div class="modalContenido">
@@ -272,40 +231,6 @@ function iniciarSesion()
     ';
 }
 
-function getFooter($footerArgs = null)
-{
-    $structure = footer();
-    $structure .= '
-    </body>
-    </html>
-    ';
-
-    echo($structure);
-}
-
-function footer(): string
-{
-    return '
-    <footer>
-        <aside class="footerAsideizquierda">
-            <p><a href="">Aviso legal</a></p>
-            <p><a href="">Política de cookies</a></p>
-            <p><a href="">Mapa web</a></p>
-        </aside>
-        <section class="footerSectionCentro">
-            <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">
-            <p>© 2021 FixPoint - Todos los derechos reservados</p>
-        </section>
-        <aside class="footerAsideDerecha">
-            <p>C/Gervasio Manrique de Lara s/n</p>
-            <p>42004 - Soria</p>
-            <p>Tlfn: 975 239 443</p>
-            <p>Email: <a href="mailto:info@fixpoint.com">info@fixpoint.com</a></p> 
-        </aside>
-    </footer>
-    ';
-}
-
 function handleIniciarSesion($correo, $pass)
 {
     try {
@@ -327,18 +252,39 @@ function handleIniciarSesion($correo, $pass)
     } catch (Exception $e) {
         return $e;
     }
-
 }
 
-function handleRegister($post)
+function getFooter($footerArgs = null)
 {
+    $structure = '
+    <footer>
+        <aside class="footerAsideizquierda">
+            <p><a href="">Aviso legal</a></p>
+            <p><a href="">Política de cookies</a></p>
+            <p><a href="">Mapa web</a></p>
+        </aside>
+        <section class="footerSectionCentro">
+            <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">
+            <p>© 2021 FixPoint - Todos los derechos reservados</p>
+        </section>
+        <aside class="footerAsideDerecha">
+            <p>C/Gervasio Manrique de Lara s/n</p>
+            <p>42004 - Soria</p>
+            <p>Tlfn: 975 239 443</p>
+            <p>Email: <a href="mailto:info@fixpoint.com">info@fixpoint.com</a></p> 
+        </aside>
+    </footer>
+    ';
+    $structure .= '
+        </body>
+    </html>
+    ';
 
-    $var = funcionalidadRegistro();
-    return $var;
-
+    echo($structure);
 }
 
-function confirmarGuia() {
+function confirmarGuia(): string
+{
     return '
     <div class="modalConfirmarGuia" id="modalConfirmarGuia">
         <div class="modalContenidoConfirmar">

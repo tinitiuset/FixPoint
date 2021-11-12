@@ -1,6 +1,6 @@
 <?php
-require "functions.php";
 
+require "functions.php";
 
 $args = [
     'title' => 'Index',
@@ -20,8 +20,8 @@ $args = [
     ]
 ];
 
-function getContent () {
-/*    Kint\Kint::dump($_SESSION);*/
+function getContent()
+{
     $content= '    
     <div class="slideshow-container">
         <div class="slider fade">
@@ -32,7 +32,6 @@ function getContent () {
                 con nuestra <span class=\"bold\">biblioteca de herramientas</span>.</p>
                 <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
             </div>
-    </div>
         </div>
             <a class="back" id="back">&#10094</a>
             <a class="next" id="next">&#10095</a>

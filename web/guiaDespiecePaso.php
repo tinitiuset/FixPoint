@@ -19,28 +19,14 @@ $args = [
         'js/menu.js',
         'js/modales.js',
         'js/scriptRegistro.js',
-        'js/logout.js',
-
+        'js/logout.js'
     ]
 ];
 
-
-
-function getContent() {
-
+function getContent()
+{
     $content = '
     <div class="guiaContainer">
-        '. form().'
-    </div>
-    ';
-
-    echo $content;
-
-}
-
-function form()
-{
-    return '
         <div class="form-style">
             <div class="form-style-heading">Añadir un Paso</div>
             <form action="" method="POST" enctype="multipart/form-data" id="crearGuia" >
@@ -58,13 +44,22 @@ function form()
                 </div>
             </form>
         </div>
+    </div>
     ';
-
+    echo $content;
 }
 
 getHeader($args);
+
 if (isset($_POST['guia'])) {
-    $guia = new guiaDespiece($_POST['fecha'], $_POST['nombreMaquina'], $_POST['ocurrencia'], $_POST['propuesta'], $_POST['averias'], $_POST['solucion']);
+    $guia = new guiaDespiece(
+        $_POST['fecha'],
+        $_POST['nombreMaquina'],
+        $_POST['ocurrencia'],
+        $_POST['propuesta'],
+        $_POST['averias'],
+        $_POST['solucion']
+    );
     $_SESSION['guia'] = $guia;
 }
 
@@ -81,25 +76,24 @@ if (isset($_POST['paso'])) {
     $guia->setPasos($pasos);
     
     $_SESSION['guia'] = $guia;
-
-    move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);  //Crea las imágenes en la ruta deseada
-    // echo var_dump($_SESSION['guia']->getPasos());
-
+    //Crea las imágenes en la ruta deseada
+    move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
 }
 
 if (isset($_POST['btnConfirmarPasoAceptar'])) {
-    $_SESSION['guia']->createGuiaDespiece();    //Se crea la guía en la base de datos
-    $_SESSION['guia']->recogerNumGuiaDeBD();    //Esta función recoge el id (numFicha) de la guía desde la BD, ya que se aplica automaticamente desde ahí y no desde aquí, de lo contrario el valor estaría vacío
+    //Se crea la guía en la base de datos
+    $_SESSION['guia']->createGuiaDespiece();
+    //Esta función recoge el id (numFicha) de la guía desde la BD,
+    // ya que se aplica automaticamente desde ahí y no desde aquí,
+    // de lo contrario el valor estaría vacío
+    $_SESSION['guia']->recogerNumGuiaDeBD();
     $pasos = $_SESSION['guia']->getPasos();
-
     foreach ($pasos as $key => $value) {
-        $value->setNumGuia($_SESSION['guia']->getNumFicha());   //Se añade el id de la guía a cada paso ya que de lo contrario estarían vacíos
+        //Se añade el id de la guía a cada paso ya que de lo contrario estarían vacíos
+        $value->setNumGuia($_SESSION['guia']->getNumFicha());
         $value->createPaso();   //Se crea el paso
     }
 }
 
-// Kint\Kint::dump($_SESSION['guia']);
 getContent();
 getFooter($args);
-
-?>

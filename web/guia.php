@@ -23,17 +23,14 @@ $args = [
     ]
 ];
 
-function getContent () {
+function getContent() {
     try {
         $guia = new guiaDespiece();
         $_POST['id'];
         $content= '';
-    }catch (Exception $e)  {
+    } catch (Exception $e) {
         $content= 'No se ha selecionado niguna guia.';
     }
-/*    Kint\Kint::dump($_SESSION);*/
-
-
     echo $content;
 }
 

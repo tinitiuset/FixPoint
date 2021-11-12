@@ -1,6 +1,8 @@
 <?php
+
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\herramienta;
+
 require_once "functions.php";
 
 $args = [
@@ -13,7 +15,7 @@ $args = [
         'css/header.css',
         'css/crearHerramienta.css',
         'css/administracion.css',
-        
+
     ],
     'scripts' => [
         'js/menu.js',
@@ -23,8 +25,10 @@ $args = [
         'js/logout.js',
     ]
 ];
+
 function getContent()
 {
+
     $op = getCrearHerramienta();
     $opTwo = getEliminarHerramienta();
     $opTres = getActivarUsuario();
@@ -33,7 +37,7 @@ function getContent()
     $opSeis = getActivarAlquilerHerramienta();
     $content = '
     <div class="adminHerrContainer">
-    <h2>Administración de Herramientas</h2>
+    <h2>Administracion de herramientas</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Añadir Herramienta</button>
             <div class="content">
@@ -79,6 +83,7 @@ function getContent()
     ';
     echo $content;
 }
+
 function getEliminarHerramienta()
 {
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
