@@ -1,11 +1,7 @@
 <?php
-
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\herramienta;
-
-
 require_once "functions.php";
-
 
 $args = [
     'title' => 'Contacto',
@@ -27,22 +23,19 @@ $args = [
         'js/logout.js',
     ]
 ];
-
 function getContent()
 {
-
     $op = getCrearHerramienta();
     $opTwo = getEliminarHerramienta();
     $opTres = getActivarUsuario();
     $opCuatro = getEliminarUsuario();
     $opCinco = getAdministrarAlquiler();
     $opSeis = getActivarAlquilerHerramienta();
-
     $content = '
     <div class="adminHerrContainer">
-    <h2>Administracion de herramientas</h2>
+    <h2>Administración de Herramientas</h2>
         <div class="btnCrearContainer">
-            <button type="button" class="collapsible">Crear Herramienta</button>
+            <button type="button" class="collapsible">Añadir Herramienta</button>
             <div class="content">
             
                 '.$op.'
@@ -60,7 +53,7 @@ function getContent()
                 '.$opSeis.'            
             </div>
         </div>
-    <h2>Administracion de Usuarios</h2>
+    <h2>Administración de Usuarios</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Activar Usuario</button>
             <div class="content overfl">
@@ -74,7 +67,7 @@ function getContent()
                 '.$opCuatro.'            
             </div>
         </div>
-    <h2>Administracion de alquileres</h2>
+    <h2>Administración de Alquileres</h2>
         <div class="btnCrearContainer">
             <button type="button" class="collapsible">Gestión de Alquiler</button>
             <div class="content overfl">
@@ -86,7 +79,6 @@ function getContent()
     ';
     echo $content;
 }
-
 function getEliminarHerramienta()
 {
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
@@ -105,7 +97,6 @@ function getEliminarHerramienta()
                 $getfoto = Connection::executeQuery('SELECT * from `herramienta` where `id_herramienta` = '.$value.';')->fetchAll();
                 unlink('./img/herramientas/'.$getfoto[0]['foto']);
 
-
                 /*Eliminar filas*/
                 Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = '.$value.';');
 
@@ -113,17 +104,12 @@ function getEliminarHerramienta()
                 $query = Connection::executeQuery("select * from herramienta")->fetchAll();
 
                 $mensajeEliminarHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
-            - usuario eliminado correctamente
+                Herramienta eliminada correctamente
                 </div></div>';
-
-
-
             }
 
         }
     }
-
-
     foreach ($query as $tool) {
         $idCategoria = $tool['idCategoria'];
         $queryCategory = Connection::executeQuery('SELECT * FROM `categoria` WHERE `idcategoria`='.$idCategoria.';')->fetchAll();
@@ -140,7 +126,6 @@ function getEliminarHerramienta()
             </tr>
         ';
     }
-
     $content = '
     <form action="" method="post">
     <table>
@@ -158,20 +143,15 @@ function getEliminarHerramienta()
           <input type="submit" value="Eliminar">
     '.$mensajeEliminarHerramienta.'
     </form>
-
 ';
     return $content;
 }
-
 function getActivarAlquilerHerramienta()
 {
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
     $query = Connection::executeQuery("select * from herramienta")->fetchAll();
     $tools = '';
     $mensajeActivarHerramienta = '';
-
-
-
     /*despues del submit*/
     if (isset($_POST["checkboxDisponible"])){
         if($_POST["checkboxDisponible"]) {
@@ -192,13 +172,9 @@ function getActivarAlquilerHerramienta()
                         Disponibilidad activada correctamente
                         </div></div>';   
                     }
-
-                }
-
+            }
         }
     }
-
-
     foreach ($query as $tool) {
         
         $tools .= '
@@ -207,12 +183,11 @@ function getActivarAlquilerHerramienta()
                 <td>'.$tool['nombre'].'</td>
                 <td>'.$tool['modelo'].'</td>
                 <td>'.$tool['marca'].'</td>
-                <td>'.($tool['disponible']==1 ? "Activa" : "Inactiva").'</td>
+                <td>'.($tool['disponible']==1 ? "Disponible" : "Reservada").'</td>
                 <td><input type="checkbox" name="checkboxDisponible[]" id="checkboxDisponible[]" value="'.$tool['id_herramienta'].'"></td>
             </tr>
         ';
     }
-
     $content = '
     <form action="" method="post">
     <table>
@@ -221,7 +196,7 @@ function getActivarAlquilerHerramienta()
             <th>Nombre</th>
             <th>Modelo</th>
             <th>Marca</th>
-            <th>Disponible</th>
+            <th>Disponibilidad</th>
             <th>Seleccionar</th>
         </tr>
         '.$tools.'
@@ -229,19 +204,15 @@ function getActivarAlquilerHerramienta()
           <input type="submit" value="Activar">
     '.$mensajeActivarHerramienta.'
     </form>
-
 ';
     return $content;
 }
-
 function getEliminarUsuario()
     {
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select * from usuario")->fetchAll();
         $usuarios = '';
         $mensajeEliminarUsuario = '';
-
-
         /*despues del submit*/
         if (isset($_POST["checkboxUsuario"])){
             if($_POST["checkboxUsuario"]) {
@@ -250,21 +221,16 @@ function getEliminarUsuario()
                     /*Eliminar filas*/
                     Connection::executeQuery('DELETE FROM `usuario` WHERE `dni` = "'.$value.'";');
 
-
                     /*refrescamos*/
                     $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
                     $mensajeEliminarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
-            - usuario eliminado correctamente
+                    Usuario eliminado correctamente
                 </div></div>';
-
                 }
-    
             }
         }
-    
         foreach ($query as $usuario) {
-
 
             $usuarios .= '
                 <tr>
@@ -276,7 +242,6 @@ function getEliminarUsuario()
                 </tr>
             ';
         }
-
         $content = '
         <form action="administracion.php" method="post">
         <table>
@@ -290,29 +255,22 @@ function getEliminarUsuario()
             '.$usuarios.'
         </table><br>
               <input type="submit" value="Eliminar">
-        
         </form>
         '.$mensajeEliminarUsuario.'
-    
     ';
         return $content;
     }
-
-
 function getActivarUsuario()
     {
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select * from usuario")->fetchAll();
         $usuarios = '';
         $mensajeActivarUsuario = '';
-
-
         /*despues del submit*/
         if (isset($_POST["checkboxUsuarioActivo"])){
             if($_POST["checkboxUsuarioActivo"]) {
                 foreach($_POST["checkboxUsuarioActivo"] as $value)
                 {
-                    
                     $estado = Connection::executeQuery('SELECT `activo` FROM `usuario` WHERE `dni` = "'.$value.'";')->fetchAll();
                     
                     if($estado[0]['activo']==0){
@@ -323,10 +281,9 @@ function getActivarUsuario()
                         $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
                         $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
-                        usuario activado correctamente
+                        Usuario activado correctamente
                         </div></div>';   
                     } else {
-                     
                     /* Desactivar usuario*/
                     Connection::executeQuery('UPDATE `usuario` SET `activo` = 0 WHERE `dni` = "'.$value.'";');
                     
@@ -334,18 +291,14 @@ function getActivarUsuario()
                     $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
                     $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
-                    usuario desactivado correctamente
+                    Usuario desactivado correctamente
                     </div></div>';
                     }
-
                 }
-    
             }
         }
-    
         foreach ($query as $usuario) {
 
-            
             $usuarios .= '
                 <tr>
                     <td>'.$usuario['dni'].'</td>
@@ -357,7 +310,6 @@ function getActivarUsuario()
                 </tr>
             ';
         }
-
         $content = '
         <form action="administracion.php" method="post">
         <table>
@@ -374,14 +326,11 @@ function getActivarUsuario()
               <input type="submit" value="Cambiar Estado">
         </form>
         '.$mensajeActivarUsuario.'
-    
     ';
         return $content;
     }
-
 function getAdministrarAlquiler()
 {
-    
         /*CONSEGUIMOS LOS DE BBDD*/
         $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
         $alquileres = '';
@@ -420,12 +369,9 @@ function getAdministrarAlquiler()
                         Datos actualizados correctamente
                         </div></div>';
                     }
-
                 }
-    
             }
         }
-    
         // utilizamos la funcion date() pasandole el formato deseado
         $fechaMinima = date("Y-m-d", time());  
         foreach ($query as $alquiler) {
@@ -445,7 +391,6 @@ function getAdministrarAlquiler()
                 </tr>
             ';
         }
-
         $content = '
         <form action="administracion.php" method="post">
         <table>
@@ -463,24 +408,18 @@ function getAdministrarAlquiler()
             </tr>
             '.$alquileres.'
         </table><br>';
-
         foreach ($query as $alquiler) {
             $content .= '<input type="hidden" name="idsHerramienta[]" value="'.$alquiler["id_herramienta"].'">';
         }
-
         $content .= '
               <input type="submit" value="Actualizar Datos">
         </form>
         '.$mensajeAlquilerGestionado.'
-    
     ';
         return $content;
-    
 }
-
 function getCrearHerramienta()
 {
-
     /*CONSEGUIMOS LAS CATEGORIAS DE BBDD*/
     $query = Connection::executeQuery("select * from categoria")->fetchAll();
     $options = '';
@@ -489,7 +428,6 @@ function getCrearHerramienta()
         $options .= '<option value=' . $category['idCategoria'] . '>' . $category['nombre'] . '</option>';
     }
     /*despues del submit*/
-
     if (!empty($_POST['name'])) {
         /*Comprobar que no exista esa herramienta*/
         $mensajeError = '';
@@ -501,26 +439,16 @@ function getCrearHerramienta()
 
         $rowsInSql = $sqlTool->fetchAll();
 
-
         if ($rowsInSql) {
             $mensajeError = '<div class="row"><div class="alert alert-danger" role="alert">
             - Ya existe una herramienta con ese nombre.
                 </div></div>';
         } else {
             /*Guardar img y hashearla en img/herramientas */
-
-
             $uploaddir = './img/herramientas/';
             $temp = explode(".", $_FILES["image"]["name"]);
-
-            /*time() -> unix timestamp*/
-
             $newfilename = sha1(time()) . '.' . end($temp);
-
-
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir.$newfilename);
-
-
             $herramienta = new herramienta(
                 $toolName,
                 $_POST['brand'],
@@ -530,19 +458,13 @@ function getCrearHerramienta()
                 $_POST['observations'],
                 $_POST['category']
             );
-
-
             /*insertar en bbdd*/
             $herramienta->createTool();
             $mensajeError = '<div class="row"><div class="alert alert-danger" role="alert">
-            - Herramienta insertada correctamente
+            Herramienta creada correctamente
                 </div></div>';
         }
     }
-
-
-
-
     $content = '
 <div class="containerGeneralCreateTool">
 <div class="containerCreateTool">
@@ -565,7 +487,7 @@ function getCrearHerramienta()
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="model">Model</label>
+        <label for="model">Modelo</label>
       </div>
       <div class="col-75">
         <input type="text" id="model" name="model" placeholder="X201" pattern=".{0,69}">
@@ -573,7 +495,7 @@ function getCrearHerramienta()
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="picture">Imagen de Maquina/Herramienta <span class="cRed">*</span></label>
+        <label for="picture">Imagen de Máquina/Herramienta <span class="cRed">*</span></label>
       </div>
       <div class="col-75" id="imgContainerF">
 	    <input type="file" name="image" id="image" accept="image/*" required>
@@ -593,7 +515,7 @@ function getCrearHerramienta()
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="observations">Obervaciones</label>
+        <label for="observations">Observaciones</label>
       </div>
       <div class="col-75">
         <textarea id="observations" name="observations" pattern=".{0,254}" placeholder="Buen estado en general, herramienta muy pesada"
@@ -602,18 +524,16 @@ function getCrearHerramienta()
     </div>
    
     <div class="row">
-      <input type="submit" value="Insertar">
+      <input type="submit" value="Añadir">
     </div>
   </form>
   '.$mensajeError.'
   <p><span class="cRed">*</span> Campos obligatorios.</p>
-
 </div>
 </div>
 ';
     return $content;
 }
-
 getHeader($args);
 getContent();
 getFooter($args);
