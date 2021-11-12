@@ -60,7 +60,3 @@ window.addEventListener('load', function() {
     document.getElementById('back').onclick = cambioImagen;
 
 });
-
-
-
-

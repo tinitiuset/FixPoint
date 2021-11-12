@@ -30,8 +30,9 @@ class guiaDespiece
         $this->pasos = $pasos;
     }
 
-    public function __construct($nombreMaquina, $ocurrencia, $propuesta, $averias, $solucion)
+    public function __construct($fecha, $nombreMaquina, $ocurrencia, $propuesta, $averias, $solucion)
     {
+        $this->fecha = $fecha;
         $this->nombreMaquina = $nombreMaquina;
 
         $this->ocurrencia = $ocurrencia;
@@ -53,7 +54,7 @@ class guiaDespiece
          $this->setAverias($guiaDespiece['averias']);
          $this->setSolucion($guiaDespiece['solucion']);
 
-        //  Kint::dump($this);
+         Kint::dump($this);
 
     }
 

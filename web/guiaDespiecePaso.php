@@ -5,6 +5,7 @@ use Grupo3\FixPoint\model\paso;
 
 require_once "functions.php";
 
+
 $args = [
     'title' => 'Index',
     'styles' => [
@@ -68,13 +69,13 @@ if (isset($_POST['guia'])) {
 }
 
 if (isset($_POST['paso'])) {
-    $uploaddir = './img/pasos/'; 
+    $uploaddir = './img/pasos/';
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
     $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
-    
+
     $guia = $_SESSION['guia'];
     $paso = new paso($newfilename, $_POST["detalle"], '');
-    
+
     $pasos = $guia->getPasos();
     array_push($pasos, $paso);
     $guia->setPasos($pasos);
@@ -83,7 +84,7 @@ if (isset($_POST['paso'])) {
 
     move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);  //Crea las imágenes en la ruta deseada
     // echo var_dump($_SESSION['guia']->getPasos());
-    
+
 }
 
 if (isset($_POST['btnConfirmarPasoAceptar'])) {

@@ -10,7 +10,7 @@ use PDOException;
 
 class Connection
 {
-    private static PDO $connection;
+    private static $connection;
 
     public static function __constructStatic()
     {
