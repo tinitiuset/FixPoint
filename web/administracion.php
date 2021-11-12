@@ -322,7 +322,7 @@ function getActivarUsuario()
             </tr>
             '.$usuarios.'
         </table><br>
-              <input type="submit" value="Cambiar Estado">
+              <input id="btnEstado" type="submit" value="Cambiar Estado">
         </form>
         '.$mensajeActivarUsuario.'
     ';
@@ -331,7 +331,7 @@ function getActivarUsuario()
 function getAdministrarAlquiler()
 {
         /*CONSEGUIMOS LOS DE BBDD*/
-        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
         $alquileres = '';
         $mensajeAlquilerGestionado = '';
         //Kint\Kint::dump($_POST); 
@@ -354,7 +354,7 @@ function getAdministrarAlquiler()
                         Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
                         
                         /*refrescamos*/
-                        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+                        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                         $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
                         Datos actualizados correctamente
@@ -362,7 +362,7 @@ function getAdministrarAlquiler()
                     } else {
                      
                     /*refrescamos*/
-                    $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+                    $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                     $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
                         Datos actualizados correctamente
@@ -382,6 +382,7 @@ function getAdministrarAlquiler()
                     <td>'.$alquiler['apellidos'].'</td>
                     <td>'.$alquiler['email'].'</td>
                     <td>'.$alquiler['id_herramienta'].'</td>
+                    <td>'.$alquiler['nombre'].'</td>
                     <td>'.($alquiler['disponible']==1 ? "Disponible" : "Reservada").'</td> 
                     <td>'.($alquiler['alquiler_atendido']==1 ? "Atendido" : "No atendido").'</td>
                     <td><input type="date" min="'.$fechaMinima.'" max="2021-12-31" name="fechaInicio[]" value="'.$alquiler["fechaInicio"].'"></td>
@@ -399,6 +400,7 @@ function getAdministrarAlquiler()
                 <th>Apellidos</th>
                 <th>Email</th>
                 <th>Id_Herramienta</th>
+                <th>Nombre Herramienta</th>
                 <th>Disponibilidad</th>
                 <th>AlquilerAtendido</th>
                 <th>FechaInicio</th>
@@ -411,7 +413,7 @@ function getAdministrarAlquiler()
             $content .= '<input type="hidden" name="idsHerramienta[]" value="'.$alquiler["id_herramienta"].'">';
         }
         $content .= '
-              <input type="submit" value="Actualizar Datos">
+              <input type="submit" value="Actualizar">
         </form>
         '.$mensajeAlquilerGestionado.'
     ';
