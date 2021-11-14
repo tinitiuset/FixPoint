@@ -28,6 +28,11 @@ body {
     background-color: black;
 }
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+.blackTittle {
+    color: black;
+    text-align: center;
+    margin: 20px;
+}
 
 .bold {
     font-weight: 900;
@@ -99,6 +104,33 @@ body {
     height: 500px;
 }
 
+.cardComunity-wrapper {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 16px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.btnDespiece {
+    width: 100%;
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 14px;
+    color: #000000;
+    background-color: #eec51f;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow 200ms ease-out;
+    margin-top: 20px;
+}
+
  /*Y finalmente las animaciones*/
  .fade {
     -webkit-animation-name: fade;
@@ -109,6 +141,17 @@ body {
     flex-direction: column;
     height: 500px;
 }
+
+.comunity-container-wrapper {
+    margin: auto;
+    width: 80%;
+}
+.comunity-container {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+}
+
 
 @-webkit-keyframes fade{
     from{opacity:.4}

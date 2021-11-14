@@ -22,7 +22,7 @@ p {
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
 #tituloIniciar {
-  padding: 25px;
+  padding: 15px 25px;
   text-align: center;
 }
 
@@ -41,6 +41,10 @@ p {
   padding-left: 50px;
 }
 
+.pCrearCuenta {
+  padding-bottom: 10px;
+}
+
 .textoFormCrear {
   padding-left: 75px;
 }
@@ -52,10 +56,10 @@ p {
 
 .redondeado {
   border-radius: 5px;
-  width: 300px;
+  width: 250px;
   height: 40px;
   border: 0.5px solid gray;
-  margin: 5px 50px 50px 50px;
+  margin: 5px 49px 30px 49px;
 }
 
 .inputCrear {
@@ -72,7 +76,7 @@ p {
 }
 
 #recuperar {
-  padding-left: 125px;
+  padding-left: 80px;
 }
 
 .modalIniciarSesion, .modalCrearSesion, .modalConfirmarGuia  {
@@ -120,8 +124,7 @@ p {
 }
 
 .modalContenido, .modalContenidoCrear, .modalContenidoConfirmar {
-  width: 400px;
-  height: 500px;
+  width: 350px;
   background-color: white;
   padding: 0;
   margin: 0px auto;
@@ -164,6 +167,8 @@ p {
   border: none;
   font-size: 15px;
   border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .alert {
