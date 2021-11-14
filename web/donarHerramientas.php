@@ -69,7 +69,7 @@ function getContent () {
                         </legend>
                         <div class="nombreApellido">
                             <label class="nombre">
-                                <input class="inputForm" type="text" name="nombre" id="nombreDonar" required><br>
+                                <input class="inputForm" type="text" name="nombre" id="nombreDonar" required autofocus><br>
                                 <span class="nombre">Primer nombre</span>
                             </label>
                         </div>

@@ -215,7 +215,7 @@ function iniciarSesion(): string
                 <form action="" method="post">
                     <label class="textoForm" for="correo">Correo electrónico</label><br>
                     <!--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
-                    <input class="redondeado"  type="email" placeholder="Email@ejemplo.com" name="correo"
+                    <input class="redondeado" type="email" placeholder="Email@ejemplo.com" name="correo"
                     required title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com" autofocus><br><br>
                     <label class="textoForm" for="pass">Contraseña <a href="" id="recuperar" class="enlace">Se te olvidó?</a></label>
                     <!--pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"-->

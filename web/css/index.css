@@ -114,7 +114,8 @@ body {
     margin-bottom: 50px;
 }
 
-.btnDespiece {
+.btnDespiece,
+.btnMultimedia{
     width: 100%;
     border: 0;
     text-align: center;
@@ -129,6 +130,9 @@ body {
     text-decoration: none;
     transition: box-shadow 200ms ease-out;
     margin-top: 20px;
+}
+.btnMultimedia{
+    width: auto;
 }
 
  /*Y finalmente las animaciones*/
@@ -150,6 +154,10 @@ body {
     display: inline-grid;
     width: 100%;
     grid-template-columns: repeat(3, minmax(0px, 1fr));
+}
+
+.containerMultimedia {
+    background-color: #334756;
 }
 
 
@@ -223,6 +231,13 @@ body {
         top: 40vw;
         font-size: 20px;
     }
+
+    .containerMultimedia {
+        display: inline-grid;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0px, 1fr));
+    }
+    
    
   
 }
