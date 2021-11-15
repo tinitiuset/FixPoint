@@ -35,13 +35,18 @@ function getContent()
                 <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required/></label>
                 
                 <label for="field2"><span>Detalles <span class="required">*</span></span><textarea name="detalle" id="txtIntroducirDetalle" class="textarea-field" required></textarea></label>
-                
+                <label id="lblAdvertencia">*Debe añadir al menos un paso para poder aceptar.</label><br>
                 <div class="formButtons">
                     <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
                     &nbsp;
                     <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="button" id="botonAceptar" name="accion" value="Aceptar"/></label>
+                    <label class="formButton"><span> </span><input type="button"';
+                    if(count($_SESSION['guia']->getPasos()) === 0) {
+                        $content .= 'disabled';
+                    };
+                    $content .= '
+                    id="botonAceptar" name="accion" value="Aceptar"/></label>
                 </div>
             </form>
         </div>
@@ -83,23 +88,30 @@ if (isset($_POST['paso'])) {
 
 if (isset($_POST['btnConfirmarPasoAceptar'])) {
     if (isset($_SESSION["user"])) {
-        //Se crea la guía en la base de datos
-        $_SESSION['guia']->createGuiaDespiece();
-        //Esta función recoge el id (numFicha) de la guía desde la BD,
-        // ya que se aplica automaticamente desde ahí y no desde aquí,
-        // de lo contrario el valor estaría vacío
-        $_SESSION['guia']->recogerNumGuiaDeBD();
-        
-        $dniUser = $_SESSION["user"]->getDni();
-        $numFicha = $_SESSION['guia']->getNumFicha();
-        Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
-            VALUES ('$dniUser', '$numFicha')");
-        $pasos = $_SESSION['guia']->getPasos();
-        foreach ($pasos as $key => $value) {
-            //Se añade el id de la guía a cada paso, ya que de lo contrario estarían vacíos
-            $value->setNumGuia($_SESSION['guia']->getNumFicha());
-            $value->createPaso();   //Se crea el paso
+        if (count($_SESSION['guia']->getPasos()) != 0) {
+            //Se crea la guía en la base de datos
+            $_SESSION['guia']->createGuiaDespiece();
+            //Esta función recoge el id (numFicha) de la guía desde la BD,
+            // ya que se aplica automaticamente desde ahí y no desde aquí,
+            // de lo contrario el valor estaría vacío
+            $_SESSION['guia']->recogerNumGuiaDeBD();
+            
+            $dniUser = $_SESSION["user"]->getDni();
+            $numFicha = $_SESSION['guia']->getNumFicha();
+            //Guarda el creador de la guía
+            Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
+                VALUES ('$dniUser', '$numFicha')");
+            $pasos = $_SESSION['guia']->getPasos();
+            foreach ($pasos as $key => $value) {
+                //Se añade el id de la guía a cada paso, ya que de lo contrario estarían vacíos
+                $value->setNumGuia($_SESSION['guia']->getNumFicha());
+                $value->createPaso();   //Se crea el paso
+            }
+        }else {
+            $mensaje = "Debe crear un paso antes de aceptar.";
+            echo "<script type='text/javascript'>alert('$mensaje');</script>";
         }
+        
     } else {
         $mensaje = "Debe iniciar sesión para crear la guía.";
         echo "<script type='text/javascript'>alert('$mensaje');</script>";
