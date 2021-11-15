@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.cRed{
+.cRed {
     color: #c41d1d !important;
 }
 
@@ -46,8 +46,8 @@ input[type=submit] {
     padding: 20px;
 }
 
-.containerGeneralCreateTool *{
-    color: black ;
+.containerGeneralCreateTool * {
+    color: black;
 }
 
 .col-25 {
@@ -68,31 +68,29 @@ input[type=submit] {
     display: table;
     clear: both;
 }
-textarea{
+
+textarea {
     height: 200px;
 }
 
-@media screen and (min-width: 651px) and (max-width: 759px){
-    #image{
+@media screen and (min-width: 651px) and (max-width: 759px) {
+    #image {
         padding-top: 4.7%;
         padding-left: 3%;
         padding-bottom: 4.7%;
-
     }
-
     input[type=submit] {
         width: 100%;
         height: 100%;
         margin: 0;
     }
-
     #btnEstado {
-        margin:0;
+        margin: 0;
     }
 }
 
-@media screen and (min-width: 760px){
-    #image{
+@media screen and (min-width: 760px) {
+    #image {
         padding-top: 2.5%;
         padding-left: 1%;
         padding-bottom: 2%;
@@ -105,15 +103,12 @@ textarea{
         width: 100%;
         margin-top: 0;
     }
-
     input[type=submit] {
         width: 100%;
         height: 100%;
         margin: 0;
     }
-
     #btnEstado {
-        margin:0;
+        margin: 0;
     }
-
 }

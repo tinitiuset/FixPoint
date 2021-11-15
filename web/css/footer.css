@@ -12,7 +12,6 @@ footer {
 .footerAsideizquierda {
     text-align: center;
     margin-top: 5vw;
-   
 }
 
 .footerAsideizquierda > p > a {
@@ -61,56 +60,43 @@ footer {
         grid-template-columns: auto auto auto;
         grid-template-rows: auto;
     }
-    
     .footerAsideizquierda * {
         margin: 0.4vw;
     }
-    
     .footerSectionCentro * {
         margin: 0.4vw;
     }
-    
     .footerAsideDerecha * {
         margin: 0.4vw;
     }
-    
     .footerAsideizquierda {
         text-align: left;
         margin-top: 20px;
         margin-left: 20px;
     }
-    
     .footerSectionCentro {
         text-align: center;
     }
-    
     .footerAsideDerecha {
         text-align: right;
         margin-right: 20px;
     }
-    
-  
 }
 
 @media only screen and (min-width:1200px){
-   
     .footerAsideizquierda {
         margin-top: 20px;
         margin-left: 20px;
         line-height: 20px;
     }
-
     .footerAsideizquierda * {
         margin: 0.2vw;
     }
-    
     .footerSectionCentro * {
         margin: 0.2vw;
     }
-    
     .footerAsideDerecha * {
         margin: 0.2vw;
-    }  
-    
+    }
 }
 

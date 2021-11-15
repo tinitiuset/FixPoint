@@ -20,15 +20,13 @@ slides[2] = {
     texto:'Alargar la vida útil de las cosas. Puedes colaborar con esta iniciativa donando tus viejas herramientas.',
 };
 
-function cambioImagen(event) {
+function cambioImagen(event)
+{
     if (index === 0 && event.currentTarget.direction === -1) {
         index = slides.length-1;
-        
-    }
-    else if (index === slides.length-1 && event.currentTarget.direction === 1) {
+    } else if (index === slides.length-1 && event.currentTarget.direction === 1) {
         index = 0;
-    }
-    else {
+    } else {
         index+=event.currentTarget.direction;
     }
     document.getElementById("slider").src = slides[index].imagen;
@@ -41,8 +39,7 @@ function cambioImagen(event) {
     }
 }
 
-window.addEventListener('load', function() {
-
+window.addEventListener('load', function () {
     /*function cambiarImagenes() {
         document.slider.src = imagenes [indexImg];
 
@@ -58,5 +55,4 @@ window.addEventListener('load', function() {
 
     document.getElementById("next").onclick = cambioImagen;
     document.getElementById('back').onclick = cambioImagen;
-
 });

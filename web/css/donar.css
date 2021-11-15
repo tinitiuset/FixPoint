@@ -24,7 +24,7 @@ legend {
     width: 90%;
     margin-left: 20px;
     min-height: 100px;
-    resize: vertical; 
+    resize: vertical;
     border: 1px solid #ccc;
     background: #fafafa;
     color: #000;
@@ -33,7 +33,7 @@ legend {
     box-sizing: border-box;
     border-radius: 2px;
 }
-#nombreDonar, 
+#nombreDonar,
 #apellidosDonar {
     margin-left: 0;
 }
@@ -41,7 +41,7 @@ legend {
 .imgHerramientas {
     padding: 20px;
     left: -25.1733%;
-    top: 0%;
+    top: 0;
     height: 100%;
 }
 .textDonar {
@@ -55,7 +55,7 @@ legend {
 .inputForm, #textArea{
     width: 90%;
     padding: 12px;
-    margin: 10px 0px 15px 20px;
+    margin: 10px 0 15px 20px;
     border: 1px solid #ccc;
     background: #fafafa;
     color: #000;
@@ -108,13 +108,11 @@ legend {
 
    .containerDonar {
        display: grid;
-       grid-template-areas: 
+       grid-template-areas:
        "imagen imagen"
-       "parrafos formulario"
-       ;
+       "parrafos formulario";
        grid-template-columns: 1.6fr 1fr ;
    }
-
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
