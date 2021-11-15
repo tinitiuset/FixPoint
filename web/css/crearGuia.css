@@ -91,3 +91,8 @@
     display: flex;
     justify-content: right;
 }
+
+#lblAdvertencia {
+    text-align: end;
+    margin-bottom: 0;
+}
