@@ -30,24 +30,28 @@ function getContent()
     try {
         /*$guia = new guiaDespiece();*/
         $_POST['id'];
-        $content= '';
+        $content= '
+        PRUEBA
+        ';
     } catch (Exception $e) {
         $content= 'No se ha selecionado niguna guia.';
     }
-    try {
-        $mpdf = new Mpdf([
-            'mode' => 'c',
-            'tempDir' => __DIR__ . '/pdf'
-        ]);
-
-        $mpdf->WriteHTML('<h1>Hello world!</h1>');
-        $mpdf->Output();
-    } catch (\Mpdf\MpdfException $e) {
-        echo ($e);
-    }
+    return $content;
+}
+function pdfForm()
+{
+    $content= '
+            <div>
+                <form method="post" action="pdf.php">
+                <input type="hidden" name="html" value="'.base64_encode(getContent()).'">
+                <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./pdf.php" value="Descargar PDF" /></label>
+                </form> 
+            </div>
+        ';
     echo $content;
 }
 
 getHeader($args);
-getContent();
+echo(getContent());
+pdfForm();
 getFooter($args);

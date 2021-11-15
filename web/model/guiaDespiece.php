@@ -63,7 +63,7 @@ class guiaDespiece
     ende no será publicada hasta que lo esté*/
 
     public function createGuiaDespieceAsAdmin(){
-        $query = "INSERT INTO `guiadespiece` ( `fecha`,
+        $query = "INSERT INTO `guiaDespiece` ( `fecha`,
                            `nombreMaquina`, `revisada`, `ocurrencia`, `propuesta`, `averias`, `solucion`) VALUES 
                                         (
                                          '" . $this->getFecha() . "',
@@ -78,7 +78,7 @@ class guiaDespiece
     }
 
     public function createGuiaDespiece(){
-        $query = "INSERT INTO `guiadespiece` (`nombreMaquina`, `ocurrencia`, `propuesta`, `averias`, `solucion`) VALUES 
+        $query = "INSERT INTO `guiaDespiece` (`nombreMaquina`, `ocurrencia`, `propuesta`, `averias`, `solucion`) VALUES 
                                         (
                                          '" . $this->getNombreMaquina() . "',
                                          '" . $this->getOcurrencia() . "',
@@ -90,22 +90,22 @@ class guiaDespiece
     }
 
     public function recogerNumGuiaDeBD() {
-        $query = "SELECT MAX(`numFicha`) AS 'num' FROM `guiadespiece`";
+        $query = "SELECT MAX(`numFicha`) AS 'num' FROM `guiaDespiece`";
         $num = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
 
         $this->setNumFicha($num['num']);
     }
 
     public function guiaRevisada(){
-        $query = "UPDATE `guiadespiece` SET `revisada` = '" . ($this->getRevisada() ^ 1) . "' 
-                  WHERE `guiadespiece`.`numFicha` = '" . $this->getNumFicha() . "'; ";
+        $query = "UPDATE `guiaDespiece` SET `revisada` = '" . ($this->getRevisada() ^ 1) . "' 
+                  WHERE `guiaDespiece`.`numFicha` = '" . $this->getNumFicha() . "'; ";
         $this->revisada = 1;
         Connection::executeQuery($query)->execute();
     }
 
     // Actualiza la guía, excepto el parámetro "revisada"
     public function updateGuiaDespiece() {
-        $query = "UPDATE guiadespiece
+        $query = "UPDATE guiaDespiece
         SET numFicha = '" . $this->getNumFicha() . "', 
         fecha = '" . $this->getFecha() . "', 
         nombreMaquina = '" . $this->getNombreMaquina() . "', 
@@ -119,7 +119,7 @@ class guiaDespiece
     }
 
     public function deleteGuiaDespiece() {
-        $query = "DELETE FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "'";
+        $query = "DELETE FROM guiaDespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "'";
         Connection::executeQuery($query);
     }
 
