@@ -73,8 +73,7 @@ document.onreadystatechange = function () {
         let botonAceptarGuia = document.getElementById("botonAceptar");
         let botonCancelarPaso = document.getElementById("btn-cancelarGuia");
         let modalConfirmarGuia = document.getElementById("modalConfirmarGuia");
-        if (window.location.href.search('guiaDespiecePaso.php')) {
-            console.log("funciona");
+        if (window.location.href.search('guiaDespiecePaso.php') > 0) {
             botonAceptarGuia.addEventListener("click", spawnConfirmar);
 
             function spawnConfirmar()

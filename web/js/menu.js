@@ -10,6 +10,3 @@ function cambiarClase()
     click haga la transformación que pusimos en el css */
     menuOpen.classList.toggle('menu-open');
 }
-document.getElementById("menu-toggle").onclick = cambiarClase;
-
-

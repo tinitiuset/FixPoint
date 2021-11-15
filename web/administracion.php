@@ -28,7 +28,6 @@ $args = [
 
 function getContent()
 {
-
     $op = getCrearHerramienta();
     $opTwo = getEliminarHerramienta();
     $opTres = getActivarUsuario();
@@ -42,19 +41,19 @@ function getContent()
             <button type="button" class="collapsible">Añadir Herramienta</button>
             <div class="content">
             
-                '.$op.'
+                ' . $op . '
              </div>
         </div>
         <div class="btnEliminarHerr">
             <button class="collapsible">Eliminar Herramienta</button>
             <div class="content overfl">
-                '.$opTwo.'            
+                ' . $opTwo . '            
             </div>
         </div>
         <div class="btnActivarAlquiler">
             <button class="collapsible">Activar Alquiler Herramienta</button>
             <div class="content overfl">
-                '.$opSeis.'            
+                ' . $opSeis . '            
             </div>
         </div>
     <h2>Administración de Usuarios</h2>
@@ -62,13 +61,13 @@ function getContent()
             <button type="button" class="collapsible">Activar Usuario</button>
             <div class="content overfl">
             
-                '.$opTres.'
+                ' . $opTres . '
              </div>
         </div>
         <div class="btnEliminarHerr">
             <button class="collapsible">Eliminar Usuario</button>
             <div class="content overfl">
-                '.$opCuatro.'            
+                ' . $opCuatro . '            
             </div>
         </div>
     <h2>Administración de Alquileres</h2>
@@ -76,7 +75,7 @@ function getContent()
             <button type="button" class="collapsible">Gestión de Alquiler</button>
             <div class="content overfl">
             
-                '.$opCinco.'
+                ' . $opCinco . '
              </div>
         </div>
     </div>
@@ -91,19 +90,16 @@ function getEliminarHerramienta()
     $tools = '';
     $mensajeEliminarHerramienta = '';
 
-
-
     /*despues del submit*/
-    if (isset($_POST["checkbox"])){
-        if($_POST["checkbox"]) {
-            foreach($_POST["checkbox"] as $value)
-            {
+    if (isset($_POST["checkbox"])) {
+        if ($_POST["checkbox"]) {
+            foreach ($_POST["checkbox"] as $value) {
                 /*Eliminar fotos*/
-                $getfoto = Connection::executeQuery('SELECT * from `herramienta` where `id_herramienta` = '.$value.';')->fetchAll();
-                unlink('./img/herramientas/'.$getfoto[0]['foto']);
+                $getfoto = Connection::executeQuery('SELECT * from `herramienta` where `id_herramienta` = ' . $value . ';')->fetchAll();
+                unlink('./img/herramientas/' . $getfoto[0]['foto']);
 
                 /*Eliminar filas*/
-                Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = '.$value.';');
+                Connection::executeQuery('DELETE FROM `herramienta` WHERE `id_herramienta` = ' . $value . ';');
 
                 /*Refrescamos*/
                 $query = Connection::executeQuery("select * from herramienta")->fetchAll();
@@ -117,17 +113,17 @@ function getEliminarHerramienta()
     }
     foreach ($query as $tool) {
         $idCategoria = $tool['idCategoria'];
-        $queryCategory = Connection::executeQuery('SELECT * FROM `categoria` WHERE `idcategoria`='.$idCategoria.';')->fetchAll();
+        $queryCategory = Connection::executeQuery('SELECT * FROM `categoria` WHERE `idcategoria`=' . $idCategoria . ';')->fetchAll();
 
         $tools .= '
             <tr>
-                <td>'.$tool['id_herramienta'].'</td>
-                <td>'.$tool['nombre'].'</td>
-                <td>'.$tool['modelo'].'</td>
-                <td>'.$tool['marca'].'</td>
-                <td>'.$tool['observaciones'].'</td>
-                <td>'.$queryCategory[0]['nombre'].'</td>
-                <td><input type="checkbox" name="checkbox[]" id="checkbox[]" value="'.$tool['id_herramienta'].'"></td>
+                <td>' . $tool['id_herramienta'] . '</td>
+                <td>' . $tool['nombre'] . '</td>
+                <td>' . $tool['modelo'] . '</td>
+                <td>' . $tool['marca'] . '</td>
+                <td>' . $tool['observaciones'] . '</td>
+                <td>' . $queryCategory[0]['nombre'] . '</td>
+                <td><input type="checkbox" name="checkbox[]" id="checkbox[]" value="' . $tool['id_herramienta'] . '"></td>
             </tr>
         ';
     }
@@ -143,14 +139,15 @@ function getEliminarHerramienta()
             <th>Categoria</th>
             <th>Seleccionar</th>
         </tr>
-        '.$tools.'
+        ' . $tools . '
     </table><br>
           <input type="submit" value="Eliminar">
-    '.$mensajeEliminarHerramienta.'
+    ' . $mensajeEliminarHerramienta . '
     </form>
 ';
     return $content;
 }
+
 function getActivarAlquilerHerramienta()
 {
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
@@ -158,38 +155,36 @@ function getActivarAlquilerHerramienta()
     $tools = '';
     $mensajeActivarHerramienta = '';
     /*despues del submit*/
-    if (isset($_POST["checkboxDisponible"])){
-        if($_POST["checkboxDisponible"]) {
-            foreach($_POST["checkboxDisponible"] as $value)
-            {
-                $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
-                    
-                    if($estado[0]['disponible']==0){
-                        /* Activar herramienta */
-                        Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
-                        /* Borramos registro alquiler */
-                        Connection::executeQuery('DELETE FROM `alquiler` WHERE `alquiler`.`id_herramienta` = "'.$value.'";'); 
+    if (isset($_POST["checkboxDisponible"])) {
+        if ($_POST["checkboxDisponible"]) {
+            foreach ($_POST["checkboxDisponible"] as $value) {
+                $estado = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "' . $value . '";')->fetchAll();
 
-                        /*refrescamos*/
-                        $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+                if ($estado[0]['disponible'] == 0) {
+                    /* Activar herramienta */
+                    Connection::executeQuery('UPDATE `herramienta` SET `disponible` = 1 WHERE `id_herramienta` = "' . $value . '";');
+                    /* Borramos registro alquiler */
+                    Connection::executeQuery('DELETE FROM `alquiler` WHERE `alquiler`.`id_herramienta` = "' . $value . '";');
 
-                        $mensajeActivarHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+                    $mensajeActivarHerramienta = '<div class="row"><div class="alert alert-danger" role="alert">
                         Disponibilidad activada correctamente
-                        </div></div>';   
-                    }
+                        </div></div>';
+                }
             }
         }
     }
     foreach ($query as $tool) {
-        
+
         $tools .= '
             <tr>
-                <td>'.$tool['id_herramienta'].'</td>
-                <td>'.$tool['nombre'].'</td>
-                <td>'.$tool['modelo'].'</td>
-                <td>'.$tool['marca'].'</td>
-                <td>'.($tool['disponible']==1 ? "Disponible" : "Reservada").'</td>
-                <td><input type="checkbox" name="checkboxDisponible[]" id="checkboxDisponible[]" value="'.$tool['id_herramienta'].'"></td>
+                <td>' . $tool['id_herramienta'] . '</td>
+                <td>' . $tool['nombre'] . '</td>
+                <td>' . $tool['modelo'] . '</td>
+                <td>' . $tool['marca'] . '</td>
+                <td>' . ($tool['disponible'] == 1 ? "Disponible" : "Reservada") . '</td>
+                <td><input type="checkbox" name="checkboxDisponible[]" id="checkboxDisponible[]" value="' . $tool['id_herramienta'] . '"></td>
             </tr>
         ';
     }
@@ -204,50 +199,50 @@ function getActivarAlquilerHerramienta()
             <th>Disponibilidad</th>
             <th>Seleccionar</th>
         </tr>
-        '.$tools.'
+        ' . $tools . '
     </table><br>
           <input type="submit" value="Activar">
-    '.$mensajeActivarHerramienta.'
+    ' . $mensajeActivarHerramienta . '
     </form>
 ';
     return $content;
 }
+
 function getEliminarUsuario()
-    {
-        /*CONSEGUIMOS LOS DE BBDD*/
-        $query = Connection::executeQuery("select * from usuario")->fetchAll();
-        $usuarios = '';
-        $mensajeEliminarUsuario = '';
-        /*despues del submit*/
-        if (isset($_POST["checkboxUsuario"])){
-            if($_POST["checkboxUsuario"]) {
-                foreach($_POST["checkboxUsuario"] as $value)
-                {
-                    /*Eliminar filas*/
-                    Connection::executeQuery('DELETE FROM `usuario` WHERE `dni` = "'.$value.'";');
+{
+    /*CONSEGUIMOS LOS DE BBDD*/
+    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+    $usuarios = '';
+    $mensajeEliminarUsuario = '';
+    /*despues del submit*/
+    if (isset($_POST["checkboxUsuario"])) {
+        if ($_POST["checkboxUsuario"]) {
+            foreach ($_POST["checkboxUsuario"] as $value) {
+                /*Eliminar filas*/
+                Connection::executeQuery('DELETE FROM `usuario` WHERE `dni` = "' . $value . '";');
 
-                    /*refrescamos*/
-                    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+                /*refrescamos*/
+                $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
-                    $mensajeEliminarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
+                $mensajeEliminarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
                     Usuario eliminado correctamente
                 </div></div>';
-                }
             }
         }
-        foreach ($query as $usuario) {
+    }
+    foreach ($query as $usuario) {
 
-            $usuarios .= '
+        $usuarios .= '
                 <tr>
-                    <td>'.$usuario['dni'].'</td>
-                    <td>'.$usuario['nombre'].'</td>
-                    <td>'.$usuario['apellidos'].'</td>
-                    <td>'.$usuario['email'].'</td>
-                    <td><input type="checkbox" name="checkboxUsuario[]" id="checkboxUsuario[]" value="'.$usuario["dni"].'"></td>
+                    <td>' . $usuario['dni'] . '</td>
+                    <td>' . $usuario['nombre'] . '</td>
+                    <td>' . $usuario['apellidos'] . '</td>
+                    <td>' . $usuario['email'] . '</td>
+                    <td><input type="checkbox" name="checkboxUsuario[]" id="checkboxUsuario[]" value="' . $usuario["dni"] . '"></td>
                 </tr>
             ';
-        }
-        $content = '
+    }
+    $content = '
         <form action="administracion.php" method="post">
         <table>
             <tr>
@@ -257,65 +252,65 @@ function getEliminarUsuario()
                 <th>Email</th>
                 <th>Seleccionar</th>
             </tr>
-            '.$usuarios.'
+            ' . $usuarios . '
         </table><br>
               <input type="submit" value="Eliminar">
         </form>
-        '.$mensajeEliminarUsuario.'
+        ' . $mensajeEliminarUsuario . '
     ';
-        return $content;
-    }
+    return $content;
+}
+
 function getActivarUsuario()
-    {
-        /*CONSEGUIMOS LOS DE BBDD*/
-        $query = Connection::executeQuery("select * from usuario")->fetchAll();
-        $usuarios = '';
-        $mensajeActivarUsuario = '';
-        /*despues del submit*/
-        if (isset($_POST["checkboxUsuarioActivo"])){
-            if($_POST["checkboxUsuarioActivo"]) {
-                foreach($_POST["checkboxUsuarioActivo"] as $value)
-                {
-                    $estado = Connection::executeQuery('SELECT `activo` FROM `usuario` WHERE `dni` = "'.$value.'";')->fetchAll();
-                    
-                    if($estado[0]['activo']==0){
-                       /* Activar usuario*/
-                        Connection::executeQuery('UPDATE `usuario` SET `activo` = 1 WHERE `dni` = "'.$value.'";'); 
+{
+    /*CONSEGUIMOS LOS DE BBDD*/
+    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+    $usuarios = '';
+    $mensajeActivarUsuario = '';
+    /*despues del submit*/
+    if (isset($_POST["checkboxUsuarioActivo"])) {
+        if ($_POST["checkboxUsuarioActivo"]) {
+            foreach ($_POST["checkboxUsuarioActivo"] as $value) {
+                $estado = Connection::executeQuery('SELECT `activo` FROM `usuario` WHERE `dni` = "' . $value . '";')->fetchAll();
 
-                        /*refrescamos*/
-                        $query = Connection::executeQuery("select * from usuario")->fetchAll();
+                if ($estado[0]['activo'] == 0) {
+                    /* Activar usuario*/
+                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 1 WHERE `dni` = "' . $value . '";');
 
-                        $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select * from usuario")->fetchAll();
+
+                    $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
                         Usuario activado correctamente
-                        </div></div>';   
-                    } else {
+                        </div></div>';
+                } else {
                     /* Desactivar usuario*/
-                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 0 WHERE `dni` = "'.$value.'";');
-                    
+                    Connection::executeQuery('UPDATE `usuario` SET `activo` = 0 WHERE `dni` = "' . $value . '";');
+
                     /*refrescamos*/
                     $query = Connection::executeQuery("select * from usuario")->fetchAll();
 
                     $mensajeActivarUsuario = '<div class="row"><div class="alert alert-danger" role="alert">
                     Usuario desactivado correctamente
                     </div></div>';
-                    }
                 }
             }
         }
-        foreach ($query as $usuario) {
+    }
+    foreach ($query as $usuario) {
 
-            $usuarios .= '
+        $usuarios .= '
                 <tr>
-                    <td>'.$usuario['dni'].'</td>
-                    <td>'.$usuario['nombre'].'</td>
-                    <td>'.$usuario['apellidos'].'</td>
-                    <td>'.$usuario['email'].'</td>
-                    <td>'.($usuario['activo']==1 ? "Activo" : "Inactivo").'</td>
-                    <td><input type="checkbox" name="checkboxUsuarioActivo[]" id="checkboxUsuarioActivo[]" value="'.$usuario["dni"].'"></td>
+                    <td>' . $usuario['dni'] . '</td>
+                    <td>' . $usuario['nombre'] . '</td>
+                    <td>' . $usuario['apellidos'] . '</td>
+                    <td>' . $usuario['email'] . '</td>
+                    <td>' . ($usuario['activo'] == 1 ? "Activo" : "Inactivo") . '</td>
+                    <td><input type="checkbox" name="checkboxUsuarioActivo[]" id="checkboxUsuarioActivo[]" value="' . $usuario["dni"] . '"></td>
                 </tr>
             ';
-        }
-        $content = '
+    }
+    $content = '
         <form action="administracion.php" method="post">
         <table>
             <tr>
@@ -326,78 +321,78 @@ function getActivarUsuario()
                 <th>Estado</th>
                 <th>Activar/Desactivar</th>
             </tr>
-            '.$usuarios.'
+            ' . $usuarios . '
         </table><br>
               <input id="btnEstado" type="submit" value="Cambiar Estado">
         </form>
-        '.$mensajeActivarUsuario.'
+        ' . $mensajeActivarUsuario . '
     ';
-        return $content;
-    }
+    return $content;
+}
+
 function getAdministrarAlquiler()
 {
-        /*CONSEGUIMOS LOS DE BBDD*/
-        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
-        $alquileres = '';
-        $mensajeAlquilerGestionado = '';
-        //Kint\Kint::dump($_POST); 
-        /*despues del submit*/
-        if (isset($_POST["checkboxAlquilerAtendido"])){
-            if($_POST["checkboxAlquilerAtendido"]) {
-                foreach($_POST["checkboxAlquilerAtendido"] as $value)
-                {
-                    $posicionIdHerramienta = array_search($value, $_POST["idsHerramienta"]);
-                    $fechaActual = isset($_POST["fechaInicio"][$posicionIdHerramienta]) ? trim($_POST["fechaInicio"][$posicionIdHerramienta]) : "";
-                    $fechaDevolucion = isset($_POST["fechaFin"][$posicionIdHerramienta]) ? trim($_POST["fechaFin"][$posicionIdHerramienta]) : "";
-                    
-                    Connection::executeQuery("UPDATE alquiler SET fechaInicio='$fechaActual', fechaFin='$fechaDevolucion' WHERE `id_herramienta` = $value");
+    /*CONSEGUIMOS LOS DE BBDD*/
+    $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+    $alquileres = '';
+    $mensajeAlquilerGestionado = '';
+    //Kint\Kint::dump($_POST);
+    /*despues del submit*/
+    if (isset($_POST["checkboxAlquilerAtendido"])) {
+        if ($_POST["checkboxAlquilerAtendido"]) {
+            foreach ($_POST["checkboxAlquilerAtendido"] as $value) {
+                $posicionIdHerramienta = array_search($value, $_POST["idsHerramienta"]);
+                $fechaActual = isset($_POST["fechaInicio"][$posicionIdHerramienta]) ? trim($_POST["fechaInicio"][$posicionIdHerramienta]) : "";
+                $fechaDevolucion = isset($_POST["fechaFin"][$posicionIdHerramienta]) ? trim($_POST["fechaFin"][$posicionIdHerramienta]) : "";
 
-                    $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramienta` = "'.$value.'";')->fetchAll();
-                    
-                    if($estado[0]['alquiler_atendido']==0){
-                      
-                       /* Alquiler atendido*/
-                        Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "'.$value.'";'); 
-                        
-                        /*refrescamos*/
-                        $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+                Connection::executeQuery("UPDATE alquiler SET fechaInicio='$fechaActual', fechaFin='$fechaDevolucion' WHERE `id_herramienta` = $value");
 
-                        $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
-                        Datos actualizados correctamente
-                        </div></div>';   
-                    } else {
-                     
+                $estado = Connection::executeQuery('SELECT `alquiler_atendido` FROM `solicitudalquiler` WHERE `id_herramienta` = "' . $value . '";')->fetchAll();
+
+                if ($estado[0]['alquiler_atendido'] == 0) {
+
+                    /* Alquiler atendido*/
+                    Connection::executeQuery('UPDATE `solicitudalquiler` SET `alquiler_atendido` = 1 WHERE `id_herramienta` = "' . $value . '";');
+
                     /*refrescamos*/
                     $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
 
                     $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
                         Datos actualizados correctamente
                         </div></div>';
-                    }
+                } else {
+
+                    /*refrescamos*/
+                    $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+
+                    $mensajeAlquilerGestionado = '<div class="row"><div class="alert alert-danger" role="alert">
+                        Datos actualizados correctamente
+                        </div></div>';
                 }
             }
         }
-        // utilizamos la funcion date() pasandole el formato deseado
-        $fechaMinima = date("Y-m-d", time());  
-        foreach ($query as $alquiler) {
-   
-            $alquileres.= '
+    }
+    // utilizamos la funcion date() pasandole el formato deseado
+    $fechaMinima = date("Y-m-d", time());
+    foreach ($query as $alquiler) {
+
+        $alquileres .= '
                 <tr>
-                    <td>'.$alquiler['dni'].'</td>
-                    <td>'.$alquiler['nombre'].'</td>
-                    <td>'.$alquiler['apellidos'].'</td>
-                    <td>'.$alquiler['email'].'</td>
-                    <td>'.$alquiler['id_herramienta'].'</td>
-                    <td>'.$alquiler['nombre'].'</td>
-                    <td>'.($alquiler['disponible']==1 ? "Disponible" : "Reservada").'</td> 
-                    <td>'.($alquiler['alquiler_atendido']==1 ? "Atendido" : "No atendido").'</td>
-                    <td><input type="date" min="'.$fechaMinima.'" max="2021-12-31" name="fechaInicio[]" value="'.$alquiler["fechaInicio"].'"></td>
-                    <td><input type="date" name="fechaFin[]" value="'.$alquiler["fechaFin"].'"></td>
-                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="'.$alquiler["id_herramienta"].'"></td>
+                    <td>' . $alquiler['dni'] . '</td>
+                    <td>' . $alquiler['nombre'] . '</td>
+                    <td>' . $alquiler['apellidos'] . '</td>
+                    <td>' . $alquiler['email'] . '</td>
+                    <td>' . $alquiler['id_herramienta'] . '</td>
+                    <td>' . $alquiler['nombre'] . '</td>
+                    <td>' . ($alquiler['disponible'] == 1 ? "Disponible" : "Reservada") . '</td> 
+                    <td>' . ($alquiler['alquiler_atendido'] == 1 ? "Atendido" : "No atendido") . '</td>
+                    <td><input type="date" min="' . $fechaMinima . '" max="2021-12-31" name="fechaInicio[]" value="' . $alquiler["fechaInicio"] . '"></td>
+                    <td><input type="date" name="fechaFin[]" value="' . $alquiler["fechaFin"] . '"></td>
+                    <td><input type="checkbox" name="checkboxAlquilerAtendido[]" id="checkboxAlquilerAtendido[]" value="' . $alquiler["id_herramienta"] . '"></td>
                 </tr>
             ';
-        }
-        $content = '
+    }
+    $content = '
         <form action="administracion.php" method="post">
         <table>
             <tr>
@@ -413,18 +408,19 @@ function getAdministrarAlquiler()
                 <th>FechaFin</th>
                 <th>Seleccionar</th>
             </tr>
-            '.$alquileres.'
+            ' . $alquileres . '
         </table><br>';
-        foreach ($query as $alquiler) {
-            $content .= '<input type="hidden" name="idsHerramienta[]" value="'.$alquiler["id_herramienta"].'">';
-        }
-        $content .= '
+    foreach ($query as $alquiler) {
+        $content .= '<input type="hidden" name="idsHerramienta[]" value="' . $alquiler["id_herramienta"] . '">';
+    }
+    $content .= '
               <input type="submit" value="Actualizar">
         </form>
-        '.$mensajeAlquilerGestionado.'
+        ' . $mensajeAlquilerGestionado . '
     ';
-        return $content;
+    return $content;
 }
+
 function getCrearHerramienta()
 {
     /*CONSEGUIMOS LAS CATEGORIAS DE BBDD*/
@@ -455,7 +451,7 @@ function getCrearHerramienta()
             $uploaddir = './img/herramientas/';
             $temp = explode(".", $_FILES["image"]["name"]);
             $newfilename = sha1(time()) . '.' . end($temp);
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir.$newfilename);
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir . $newfilename);
             $herramienta = new herramienta(
                 $toolName,
                 $_POST['brand'],
@@ -534,13 +530,14 @@ function getCrearHerramienta()
       <input type="submit" value="Añadir">
     </div>
   </form>
-  '.$mensajeError.'
+  ' . $mensajeError . '
   <p><span class="cRed">*</span> Campos obligatorios.</p>
 </div>
 </div>
 ';
     return $content;
 }
+
 getHeader($args);
 getContent();
 getFooter($args);
