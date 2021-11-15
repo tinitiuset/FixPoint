@@ -92,7 +92,7 @@ if (isset($_POST['btnConfirmarPasoAceptar'])) {
         
         $dniUser = $_SESSION["user"]->getDni();
         $numFicha = $_SESSION['guia']->getNumFicha();
-        Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
+        Connection::executeQuery("INSERT INTO creadorGuia (dni, numFicha)
             VALUES ('$dniUser', '$numFicha')");
         $pasos = $_SESSION['guia']->getPasos();
         foreach ($pasos as $key => $value) {

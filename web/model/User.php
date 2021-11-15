@@ -2,11 +2,12 @@
 
 
 namespace Grupo3\FixPoint\model;
+
 use Grupo3\FixPoint\Connection;
 use Kint\Kint;
 use PDO;
 
-require __DIR__ .'/../Connection.php';
+require __DIR__ . '/../Connection.php';
 
 class User
 {
@@ -24,7 +25,8 @@ class User
 
     private $activo;
 
-    function __construct($dni = '', $nombre = '', $apellidos= '', $password = '', $email = '', $administrador = 0, $activo = 0) {
+    function __construct($dni = '', $nombre = '', $apellidos = '', $password = '', $email = '', $administrador = 0, $activo = 0)
+    {
 
         $this->setDni($dni);
         $this->setNombre($nombre);
@@ -35,32 +37,46 @@ class User
         $this->setActivo($activo);
 
     }
+
     /**
      * @param string $correo
      * @param string $pass
      */
     function getUser(string $correo, string $pass)
     {
-         $query = "SELECT * FROM `usuario` WHERE `email` LIKE '".$correo."';";
+        $query = "SELECT * FROM `usuario` WHERE `email` LIKE '" . $correo . "';";
+        $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+        if ($User) {
+            $isPasswordCorrect = password_verify($pass, $User['password']);
+            if ($isPasswordCorrect && $User['activo'] === '1') {
+                $this->setDni($User['dni']);
+                $this->setNombre($User['nombre']);
+                $this->setApellidos($User['apellidos']);
+                $this->setAdministrador($User['administrador']);
+                $this->setPassword(null);
+                $this->setEmail($User['email']);
+                $this->setActivo($User['activo']);
+            }
+        }
+    }
 
-         $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
-
-         if ($User){
-             $isPasswordCorrect = password_verify($pass, $User['password']);
-
-             if ($isPasswordCorrect && $User['activo'] === '1'){
-                 $this->setDni($User['dni']);
-                 $this->setNombre($User['nombre']);
-                 $this->setApellidos($User['apellidos']);
-                 $this->setAdministrador($User['administrador']);
-                 $this->setPassword(null);
-                 $this->setEmail($User['email']);
-                 $this->setActivo($User['activo']);
-             }
-         }
-
-
-
+    /**
+     * @param string $correo
+     * @param string $pass
+     */
+    function getUserPublicData(string $dni)
+    {
+        $query = "SELECT * FROM `usuario` WHERE `dni` LIKE '" . $dni . "';";
+        $User = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+        if ($User) {
+            $this->setDni($User['dni']);
+            $this->setNombre($User['nombre']);
+            $this->setApellidos($User['apellidos']);
+            $this->setAdministrador(null);
+            $this->setPassword(null);
+            $this->setEmail($User['email']);
+            $this->setActivo(null);
+        }
     }
 
     public function createUser()
@@ -73,32 +89,6 @@ class User
                                          '" . $this->getPassword() . "',
                                          '" . $this->getEmail() . "'
                                          );";
-        Connection::executeQuery($query);
-    }
-
-    public function updateUser(int $dni) {
-        $query = "UPDATE usuario
-        SET dni = '" . $this->getDni() . "', 
-        nombre = '" . $this->getNombre() . "',
-        apellidos = '" . $this->getApellidos() . "',
-        password = '" . $this->getPassword() . "',
-        email = '" . $this->getEmail() . "'
-        WHERE dni LIKE '" . $dni . "' ";
-
-        Connection::executeQuery($query);
-    }
-
-    public function activateUser()
-    {
-
-        $query = "UPDATE `usuario` SET `activo` = '" . ($this->getActivo() ^ 1) . "' 
-                  WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
-        $this->setActivo(!$this->getActivo());
-        Connection::executeQuery($query)->execute();
-    }
-
-    public function deleteUser(int $dni) {
-        $query = "DELETE FROM user WHERE dni LIKE '" . $dni . "'";
         Connection::executeQuery($query);
     }
 
@@ -198,6 +188,28 @@ class User
         $this->email = $email;
     }
 
+    public function updateUser(int $dni)
+    {
+        $query = "UPDATE usuario
+        SET dni = '" . $this->getDni() . "', 
+        nombre = '" . $this->getNombre() . "',
+        apellidos = '" . $this->getApellidos() . "',
+        password = '" . $this->getPassword() . "',
+        email = '" . $this->getEmail() . "'
+        WHERE dni LIKE '" . $dni . "' ";
+
+        Connection::executeQuery($query);
+    }
+
+    public function activateUser()
+    {
+
+        $query = "UPDATE `usuario` SET `activo` = '" . ($this->getActivo() ^ 1) . "' 
+                  WHERE `usuario`.`dni` = '" . $this->getDni() . "'; ";
+        $this->setActivo(!$this->getActivo());
+        Connection::executeQuery($query)->execute();
+    }
+
     /**
      * @return mixed
      */
@@ -212,6 +224,12 @@ class User
     public function setActivo($activo): void
     {
         $this->activo = $activo;
+    }
+
+    public function deleteUser(int $dni)
+    {
+        $query = "DELETE FROM user WHERE dni LIKE '" . $dni . "'";
+        Connection::executeQuery($query);
     }
 
 }

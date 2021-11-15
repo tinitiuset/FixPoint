@@ -127,7 +127,7 @@ CREATE TRIGGER ELIMALQ_AD
 AFTER DELETE ON alquiler 
 FOR EACH ROW
 INSERT INTO alquileres_eliminados (dni, id_herramienta, fechaInicio, fechaFin)
-VALUES (old.dni, old.id_herramienta, old.fechaInicio, old.fechaFin)
+VALUES (old.dni, old.id_herramienta, old.fechaInicio, old.fechaFin);
 
 
 /* USUARIO ADMINISTRADOR*/

@@ -1,12 +1,14 @@
 <?php
 
 namespace Grupo3\FixPoint\model;
+
 use Grupo3\FixPoint\Connection;
 use PDO;
 
-require __DIR__ .'/../Connection.php';
+require_once __DIR__ .'/../Connection.php';
 
-class creadorguia {
+class CreadorGuia
+{
     private $dni;
     private $numFicha;
 
@@ -16,8 +18,16 @@ class creadorguia {
         $this->setNumFicha($numFicha);
     }
 
-    function getCreadorGuia(int $dni) {
-        $query = "SELECT * FROM `creadorguia` WHERE `dni` LIKE '".$dni."' ";
+    function getCreadorGuia(int $dni)
+    {
+        $query = "SELECT * FROM `creadorGuia` WHERE `dni` LIKE '".$dni."' ";
+        $creadorguia = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+        $this->setdni($creadorguia['dni']);
+        $this->setNumFicha($creadorguia['numFicha']);
+    }
+    function getCreadorGuiaByNumFicha(int $numFicha)
+    {
+        $query = "SELECT * FROM `creadorGuia` WHERE `numFicha` LIKE '".$numFicha."' ";
         $creadorguia = Connection::executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         $this->setdni($creadorguia['dni']);
         $this->setNumFicha($creadorguia['numFicha']);
@@ -25,7 +35,7 @@ class creadorguia {
 
     public function createCreadorGuia()
     {
-        $query = "INSERT INTO `creadorguia` (`dni`, `numFicha`) VALUES 
+        $query = "INSERT INTO `creadorGuia` (`dni`, `numFicha`) VALUES 
                                         ((SELECT dni FROM usuario WHERE dni LIKE '" . $this->getDni() . "'),
                                          (SELECT numFicha FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "')
                                          );";
@@ -33,16 +43,16 @@ class creadorguia {
     }
 
     public function updateCreadorGuia(int $dni) {
-        $query = "UPDATE creadorguia 
+        $query = "UPDATE creadorGuia 
         SET dni = (SELECT dni FROM usuario WHERE dni LIKE '" . $this->getDni() . "'), 
-        numFicha = (SELECT numFicha FROM guiadespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "') 
+        numFicha = (SELECT numFicha FROM guiaDespiece WHERE numFicha LIKE '" . $this->getNumFicha() . "') 
         WHERE dni LIKE '" . $dni . "' ";
 
         Connection::executeQuery($query);
     }
 
     public function deleteCreadorGuia(int $dni) {
-        $query = "DELETE FROM creadorguia WHERE 'dni' LIKE '" . $dni . "'";
+        $query = "DELETE FROM creadorGuia WHERE 'dni' LIKE '" . $dni . "'";
         Connection::executeQuery($query);
     }
 

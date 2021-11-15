@@ -1,9 +1,10 @@
 <?php
 
 namespace Grupo3\FixPoint\model;
+
 use Grupo3\FixPoint\Connection;
 
-require_once __DIR__ .'/../Connection.php';
+require_once __DIR__ . '/../Connection.php';
 
 class paso
 {
@@ -11,14 +12,15 @@ class paso
     private $detalle;
     private $numGuia;
 
-    function __construct($foto, $detalle, $numGuia)
+    public function __construct($foto, $detalle, $numGuia)
     {
         $this->setFoto($foto);
         $this->setDetalle($detalle);
         $this->setNumGuia($numGuia);
     }
 
-    function createPaso() {
+    public function createPaso()
+    {
         $query = "INSERT INTO `paso`(`numficha`, `detalle`, `foto`) VALUES 
         ('" . $this->getNumGuia() . "',
         '" . $this->getDetalle() . "',
@@ -29,48 +31,8 @@ class paso
     }
 
     /**
-     * Get the value of foto
-     */ 
-    public function getFoto()
-    {
-        return $this->foto;
-    }
-
-    /**
-     * Set the value of foto
-     *
-     * @return  self
-     */ 
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of detalle
-     */ 
-    public function getDetalle()
-    {
-        return $this->detalle;
-    }
-
-    /**
-     * Set the value of detalle
-     *
-     * @return  self
-     */ 
-    public function setDetalle($detalle)
-    {
-        $this->detalle = $detalle;
-
-        return $this;
-    }
-
-    /**
      * Get the value of numGuia
-     */ 
+     */
     public function getNumGuia()
     {
         return $this->numGuia;
@@ -80,10 +42,50 @@ class paso
      * Set the value of numGuia
      *
      * @return  self
-     */ 
+     */
     public function setNumGuia($numGuia)
     {
         $this->numGuia = $numGuia;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of detalle
+     */
+    public function getDetalle()
+    {
+        return $this->detalle;
+    }
+
+    /**
+     * Set the value of detalle
+     *
+     * @return  self
+     */
+    public function setDetalle($detalle)
+    {
+        $this->detalle = $detalle;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of foto
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * Set the value of foto
+     *
+     * @return  self
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
 
         return $this;
     }
