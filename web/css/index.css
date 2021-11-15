@@ -27,38 +27,48 @@ img {
 body {
     background-color: black;
 }
+
+a {
+    text-decoration: none;
+}
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+.enlacesVistas {
+    color: black;
+}
+
+iframe {
+    display: flex;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.centrado {
+    display: flex;
+}
+
+.multimedia {
+    align-items: center;
+}
+
+.titleCenter {
+    text-align: center;
+    padding-top: 20px;
+}
+
 .blackTittle {
     color: black;
     text-align: center;
     margin: 20px;
 }
 
-.bold {
-    font-weight: 900;
-}
-.btnDonar {
-    display: none;
-    align-items: center;
+.pMultimedia {
+    padding: 20px 50px;
+    text-align: justify;
     color: white;
-    border: 2px solid #eec51f;
-    border-radius: 8px;
-    text-transform: uppercase;
-    background: #F79C14;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 30px;
 }
 
-.btnDonar:hover {
-    background-color: #eec51f;
-    color: black;
-    border: 3px solid black;
-    font-weight: 600;
-    padding: 16px 30px;
+.bold {
+    font-weight: 900;
 }
 
 .back, .next{
@@ -115,7 +125,8 @@ body {
 }
 
 .btnDespiece,
-.btnMultimedia{
+.btnMultimedia,
+.btnDonar{
     width: 100%;
     border: 0;
     text-align: center;
@@ -131,8 +142,16 @@ body {
     transition: box-shadow 200ms ease-out;
     margin-top: 20px;
 }
+
+.btnDonar {
+    display: none; 
+    width: auto;
+}
+
 .btnMultimedia{
     width: auto;
+    margin-bottom: 20px;
+   
 }
 
  /*Y finalmente las animaciones*/
@@ -158,6 +177,13 @@ body {
 
 .containerMultimedia {
     background-color: #334756;
+}
+
+.comunity-container,
+.containerMultimedia {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: repeat(1, minmax(0px, 1fr));
 }
 
 
@@ -201,6 +227,17 @@ body {
     .slideshow-container {
         height: 600px;
     }
+
+    .comunity-container {
+        grid-template-columns: repeat(2, minmax(0px, 1fr));
+    }
+
+    .containerMultimedia {
+        border-radius: 20px;
+        display: flex;
+        width: 80%;
+        margin-bottom: 20px;
+    }
 }
 
 /*-------------------------------Versión Web-------------------------------------*/
@@ -228,9 +265,15 @@ body {
        top: 40vw;
        font-size: 20px;
    }
-   .containerMultimedia {
-        display: inline-grid;
-        width: 100%;
-        grid-template-columns: repeat(2, minmax(0px, 1fr));
-   }
+   
+   .comunity-container {
+        grid-template-columns: repeat(3, minmax(0px, 1fr));
+    }
+
+    .multimediaVideo {
+        display: flex;
+    }
+
+  
+
 }

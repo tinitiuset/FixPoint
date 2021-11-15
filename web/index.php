@@ -25,21 +25,24 @@ $cardContent = [
         'imagen' => './img/ayuda.jpg',
         'titulo' => 'Resuelve problemas',
         'descripcion' => 'Obtenga ayuda para reparar sus herramientas con los manuales de reparación de FixPoint.',
+        'enlace' => 'crearGuia.php',
         'btnNombre' => 'Manuales de despiece'
     ], [
         'imagen' => './img/mejorar.jpg',
         'titulo' => 'Mejora FixPoint',
         'descripcion' => 'Ayúdanos a mejorar las guías prácticas que otros han comenzado aportando tus conocimientos para completarlos.',
+        'enlace' => 'crearGuia.php',
         'btnNombre' => 'Crear guías'
     ], [
         'imagen' => './img/resolver.jpg',
         'titulo' => 'Ayudanos a traducir',
         'descripcion' => '¡Traduzca FixPoint a su lengua materna y ponga la información de reparación a disposición de todos!',
+        'enlace' => 'crearGuia.php',
         'btnNombre' => 'Traducir guías'
     ] 
 ];
 
-function createCard($img = '',$titulo = '',$descripcion = '',$nombreBoton = ''): string
+function createCard($img = '',$titulo = '',$descripcion = '',$enlace = '',$nombreBoton = ''): string
 {
     $cardComunity = '
         <div class="cardComunity-wrapper">
@@ -52,7 +55,7 @@ function createCard($img = '',$titulo = '',$descripcion = '',$nombreBoton = ''):
                     <p>'.$descripcion.'</p>
                 </div>
                 <div class="botonManuales-wrapper">
-                <button class="btnDespiece">'.$nombreBoton.'</button>
+                <button class="btnDespiece"><a class="enlacesVistas" href="'.$enlace.'">'.$nombreBoton.'</a></button>
                 </div>
             </div>
         </div>';
@@ -64,7 +67,7 @@ function getContent($cardContent)
 {
     $cards = [];
     foreach ($cardContent as $card) {
-        $cardComunity = createCard($card['imagen'],$card['titulo'],$card['descripcion'],$card['btnNombre']);
+        $cardComunity = createCard($card['imagen'],$card['titulo'],$card['descripcion'],$card['enlace'],$card['btnNombre']);
         array_push($cards,$cardComunity);
     };
     
@@ -77,7 +80,7 @@ function getContent($cardContent)
                 <h2 id="titulo">¿Qué es FixPoint?</h2>
                 <p class="floatText" id="parrafo">FixPoint es una iniciativa que busca luchar por una economía circular 
                 con nuestra <span class=\"bold\">biblioteca de herramientas</span>.</p>
-                <button class="btnDonar" id="btnDonar">Donar Herramientas</button>
+                <button class="btnDonar" id="btnDonar"><a class="enlacesVistas" href="donarHerramientas.php">Donar Herramientas</a></button>
             </div>
         </div>
             <a class="back" id="back">&#10094</a>
@@ -97,14 +100,16 @@ function getContent($cardContent)
     </div>
     <div class="containerMultimedia">
         <div class="multimedia">
-            <h2>Contribuye con FixPoint</h2>
-            <p>Nadie sabe cómo arreglar todo, pero todo el mundo sabe cómo arreglar algo.
+            <h2 class="titleCenter">Contribuye con FixPoint</h2>
+            <p class="pMultimedia">Nadie sabe cómo arreglar todo, pero todo el mundo sabe cómo arreglar algo.
              Enséñanos lo que sabes y haz que las cosas funcionen durante más tiempo. 
              Cuanto más fácil sea arreglar algo, más gente lo hará.</p>
-            <button class="btnMultimedia">Subir videos</button>
+            <div class="centrado">
+                <button class="btnMultimedia">Subir videos</button>
+            </div>
         </div>
-        <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/yLU_cSNogF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="multimediaVideo">
+            <iframe width="400" height="315" src="https://www.youtube.com/embed/yLU_cSNogF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
     ';
