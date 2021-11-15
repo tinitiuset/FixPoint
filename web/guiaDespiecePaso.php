@@ -2,6 +2,7 @@
 
 use Grupo3\FixPoint\model\guiaDespiece;
 use Grupo3\FixPoint\model\paso;
+use Grupo3\FixPoint\Connection;
 
 require "functions.php";
 
@@ -81,18 +82,29 @@ if (isset($_POST['paso'])) {
 }
 
 if (isset($_POST['btnConfirmarPasoAceptar'])) {
-    //Se crea la guía en la base de datos
-    $_SESSION['guia']->createGuiaDespiece();
-    //Esta función recoge el id (numFicha) de la guía desde la BD,
-    // ya que se aplica automaticamente desde ahí y no desde aquí,
-    // de lo contrario el valor estaría vacío
-    $_SESSION['guia']->recogerNumGuiaDeBD();
-    $pasos = $_SESSION['guia']->getPasos();
-    foreach ($pasos as $key => $value) {
-        //Se añade el id de la guía a cada paso ya que de lo contrario estarían vacíos
-        $value->setNumGuia($_SESSION['guia']->getNumFicha());
-        $value->createPaso();   //Se crea el paso
+    if (isset($_SESSION["user"])) {
+        //Se crea la guía en la base de datos
+        $_SESSION['guia']->createGuiaDespiece();
+        //Esta función recoge el id (numFicha) de la guía desde la BD,
+        // ya que se aplica automaticamente desde ahí y no desde aquí,
+        // de lo contrario el valor estaría vacío
+        $_SESSION['guia']->recogerNumGuiaDeBD();
+        
+        $dniUser = $_SESSION["user"]->getDni();
+        $numFicha = $_SESSION['guia']->getNumFicha();
+        Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
+            VALUES ('$dniUser', '$numFicha')");
+        $pasos = $_SESSION['guia']->getPasos();
+        foreach ($pasos as $key => $value) {
+            //Se añade el id de la guía a cada paso, ya que de lo contrario estarían vacíos
+            $value->setNumGuia($_SESSION['guia']->getNumFicha());
+            $value->createPaso();   //Se crea el paso
+        }
+    } else {
+        $mensaje = "Debe iniciar sesión para crear la guía.";
+        echo "<script type='text/javascript'>alert('$mensaje');</script>";
     }
+
 }
 
 getContent();
