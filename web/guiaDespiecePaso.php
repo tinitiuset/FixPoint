@@ -35,13 +35,18 @@ function getContent()
                 <label for="field1"><span>Imagen <span class="required">*</span></span><input type="file" accept="image/*" name="fileIntroducirImagen" id="fileIntroducirImagen" required/></label>
                 
                 <label for="field2"><span>Detalles <span class="required">*</span></span><textarea name="detalle" id="txtIntroducirDetalle" class="textarea-field" required></textarea></label>
-                
+                <label id="lblAdvertencia">*Debe añadir al menos un paso para poder aceptar.</label><br>
                 <div class="formButtons">
                     <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
                     &nbsp;
                     <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="button" id="botonAceptar" name="accion" value="Aceptar"/></label>
+                    <label class="formButton"><span> </span><input type="button"';
+                    if(count($_SESSION['guia']->getPasos()) === 0) {
+                        $content .= 'disabled';
+                    };
+                    $content .= '
+                    id="botonAceptar" name="accion" value="Aceptar"/></label>
                 </div>
             </form>
         </div>
@@ -92,7 +97,7 @@ if (isset($_POST['btnConfirmarPasoAceptar'])) {
         
         $dniUser = $_SESSION["user"]->getDni();
         $numFicha = $_SESSION['guia']->getNumFicha();
-        Connection::executeQuery("INSERT INTO creadorGuia (dni, numFicha)
+        Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
             VALUES ('$dniUser', '$numFicha')");
         $pasos = $_SESSION['guia']->getPasos();
         foreach ($pasos as $key => $value) {
