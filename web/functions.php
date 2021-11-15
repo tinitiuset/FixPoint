@@ -1,5 +1,6 @@
 <?php
-
+/*Este archivo se utiliza para construir las regiones comunes de la pagina asi como el
+header, footer, elementos de inicio, creacion de usuarios...*/
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\User;
 

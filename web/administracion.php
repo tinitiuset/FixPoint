@@ -6,7 +6,7 @@ use Grupo3\FixPoint\model\herramienta;
 require_once "functions.php";
 
 $args = [
-    'title' => 'Contacto',
+    'title' => 'Administracion',
     'styles' => [
         'css/footer.css',
         'css/contacto.css',

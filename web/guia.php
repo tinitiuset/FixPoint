@@ -6,7 +6,7 @@ require "functions.php";
 
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Guia despiece',
     'styles' => [
         'css/footer.css',
         'css/index.css',
