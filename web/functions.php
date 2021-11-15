@@ -1,6 +1,7 @@
 <?php
 /*Este archivo se utiliza para construir las regiones comunes de la pagina asi como el
 header, footer, elementos de inicio, creacion de usuarios...*/
+
 use Grupo3\FixPoint\Connection;
 use Grupo3\FixPoint\model\User;
 
@@ -15,6 +16,7 @@ function getHeader($headerArgs = null): void
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="img/favicon.png">
         <title>' . $headerArgs['title'] . '</title>';
     foreach ($headerArgs['styles'] as $style) {
         $structure .= '<link rel="stylesheet" href="' . $style . '">';
