@@ -49,7 +49,23 @@ function navbar(): string
         <div class="Login" id="Login">
     ';
 
-    if (isset($_SESSION["logged"]) == true) {
+    if (!isset($_SESSION["logged"])) {
+
+        $nav .= '
+            <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
+            <div class="icon-bar"></div>
+            <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
+        ';
+    }
+
+    $nav .= '
+            </div>
+        </nav>
+        ';
+    if (!isset($_SESSION["logged"])) {
+        $nav .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
+    }
+    else{
         $userName = $_SESSION["user"]->getNombre();
         $isAdmin = $_SESSION["user"]->getAdministrador();
         $nav .= '
@@ -68,23 +84,9 @@ function navbar(): string
             <script>
                 // LocalStorage
                 localStorage.setItem("user", "' . $userName . '");
-                document.getElementById("usernametext").innerHTML += localStorage.getItem("user");
+                document.getElementById("usernametext").innerHTML += "<br>"+localStorage.getItem("user");
             </script>
         ';
-    } else {
-        $nav .= '
-            <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
-            <div class="icon-bar"></div>
-            <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
-        ';
-    }
-
-    $nav .= '
-            </div>
-        </nav>
-        ';
-    if (!isset($_SESSION["logged"])) {
-        $nav .= '<div class="iconoLogin"><a href="#"><i id="iconIniciarSesion" class="far fa-user"></i></a></div>';
     }
 
     $nav .= '      
