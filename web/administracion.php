@@ -26,70 +26,77 @@ $args = [
     ]
 ];
 
-function getContent()
+$opOne = getCrearHerramienta();
+$opTwo = getEliminarHerramienta();
+$opTres = getActivarUsuario();
+$opCuatro = getEliminarUsuario();
+$opCinco = getAdministrarAlquiler();
+$opSeis = getActivarAlquilerHerramienta();
+
+$cardContent = [
+    [
+        'titulo' => 'Añadir Herramienta',
+        'opciones' => "$opOne"
+    ], [
+        'titulo' => 'Eliminar Herramienta',
+        'opciones' => "$opTwo"
+    ], [
+        'titulo' => 'Activar Alquiler Herramienta',
+        'opciones' => "$opSeis"
+    ], [
+        'titulo' => 'Activar Usuario',
+        'opciones' => "$opTres"
+    ], [
+        'titulo' => 'Eliminar Usuario',
+        'opciones' => "$opCuatro"
+    ], [
+        'titulo' => 'Gestión de Alquiler',
+        'opciones' => "$opCinco"
+    ]
+
+];
+
+function createCard($titulo = '',$opciones = ''): string
 {
-    $op = getCrearHerramienta();
-    $opTwo = getEliminarHerramienta();
-    $opTres = getActivarUsuario();
-    $opCuatro = getEliminarUsuario();
-    $opCinco = getAdministrarAlquiler();
-    $opSeis = getActivarAlquilerHerramienta();
+    $cardAdmin = '
+        <div class="btnCrearContainer">
+            <button type="button" class="collapsible">'.$titulo.'</button>
+            <div class="content overfl">
+                ' . $opciones . '
+            </div>
+        </div>';
+    return $cardAdmin;
+}
+
+function getContent($cardContent)
+{
+    $cards = [];
+    foreach ($cardContent as $card) {
+        $cardAdmin = createCard($card['titulo'],$card['opciones']);
+        array_push($cards,$cardAdmin);
+    };
+
     $content = '
     <div class="adminHerrContainer">
     <h2>Administracion de herramientas</h2>
-        <div class="btnCrearContainer">
-            <button type="button" class="collapsible">Añadir Herramienta</button>
-            <div class="content">
-            
-                ' . $op . '
-             </div>
-        </div>
-        <div class="btnEliminarHerr">
-            <button class="collapsible">Eliminar Herramienta</button>
-            <div class="content overfl">
-                ' . $opTwo . '            
-            </div>
-        </div>
-        <div class="btnActivarAlquiler">
-            <button class="collapsible">Activar Alquiler Herramienta</button>
-            <div class="content overfl">
-                ' . $opSeis . '            
-            </div>
-        </div>
+        '.$cards[0].'
+        '.$cards[1].'
+        '.$cards[2].'
     <h2>Administración de Usuarios</h2>
-        <div class="btnCrearContainer">
-            <button type="button" class="collapsible">Activar Usuario</button>
-            <div class="content overfl">
-            
-                ' . $opTres . '
-             </div>
-        </div>
-        <div class="btnEliminarHerr">
-            <button class="collapsible">Eliminar Usuario</button>
-            <div class="content overfl">
-                ' . $opCuatro . '            
-            </div>
-        </div>
+        '.$cards[3].'
+        '.$cards[4].'
     <h2>Administración de Alquileres</h2>
-        <div class="btnCrearContainer">
-            <button type="button" class="collapsible">Gestión de Alquiler</button>
-            <div class="content overfl">
-            
-                ' . $opCinco . '
-             </div>
-        </div>
+        '.$cards[5].'
     </div>
     ';
     echo $content;
 }
-
 function getEliminarHerramienta()
 {
     /*CONSEGUIMOS LAS HERRAMIENTAS DE BBDD*/
     $query = Connection::executeQuery("select * from herramienta")->fetchAll();
     $tools = '';
     $mensajeEliminarHerramienta = '';
-
     /*despues del submit*/
     if (isset($_POST["checkbox"])) {
         if ($_POST["checkbox"]) {
@@ -108,7 +115,6 @@ function getEliminarHerramienta()
                 Herramienta eliminada correctamente
                 </div></div>';
             }
-
         }
     }
     foreach ($query as $tool) {
@@ -176,7 +182,6 @@ function getActivarAlquilerHerramienta()
         }
     }
     foreach ($query as $tool) {
-
         $tools .= '
             <tr>
                 <td>' . $tool['id_herramienta'] . '</td>
@@ -231,7 +236,6 @@ function getEliminarUsuario()
         }
     }
     foreach ($query as $usuario) {
-
         $usuarios .= '
                 <tr>
                     <td>' . $usuario['dni'] . '</td>
@@ -298,7 +302,6 @@ function getActivarUsuario()
         }
     }
     foreach ($query as $usuario) {
-
         $usuarios .= '
                 <tr>
                     <td>' . $usuario['dni'] . '</td>
@@ -375,7 +378,6 @@ function getAdministrarAlquiler()
     // utilizamos la funcion date() pasandole el formato deseado
     $fechaMinima = date("Y-m-d", time());
     foreach ($query as $alquiler) {
-
         $alquileres .= '
                 <tr>
                     <td>' . $alquiler['dni'] . '</td>
@@ -539,5 +541,5 @@ function getCrearHerramienta()
 }
 
 getHeader($args);
-getContent();
+getContent($cardContent);
 getFooter($args);
