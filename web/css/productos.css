@@ -1,27 +1,23 @@
 @media (min-width: 0px) {
     .product-container {
-
         grid-template-columns: repeat(1, minmax(0px, 1fr));
     }
 }
 
 @media (min-width: 768px) {
     .product-container {
-
         grid-template-columns: repeat(2, minmax(0px, 1fr));
     }
 }
 
 @media (min-width: 1200px) {
     .product-container {
-
         grid-template-columns: repeat(3, minmax(0px, 1fr));
     }
 }
 
 @media (min-width: 1500px) {
     .product-container {
-
         grid-template-columns: repeat(4, minmax(0px, 1fr));
     }
 }
@@ -36,7 +32,6 @@
     font-size: 21px;
     line-height: 32px;
     color: rgb(26, 26, 26);
-
 }
 
 .product-container-wrapper {
@@ -63,7 +58,6 @@
 .card-wrapper > .card {
     width: 200px;
     height: 300px;
-
 }
 
 .card > .image {
@@ -102,6 +96,5 @@
 .card > .boton-wrapper > .botonDesactivo {
     color: gray;
     cursor: auto;
-
 }
 
