@@ -5,12 +5,12 @@ use fixPoint;
 create table usuario
 (
     dni           char(9) primary key,
-    nombre        varchar(10) not null,
-    apellidos     varchar(30) not null,
-    administrador boolean     not null default false,
+    nombre        varchar(10)  not null,
+    apellidos     varchar(30)  not null,
+    administrador boolean      not null default false,
     password      varchar(255) not null,
-    email         varchar(30) not null unique,
-    activo        boolean     not null default false
+    email         varchar(30)  not null unique,
+    activo        boolean      not null default false
 );
 
 create table categoria
@@ -53,13 +53,14 @@ create table alquiler
 create table guiaDespiece
 (
     numFicha      int primary key auto_increment,
-    fecha         timestamp    default current_timestamp,
-    nombreMaquina varchar(15)           not null unique,
-    revisada      boolean default false not null,
-    ocurrencia    varchar(70)           not null,
-    propuesta     varchar(70)           not null,
-    averias       varchar(80)           not null,
-    solucion      varchar(70)           not null
+    fecha         timestamp default current_timestamp,
+    nombreMaquina varchar(15)             not null unique,
+    revisada      boolean   default false not null,
+    ocurrencia    varchar(70)             not null,
+    propuesta     varchar(70)             not null,
+    averias       varchar(80)             not null,
+    solucion      varchar(70)             not null,
+    foto          varchar(255)            not null
 );
 
 create table creadorGuia
@@ -113,9 +114,9 @@ values ('Calibre Saturn 150mm', 'Mitutoyo', '150', true,
 INSERT INTO `herramienta` (`nombre`, `marca`, `modelo`, `disponible`, `foto`, `observaciones`, `idCategoria`)
 values ('Taladro dexter power', 'dexter', 'power', true,
         '8a29b4659ea86c58453b1171daf5b85ff0a58c9d.jpg'
-           ,'Taladro percutor DEXTER POWER de 900W', 3);
+           , 'Taladro percutor DEXTER POWER de 900W', 3);
 
 INSERT INTO `herramienta` (`nombre`, `marca`, `disponible`, `foto`, `observaciones`, `idCategoria`)
-values ('Radial HITACHI', 'HITACHI',  true,
+values ('Radial HITACHI', 'HITACHI', true,
         '17d8a84c40e361479eb34c954406da858f42fca7.jpg'
-           ,'Radial HITACHI con maletin.', 4);
+           , 'Radial HITACHI con maletin.', 4);
