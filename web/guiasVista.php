@@ -6,7 +6,7 @@ use Grupo3\FixPoint\Connection;
 
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Guias despiece',
     'styles' => [
         'css/footer.css',
         'css/index.css',

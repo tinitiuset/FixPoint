@@ -23,7 +23,7 @@ $args = [
     ]
 ];
 
-function comprobarYEnviar () {
+function comprobarYEnviar(): string {
         if (!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
             $name = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];

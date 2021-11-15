@@ -3,7 +3,7 @@
 require "functions.php";
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Inicio',
     'styles' => [
         'css/footer.css',
         'css/index.css',

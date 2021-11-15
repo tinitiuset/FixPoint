@@ -7,7 +7,7 @@ require "functions.php";
 
 
 $args = [
-    'title' => 'Index',
+    'title' => 'Añadir paso',
     'styles' => [
         'css/footer.css',
         'css/index.css',
