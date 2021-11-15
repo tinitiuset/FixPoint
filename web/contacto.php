@@ -12,7 +12,6 @@ $args = [
     ],
     'scripts' => [
         'js/menu.js',
-        'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/logout.js',
