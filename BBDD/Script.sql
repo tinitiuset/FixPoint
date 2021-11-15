@@ -5,12 +5,12 @@ use fixPoint;
 create table usuario
 (
     dni           char(9) primary key,
-    nombre        varchar(30) not null,
-    apellidos     varchar(30) not null,
-    administrador boolean     not null default false,
+    nombre        varchar(30)  not null,
+    apellidos     varchar(30)  not null,
+    administrador boolean      not null default false,
     password      varchar(255) not null,
-    email         varchar(50) not null unique,
-    activo        boolean     not null default false
+    email         varchar(50)  not null unique,
+    activo        boolean      not null default false
 );
 
 create table categoria
@@ -82,25 +82,25 @@ create table paso
 
 create table solicitudDonacion
 (
-    id          int primary key auto_increment,
-    nombre      varchar(30) not null,
-    apellidos   varchar(30) not null,
-    email       varchar(50) not null,
-    telefono    int(9),
-    donacion    text
+    id        int primary key auto_increment,
+    nombre    varchar(30) not null,
+    apellidos varchar(30) not null,
+    email     varchar(50) not null,
+    telefono  int(9),
+    donacion  text
 );
 
 create table solicitudAlquiler
 (
-    id_solicitud int primary key auto_increment,
-    dni                 char(9),
-    nombre              varchar(30) not null,
-    apellidos           varchar(30) not null,
-    email               varchar(50) not null,
-    id_herramienta      int,
-    disponible          boolean     not null default false,
-    alquiler_atendido   boolean     not null default false
-    
+    id_solicitud      int primary key auto_increment,
+    dni               char(9),
+    nombre            varchar(30) not null,
+    apellidos         varchar(30) not null,
+    email             varchar(50) not null,
+    id_herramienta    int,
+    disponible        boolean     not null default false,
+    alquiler_atendido boolean     not null default false
+
 );
 
 create table alquileres_eliminados
@@ -110,24 +110,25 @@ create table alquileres_eliminados
     id_herramienta int,
     fechaInicio    date not null,
     fechaFin       date not null
-    
-);
 
+);
 
 
 /* CREACION TRIGGERS */
 
- CREATE TRIGGER alquiler_herramienta
- AFTER INSERT ON solicitudAlquiler
- FOR EACH ROW
- INSERT INTO alquiler(dni, id_herramienta, fechaInicio)
- VALUES(NEW.dni, NEW.id_herramienta,CURRENT_DATE());
+CREATE TRIGGER alquiler_herramienta
+    AFTER INSERT
+    ON solicitudAlquiler
+    FOR EACH ROW
+    INSERT INTO alquiler(dni, id_herramienta, fechaInicio)
+    VALUES (NEW.dni, NEW.id_herramienta, CURRENT_DATE());
 
-CREATE TRIGGER ELIMALQ_AD 
-AFTER DELETE ON alquiler 
-FOR EACH ROW
-INSERT INTO alquileres_eliminados (dni, id_herramienta, fechaInicio, fechaFin)
-VALUES (old.dni, old.id_herramienta, old.fechaInicio, old.fechaFin)
+CREATE TRIGGER ELIMALQ_AD
+    AFTER DELETE
+    ON alquiler
+    FOR EACH ROW
+    INSERT INTO alquileres_eliminados (dni, id_herramienta, fechaInicio, fechaFin)
+    VALUES (old.dni, old.id_herramienta, old.fechaInicio, old.fechaFin);
 
 
 /* USUARIO ADMINISTRADOR*/
@@ -166,9 +167,9 @@ values ('Calibre Saturn 150mm', 'Mitutoyo', '150', true,
 INSERT INTO `herramienta` (`nombre`, `marca`, `modelo`, `disponible`, `foto`, `observaciones`, `idCategoria`)
 values ('Taladro dexter power', 'dexter', 'power', true,
         '8a29b4659ea86c58453b1171daf5b85ff0a58c9d.jpg'
-           ,'Taladro percutor DEXTER POWER de 900W', 3);
+           , 'Taladro percutor DEXTER POWER de 900W', 3);
 
 INSERT INTO `herramienta` (`nombre`, `marca`, `disponible`, `foto`, `observaciones`, `idCategoria`)
-values ('Radial HITACHI', 'HITACHI',  true,
+values ('Radial HITACHI', 'HITACHI', true,
         '17d8a84c40e361479eb34c954406da858f42fca7.jpg'
-           ,'Radial HITACHI con maletin.', 4);
+           , 'Radial HITACHI con maletin.', 4);
