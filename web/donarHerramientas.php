@@ -1,8 +1,8 @@
 <?php
+
 use Grupo3\FixPoint\Connection;
 
 require "functions.php";
-
 
 $args = [
     'title' => 'Donar Herramientas',
@@ -23,23 +23,26 @@ $args = [
     ]
 ];
 
-function comprobarYEnviar(): string {
-        if (!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
-            $name = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $email = $_POST['email'];
-            $telf = $_POST['telefono'];
-            $msg = $_POST['donacion'];
-            Connection::executeQuery("INSERT INTO solicituddonacion (nombre, apellidos, email, telefono, donacion)
+function comprobarYEnviar(): string
+{
+    if (!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['email']) && !empty($_POST['donacion'])) {
+        $name = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $email = $_POST['email'];
+        $telf = $_POST['telefono'];
+        $msg = $_POST['donacion'];
+        Connection::executeQuery("INSERT INTO solicituddonacion (nombre, apellidos, email, telefono, donacion)
             VALUES ('$name', '$apellidos', '$email', '$telf', '$msg')");
         return "Gracias por su colaboración, nos pondremos en contacto con usted.";
 
-        } 
+    }
+        return "Error en el envio, pongase en contacto con el administrador";
 }
 
-function getContent () {
-    
-    $content= '
+function getContent()
+{
+
+    $content = '
     <h1 id="tituloTools">¡Necesitamos herramientas!</h1>
     <div class="containerDonar">
         <div Class="imagen">
