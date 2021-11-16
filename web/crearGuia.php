@@ -26,8 +26,8 @@ $args = [
 
 function getContent()
 {
-    //Comprobamos que el usuario esté logueado para poder crear una guía
-    if (!isset($_SESSION['user'])) {
+    //Comprobamos que el usuario esté logado para poder crear una guía
+    if (!isset($_SESSION['user'])) { //si NO está logado, saca la modal encima de la página
     echo'
     <div class="modalConfirmarGuia" id="modalConfirmarGuia">
         <div class="modalContenidoConfirmar">
@@ -63,7 +63,7 @@ function getContent()
             </div>
         </div>
         ';
-    } else {
+    } else { //si está logado, se pinta el formulario para crear guía
         echo '
         <div class="guiaContainer">
             <div class="form-style">

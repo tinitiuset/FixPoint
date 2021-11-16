@@ -1,4 +1,6 @@
-function mensaje()
+function modalAlquiler()
 {
-    alert('Herramienta reservada, nos pondremos en contacto con usted');
+    if (!isset($_SESSION['user'])) {
+        
+    }
 }
