@@ -13,6 +13,7 @@ $args = [
         'css/header.css',
         'css/ventanasModales.css',
         'css/crearGuia.css',
+        'css/productos.css'
     ],
 
     'scripts' => [
@@ -25,27 +26,23 @@ $args = [
     ]
 ];
 
-function createCardGuia($title, $img, $id): string {
-    $estado = Connection::executeQuery('SELECT `revisada` FROM `guiadespiece` WHERE `numFicha` = "' . $id . '";')->fetchAll();
+function createCardGuia($title, $img, $id): string
+{
     $card = '
         <div class="card-wrapper">
             <div class="card">
                 <div class="image">
-                    <img src="./img/herramientas/'.$img.'" alt="'.$title.'">
+                    <img src="' . $img . '" alt="' . $title . '">
                 </div>
                 <div class="title">
-                    '.$title.'
+                    ' . $title . '
                 </div>
-                <div class="boton-wrapper">';
-    if ($estado[0]['revisada']==0 || !isset($_SESSION['user'])) {
-        $card .= '<button type="button" class="botonGuiasDesactivo" disabled>No Disponible</button>';
-    } else {
-        $card .= '
+                <div class="boton-wrapper">
         <form action="" method="post" id="forMostrarGuia">
-            <input type="hidden" name="id" value="'.$id.'">
-            <input type="submit" class="botonGuiasVista" value="Mostrar" name="btnMostrarGuia">
+            <input type="hidden" name="id" value="' . $id . '">
+            <input type="submit" class="botonGuiasVista boton" value="Mostrar" name="btnMostrarGuia">
         </form>';
-    }
+
     $card .= '
                     </div>
                 </div>
@@ -56,21 +53,24 @@ function createCardGuia($title, $img, $id): string {
 
 function getContent()
 {
-    /*CONSEGUIMOS LAS HERREMIENTAS DE BBDD*/
-    $query = Connection::executeQuery("select * from herramienta")->fetchAll();
+    /*CONSEGUIMOS LAS GUIAS DE BBDD*/
+    $query = Connection::executeQuery("select * from guiadespiece  WHERE `revisada` = 1")->fetchAll();
     $cards = '';
-    foreach ($query as $tool) {
-        $cards .= createCard($tool['nombre'], $tool['foto'], $tool['id_herramienta']);
+    foreach ($query as $guia) {
+        /*Conseguir foto de paso 1*/
+        $fotoPasoUno = Connection::executeQuery('select * from `paso`  WHERE `numpaso` = 1 and `numFicha` ="' . $guia['numFicha'] . '" ')->fetchAll();
+
+        $cards .= createCardGuia($guia['nombreMaquina'], $fotoPasoUno[0]['foto'], $guia['numFicha']);
     }
     $content = '
     <div class="product-container-text-wrapper">
         <div class="product-container-text">
-        <span>Catálogo de Productos</span>
+        <span>Guias despiece</span>
         </div>
     </div>
     <div class="product-container-wrapper">
         <div class="product-container">
-            '.$cards.'
+            ' . $cards . '
         </div>
     </div>
     ';
@@ -80,5 +80,3 @@ function getContent()
 getHeader($args);
 getContent();
 getFooter($args);
-
-?>
