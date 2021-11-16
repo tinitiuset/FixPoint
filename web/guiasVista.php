@@ -54,7 +54,7 @@ function createCardGuia($title, $img, $id): string
 function getContent()
 {
     /*CONSEGUIMOS LAS GUIAS DE BBDD*/
-    $query = Connection::executeQuery("select * from guiadespiece  WHERE `revisada` = 1")->fetchAll();
+    $query = Connection::executeQuery("select * from guiadespiece ")->fetchAll();
     $cards = '';
     foreach ($query as $guia) {
         /*Conseguir foto de paso 1*/
