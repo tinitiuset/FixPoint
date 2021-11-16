@@ -21,7 +21,6 @@ $args = [
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/logout.js',
-        'js/reservar.js',
     ]
 ];
 
@@ -44,7 +43,7 @@ function createCard($title = '', $img = '', $id = ''): string
         $card .= '
         <form action="" method="post" id="forAlquilar">
             <input type="hidden" name="id" value="'.$id.'">
-            <input type="submit" class="boton" onClick="modalAlquiler()" value="Reservar" name="btnReservar">
+            <input type="submit" class="boton" value="Reservar" name="btnReservar">
         </form>';
     }
     $card .= '
