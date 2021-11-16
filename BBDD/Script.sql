@@ -72,7 +72,7 @@ create table creadorGuia
 
 create table paso
 (
-    numpaso  int auto_increment,
+    numpaso  int,
     numficha int,
     detalle  varchar(200) not null,
     foto     varchar(255),
