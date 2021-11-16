@@ -80,6 +80,7 @@ document.onreadystatechange = function () {
             {
                 modalConfirmarGuia.style.display = "block";
                 document.querySelector("body").style.overflow = 'hidden';   // Evita que se pueda scrollear el index con el modal abierto
+
             }
             // CERRAR MODAL
             botonCancelarPaso.onclick = function () {

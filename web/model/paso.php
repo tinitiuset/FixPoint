@@ -19,10 +19,11 @@ class paso
         $this->setNumGuia($numGuia);
     }
 
-    public function createPaso()
+    public function createPaso($numPaso)
     {
-        $query = "INSERT INTO `paso`(`numficha`, `detalle`, `foto`) VALUES 
-        ('" . $this->getNumGuia() . "',
+        $query = "INSERT INTO `paso`(`numpaso`,`numficha`, `detalle`, `foto`) VALUES 
+        (     $numPaso,
+         '" . $this->getNumGuia() . "',
         '" . $this->getDetalle() . "',
         '" . $this->getFoto() . "'
         )";
