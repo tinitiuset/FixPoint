@@ -88,7 +88,20 @@ if ((isset($_POST['btnReservar'])) && (isset($_SESSION['user']))) {
     $id = $_POST['id'];
     $disponible = Connection::executeQuery('SELECT `disponible` FROM `herramienta` WHERE `id_herramienta` = "'.$id.'";')->fetchAll();
     $estadoHerramienta = $disponible[0]['disponible'];
-
+    $modalAlquiler =
+    '<div class="modalConfirmarGuia" id="modalConfirmarGuia">
+        <div class="modalContenidoConfirmar">
+            <div class="modalHeaderConfirmar">
+                <h1 id="tituloConfirmarGuia">¡Reserva confirmada!</h1>
+            </div>
+            <form action="" method="post">
+            <p>En breve recibirá un email con los detalles para recoger su herramienta</p>
+                <div class=botones>
+                    <input type="submit" id="btnAceptarGuia"  formaction="./productos.php" name="btnConfirmarPasoAceptar" value="Aceptar">
+                </div>
+            </form>
+        </div>
+    </div>';
     if (isset($_SESSION["user"])) {
         $dniUser = $_SESSION["user"]->getDni();
         $nomUser = $_SESSION["user"]->getNombre();

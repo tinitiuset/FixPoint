@@ -35,7 +35,7 @@ function comprobarYEnviar(): string
         return "Gracias por su colaboración, nos pondremos en contacto con usted.";
 
     }
-        return "Error en el envio, pongase en contacto con el administrador";
+        return "";
 }
 
 function getContent()
