@@ -43,7 +43,7 @@ function navbar(): string
     </div>
     <nav id="site-nav" class="site-nav">
         <div class="linksNav"><a href="productos.php">Catálogo</a></div>
-        <div class="linksNav"><a href="crearGuia.php">Guías despiece</a></div>
+        <div class="linksNav"><a href="guiasVista.php">Guías despiece</a></div>
         <div class="linksNav"><a href="donarHerramientas.php">Donar Herramientas</a></div>
         <div class="linksNav"><a id="iniciarSesionTablet" href="contacto.php">Contacto <i class="fas fa-envelope"></i></a></div>
         <div class="Login" id="Login">
