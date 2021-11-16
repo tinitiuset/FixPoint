@@ -266,9 +266,7 @@ function getFooter($footerArgs = null)
     $structure = '
     <footer>
         <aside class="footerAsideizquierda">
-            <p><a href="">Aviso legal</a></p>
-            <p><a href="">Política de cookies</a></p>
-            <p><a href="">Mapa web</a></p>
+            <p><a href="avisoLegal.html" target="_blank">Aviso legal</a></p>
         </aside>
         <section class="footerSectionCentro">
             <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">
