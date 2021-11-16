@@ -1,0 +1,15 @@
+.guia-container-wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.guia-container {
+    width: 100%;
+}
+.guia-container > table {
+
+}
+
+.guia-container > table > thead > tr > th {
+
+}

@@ -17,6 +17,7 @@ $args = [
         'css/index.css',
         'css/header.css',
         'css/ventanasModales.css',
+        'css/guia.css',
     ],
 
     'scripts' => [
@@ -50,19 +51,20 @@ function getContent()
         }
 
         $content= '
-        <div>
+        <div class="guia-container-wrapper">
+        <div class="guia-container" style="width: 100%;">
         <br/>
         <!--Datos tecnicos-->
-        <table border="1px solid black">
+        <table style="border: 1px solid black; width: 100%;">
             <tbody>
               <tr>
-                <td class="tg-0lax" colspan="2" rowspan="2">FICHA DE REPARACION</td>
-                <td class="tg-0lax">NUMERO DE FICHA</td>
-                <td class="tg-0lax">'.$guia->getNumFicha().'</td>
+                <td class="tg-0lax" colspan="2" rowspan="2" style="border: 1px solid black; font-weight: bold">FICHA DE REPARACION</td>
+                <td class="tg-0lax" style="border: 1px solid black;">NUMERO DE FICHA</td>
+                <td class="tg-0lax" style="border: 1px solid black;">'.$guia->getNumFicha().'</td>
               </tr>
               <tr>
-                <td class="tg-0lax">FECHA</td>
-                <td class="tg-0lax">'.$guia->getFecha().'</td>
+                <td class="tg-0lax" style="border: 1px solid black;">FECHA</td>
+                <td class="tg-0lax" style="border: 1px solid black;">'.$guia->getFecha().'</td>
               </tr>
               <tr>
                 <td class="tg-0lax">NOMBRE</td>
@@ -93,10 +95,10 @@ function getContent()
             </tbody>
         </table>
         <!--Tabla Informacion-->
-        <table border="1px solid black">
+        <table style="width: 100%; border: 1px solid black;">
             <thead>
               <tr>
-                <th colspan="2">INFORMACION DEL OBJETO A REPARAR</th>
+                <th colspan="2" style="border: 1px solid black;">INFORMACION DEL OBJETO A REPARAR</th>
               </tr>
               </thead>
               <tbody>
@@ -115,17 +117,18 @@ function getContent()
             </tbody>
             </table>
             <!--Tabla Pasos-->
-            <table border="1px solid black">
+            <table style="width: 100%; border: 1px solid black;">
                 <thead>
                   <tr>
-                    <th>SEGUIMIENTO DE LA REPARACION</th>
-                    <th>DETALLES (FOTOS)</th>
+                    <th style="border: 1px solid black;">SEGUIMIENTO DE LA REPARACION</th>
+                    <th style="border: 1px solid black;">DETALLES (FOTOS)</th>
                   </tr>
                 </thead>
                 <tbody>
                   '.$pasos.'
                 </tbody>
             </table>
+        </div>
         </div>
         ';
 
@@ -138,11 +141,13 @@ function getContent()
 function pdfForm()
 {
     $content= '
-            <div>
+            <div style="width: 80%">
+                <br/>
                 <form method="post" action="pdf.php">
                 <input type="hidden" name="html" value="'.base64_encode(getContent()).'">
                 <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./pdf.php" value="Descargar PDF" /></label>
-                </form> 
+                </form>
+                <br/> 
             </div>
         ';
     echo $content;
