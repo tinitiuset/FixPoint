@@ -21,6 +21,10 @@ p {
 }
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+.paddingForm {
+  padding-top: 15px;
+}
+
 .botones {
   display: flex;
 }
@@ -163,7 +167,7 @@ p {
 
 .modalContenidoCrear {
   width: 400px;
-  height: 640px;
+  height: 660px;
 }
 
 .modalContenidoConfirmar {

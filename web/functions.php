@@ -122,7 +122,7 @@ function crearUsuario(): string
                 <p>¿Has estado aquí antes? <a href="#" id="crearSesion_txtIniciar" class="enlace">Inicia sesión</a></p>
             </div>
             <div class="modalBodyCrear" id="modalBodyCrear">
-                <form action="" method="post" id="formularioRegistro">
+                <form Class="paddingForm" action="" method="post" id="formularioRegistro">
                     <label class="textoFormCrear" for="dni">DNI:</label><br>
                     <input class="inputCrear" type="text" name="dni" id="dni" required><br>
                     <label class="textoFormCrear for="nombre">Nombre:</label><br>
@@ -217,7 +217,7 @@ function iniciarSesion(): string
                 <p class="pCrearCuenta">Nuevo? <a class="enlace" id="iniciarSesion_txtCrear" href="#">Crear una cuenta</a></p>
             </div>
             <div class="modalBody">
-                <form action="" method="post">
+                <form Class="paddingForm" action="" method="post">
                     <label class="textoForm" for="correo">Correo electrónico</label><br>
                     <!--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
                     <input class="redondeado" type="email" placeholder="Email@ejemplo.com" name="correo"

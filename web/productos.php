@@ -65,7 +65,7 @@ function getContent()
     $content = '
     <div class="product-container-text-wrapper">
         <div class="product-container-text">
-        <span>Catálogo de Productos</span>
+        <h2 class="blackTittle">Catálogo de Productos<h2>
         </div>
     </div>
     <div class="product-container-wrapper">
