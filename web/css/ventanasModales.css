@@ -21,6 +21,29 @@ p {
 }
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+.botones {
+  display: flex;
+}
+
+#btnCancelarGuia,
+#btnAceptarGuia {
+    width: auto;
+    height: 100%;
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 14px;
+    color: #000000;
+    background-color: #eec51f;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow 200ms ease-out;
+    margin-top: 50px;
+}
+
 #tituloIniciar {
   padding: 15px 25px;
   text-align: center;
@@ -95,12 +118,18 @@ p {
   padding-top: 15px;
 }
 
-.modalHeader, .modalHeaderCrear {
+.modalHeader, 
+.modalHeaderCrear,
+.modalHeaderConfirmar {
   background-color: whitesmoke;
   padding: 2px 2px;
   border-radius: 15px;
   width: 100%;
   height: 30%;
+}
+
+.modalHeaderConfirmar {
+  height: 40%;
 }
 
 .modalHeaderCrear {
@@ -138,7 +167,7 @@ p {
 
 .modalContenidoConfirmar {
   width: 400px;
-  height: 500px;
+  height: 300px;
 }
 
 /* Botón de cerrar */

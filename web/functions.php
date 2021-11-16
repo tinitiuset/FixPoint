@@ -290,16 +290,19 @@ function getFooter($footerArgs = null)
 
 function confirmarGuia(): string
 {
+     /* Modal confirmar Guía */
     return '
     <div class="modalConfirmarGuia" id="modalConfirmarGuia">
         <div class="modalContenidoConfirmar">
-            <div class="modalHeader">
+            <div class="modalHeaderConfirmar">
                 <h1 id="tituloConfirmarGuia">¿Confirmar y añadir la guía creada?</h1>
             </div>
             <div class="modalBodyConfirmar">
                 <form action="" method="post">
-                    <p><input type="submit" id="btn-cancelarGuia" value="Cancelar"></p>
-                    <p><input type="submit" id="btn-aceptarGuia"  formaction="./guiaDespiecePaso.php" name="btnConfirmarPasoAceptar" value="Aceptar"></p>
+                    <div class=botones>
+                        <input type="submit" id="btnAceptarGuia"  formaction="./guiaDespiecePaso.php" name="btnConfirmarPasoAceptar" value="Aceptar">
+                        <input type="submit" id="btnCancelarGuia" value="Cancelar">
+                    </div>
                 </form>
             </div>
         </div>
