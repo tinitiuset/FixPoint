@@ -73,7 +73,7 @@ function getContent()
     $content = '
     <div class="product-container-text-wrapper">
         <div class="product-container-text">
-        <span>Guias despiece</span>
+        <h2 class="blackTittle">Guias despiece</h2>
         </div>
         ' . $txtCreacionGuia . '
     </div>
