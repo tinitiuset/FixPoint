@@ -74,14 +74,12 @@ if (isset($_POST['paso'])) {
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
     $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
 
-    $guia = $_SESSION['guia'];
     $paso = new paso($newfilename, $_POST["detalle"], '');
 
-    $pasos = $guia->getPasos();
+    $pasos = $_SESSION['guia']->getPasos();
     array_push($pasos, $paso);
-    $guia->setPasos($pasos);
-    
-    $_SESSION['guia'] = $guia;
+    $_SESSION['guia']->setPasos($pasos);
+
     //Crea las imágenes en la ruta deseada
     move_uploaded_file($_FILES['fileIntroducirImagen']['tmp_name'], $newfilename);
 }
@@ -90,6 +88,7 @@ if (isset($_POST['btnConfirmarPasoAceptar'])) {
     if (isset($_SESSION["user"])) {
         //Se crea la guía en la base de datos
         $_SESSION['guia']->createGuiaDespiece();
+
         //Esta función recoge el id (numFicha) de la guía desde la BD,
         // ya que se aplica automaticamente desde ahí y no desde aquí,
         // de lo contrario el valor estaría vacío
@@ -97,14 +96,26 @@ if (isset($_POST['btnConfirmarPasoAceptar'])) {
         
         $dniUser = $_SESSION["user"]->getDni();
         $numFicha = $_SESSION['guia']->getNumFicha();
+
         Connection::executeQuery("INSERT INTO creadorguia (dni, numFicha)
             VALUES ('$dniUser', '$numFicha')");
+
         $pasos = $_SESSION['guia']->getPasos();
+
         foreach ($pasos as $key => $value) {
+
             //Se añade el id de la guía a cada paso, ya que de lo contrario estarían vacíos
             $value->setNumGuia($_SESSION['guia']->getNumFicha());
-            $value->createPaso();   //Se crea el paso
+
+            //Se crea el paso con su correspondiente numero --
+            $value->createPaso($key+1);
+
+
         }
+
+        //Script para redireccionar a la pagina de guias
+        //No puedo redireccionar con el header ya que lo hemos utilizado en functions
+        echo "<script> window.location='guiasVista.php'; </script>";
     } else {
         $mensaje = "Debe iniciar sesión para crear la guía.";
         echo "<script type='text/javascript'>alert('$mensaje');</script>";
