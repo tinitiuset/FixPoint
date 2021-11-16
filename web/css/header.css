@@ -29,6 +29,10 @@ header::after {
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
 /*---------------Barra de Navegacion-----------------*/
+#usernametext {
+    margin-left: 150px;
+}
+
 .iconoLogin {
     position: absolute;
     top: 2em;
@@ -135,6 +139,7 @@ header::after {
     transform: translateY(3px); /*asi tenemos las 3 rayas de nuestro menu*/
 }
 
+
 /*-------------------------------------------version tablet------------------------------------*/
 @media (min-width: 768px) {
     .container-contact {
@@ -219,6 +224,7 @@ header::after {
 
 
 .dropdown-content {
+    display: none;
     position: sticky;
     background-color: #334756;
     min-width: 150px;
