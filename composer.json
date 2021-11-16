@@ -15,7 +15,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": "*",
-        "vlucas/phpdotenv": "5.3.x-dev",
+        "vlucas/phpdotenv": "5.4.x-dev",
         "mpdf/mpdf": "dev-development"
     },
     "require-dev": {

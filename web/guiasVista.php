@@ -53,6 +53,7 @@ function createCardGuia($title, $img, $id): string
 
 function getContent()
 {
+    /**/
     /*CONSEGUIMOS LAS GUIAS DE BBDD*/
     $query = Connection::executeQuery("select * from guiadespiece ")->fetchAll();
     $cards = '';
@@ -62,11 +63,19 @@ function getContent()
 
         $cards .= createCardGuia($guia['nombreMaquina'], $fotoPasoUno[0]['foto'], $guia['numFicha']);
     }
+
+
+    $txtCreacionGuia = '<p>¿Quieres crear una nueva guia? <a href="crearGuia.php">¡Click Aqui!</a></p>';
+
+    /*Operador ternario para mostrar mensaje para crear nueva guia si hay un usuario logueado*/
+    isset($_SESSION['logged']) ? $txtCreacionGuia : $txtCreacionGuia='';
+
     $content = '
     <div class="product-container-text-wrapper">
         <div class="product-container-text">
         <span>Guias despiece</span>
         </div>
+        ' . $txtCreacionGuia . '
     </div>
     <div class="product-container-wrapper">
         <div class="product-container">
