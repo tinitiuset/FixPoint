@@ -228,7 +228,7 @@ function iniciarSesion(): string
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <p><input type="submit" formaction="#modalIniciar" class="btn-iniciarSesion" value="Iniciar sesión"></p>
-                    <p>' . $msg . '</p>
+                    <p id="loginErrorMessage">' . $msg . '</p>
                 </form>
             </div>
         </div>
@@ -244,7 +244,9 @@ function handleIniciarSesion($correo, $pass)
         $user->getUser($correo, $pass);
 
         if ($user->getDni() == null) {
-            return "Email y/o Contrasenña incorrectos.";
+            unset($_POST['correo']);
+            unset($_POST['pass']);
+            return "Email y/o Contraseña incorrectos.";
         } else {
             $_SESSION["logged"] = true;
             $_SESSION["user"] = $user;
@@ -252,7 +254,7 @@ function handleIniciarSesion($correo, $pass)
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'index.php';
             header("Location: http://$host$uri#");
-            exit();
+            //exit();=>Traperada Máxima, no se debe interrumpir la ejecución del código!!!
         }
     } catch (Exception $e) {
         return $e;
