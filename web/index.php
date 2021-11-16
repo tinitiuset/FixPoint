@@ -25,7 +25,7 @@ $cardContent = [
         'imagen' => './img/ayuda.jpg',
         'titulo' => 'Resuelve problemas',
         'descripcion' => 'Obtenga ayuda para reparar sus herramientas con los manuales de reparación de FixPoint.',
-        'enlace' => 'crearGuia.php',
+        'enlace' => 'guiasVista.php',
         'btnNombre' => 'Manuales de despiece'
     ], [
         'imagen' => './img/mejorar.jpg',
@@ -37,7 +37,7 @@ $cardContent = [
         'imagen' => './img/resolver.jpg',
         'titulo' => 'Ayudanos a traducir',
         'descripcion' => '¡Traduzca FixPoint a su lengua materna y ponga la información de reparación a disposición de todos!',
-        'enlace' => 'crearGuia.php',
+        'enlace' => 'guiasVista.php',
         'btnNombre' => 'Traducir guías'
     ] 
 ];
@@ -109,7 +109,7 @@ function getContent($cardContent)
             </div>
         </div>
         <div class="multimediaVideo">
-            <iframe width="400" height="315" src="https://www.youtube.com/embed/yLU_cSNogF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="indexVideo" width="400" height="315" src="https://www.youtube.com/embed/yLU_cSNogF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
     ';
