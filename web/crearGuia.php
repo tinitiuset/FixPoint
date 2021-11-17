@@ -92,5 +92,11 @@ function getContent()
 }
 
 getHeader($args);
+
+function comprobarSiExiste() {
+    // Connection::executeQuery("SELECT COUNT(numFicha) FROM guiadespiece WHERE nombreMaquina LIKE ' $obj. ' ");
+    echo $_POST["nombreMaquina"];
+}
+
 getContent();
 getFooter($args);

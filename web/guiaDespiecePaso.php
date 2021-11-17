@@ -55,6 +55,21 @@ function getContent()
     echo $content;
 }
 
+//Aquí detectará si el nombre dado a la guía está en uso, y de ser así, te reenviará a la página "crearGuia"
+//ESTÁ ENCIMA DEL "getHeader" PORQUE DE LO CONTRARIO NO DEJARÍA REENVIAR MODIFICANDO LA URL
+//Se recogen los nombres de todas las guías creadas
+$query = Connection::executeQuery("SELECT nombreMaquina FROM guiadespiece")->fetchColumn();
+//Se recoge la cantidad de guías creadas
+$cantidad = Connection::executeQuery("SELECT COUNT(*) FROM guiadespiece")->rowCount();
+//Se recorren todas las guías buscando si el nombre dado se repite
+for ($i=0; $i < $cantidad; $i++) { 
+    if ($_POST['nombreMaquina'] === $query[$i]) {
+        //Te devuelve a "crearGuia"
+        header("Location: ../web/crearGuia.php");
+        exit();
+    }
+}
+
 getHeader($args);
 
 if (isset($_POST['guia'])) {
