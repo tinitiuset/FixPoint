@@ -80,7 +80,7 @@ function getContent()
                         <div class="formButtons">
                             <label class="formButton"><span> </span><input type="reset" value="Limpiar" /></label>
                             &nbsp;
-                            <label class="formButton"><span> </span><input type="submit" formaction="./Paso.php" value="Siguiente" /></label>
+                            <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Siguiente" /></label>
                             
                         </div>
                     </form>

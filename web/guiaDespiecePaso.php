@@ -42,9 +42,9 @@ function getContent()
                     <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./Paso.php" value="Añadir paso" /></label>
                     &nbsp;
                     <label class="formButton"><span> </span><input type="button"';
-                    if(count($_SESSION['guia']->getPasos()) === 0) {
+                    if (count($_SESSION['guia']->getPasos()) === 0) {
                         $content .= 'disabled';
-                    };
+                    }
                     $content .= '
                     id="botonAceptar" name="accion" value="Aceptar"/></label>
                 </div>
