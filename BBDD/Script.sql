@@ -52,13 +52,14 @@ create table alquiler
 create table guiaDespiece
 (
     numFicha      int primary key auto_increment,
-    fecha         date    default current_timestamp,
-    nombreMaquina varchar(15)           not null unique,
-    revisada      boolean default false not null,
-    ocurrencia    varchar(70)           not null,
-    propuesta     varchar(70)           not null,
-    averias       varchar(80)           not null,
-    solucion      varchar(70)           not null
+    fecha         timestamp default current_timestamp,
+    nombreMaquina varchar(15)             not null unique,
+    revisada      boolean   default false not null,
+    ocurrencia    varchar(70)             not null,
+    propuesta     varchar(70)             not null,
+    averias       varchar(80)             not null,
+    solucion      varchar(70)             not null,
+    foto          varchar(255)            not null
 );
 
 create table creadorGuia
