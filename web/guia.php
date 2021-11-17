@@ -16,11 +16,11 @@ $args = [
         'css/header.css',
         'css/ventanasModales.css',
         'css/guia.css',
+        'css/productos.css'
     ],
 
     'scripts' => [
         'js/menu.js',
-        'js/slider.js',
         'js/modales.js',
         'js/scriptRegistro.js',
         'js/logout.js'
@@ -95,15 +95,15 @@ function getContent()
               </thead>
               <tbody>
               <tr>
-                <td>QUE ES?</td>
+                <td>¿Que es?</td>
                 <td>'.$guia->getPropuesta().'</td>
               </tr>
               <tr>
-                <td>QUE LE PASA?</td>
+                <td>¿Que le ocurre?</td>
                 <td>'.$guia->getAverias().'</td>
               </tr>
               <tr>
-                <td>QUE TE PROPONES HACER?</td>
+                <td>¿Que te propones hacer?</td>
                 <td>'.$guia->getSolucion().'</td>
               </tr>
             </tbody>
@@ -138,7 +138,9 @@ function pdfForm()
                 <br/>
                 <form method="post" action="pdf.php">
                 <input type="hidden" name="html" value="'.base64_encode(getContent()).'">
-                <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./pdf.php" value="Descargar PDF" /></label>
+                <div class="downloadTextBox">
+                    <label class="formButton">¡Descarga este PDF haciendo click en el botón! &nbsp;<span></span><input type="submit" class="boton" name="accion" formaction="./pdf.php" value="Descargar PDF" /></label>
+                </div>
                 </form>
                 <br/> 
             </div>
