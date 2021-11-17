@@ -1,7 +1,7 @@
 <?php
 
 use Grupo3\FixPoint\model\CreadorGuia;
-use Grupo3\FixPoint\model\guiaDespiece;
+use Grupo3\FixPoint\model\GuiaDespiece;
 use Grupo3\FixPoint\model\User;
 use Mpdf\Mpdf;
 
@@ -31,7 +31,7 @@ function getContent()
 {
     try {
         // Conseguimos la guia con el id pasado por POST
-        $guia = new guiaDespiece('', '', '', '', '', '');
+        $guia = new GuiaDespiece('', '', '', '', '', '');
         $guia->getGuiaDespiece($_POST['id']);
 
         // Conseguimos el DNI del creador de la Guia

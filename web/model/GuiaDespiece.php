@@ -8,7 +8,7 @@ use PDO;
 
 require_once __DIR__ . '/../Connection.php';
 
-class guiaDespiece
+class GuiaDespiece
 {
     private $numFicha, $nombreMaquina, $revisada, $ocurrencia, $propuesta, $averias, $solucion;
 

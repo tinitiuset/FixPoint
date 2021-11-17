@@ -1,6 +1,6 @@
 <?php
 
-use Grupo3\FixPoint\model\guiaDespiece;
+use Grupo3\FixPoint\model\GuiaDespiece;
 use Grupo3\FixPoint\model\paso;
 use Grupo3\FixPoint\Connection;
 
@@ -73,7 +73,7 @@ for ($i=0; $i < $cantidad; $i++) {
 getHeader($args);
 
 if (isset($_POST['guia'])) {
-    $guia = new guiaDespiece(
+    $guia = new GuiaDespiece(
         $_POST['fecha'],
         $_POST['nombreMaquina'],
         $_POST['ocurrencia'],

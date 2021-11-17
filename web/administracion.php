@@ -1,7 +1,7 @@
 <?php
 
 use Grupo3\FixPoint\Connection;
-use Grupo3\FixPoint\model\herramienta;
+use Grupo3\FixPoint\model\Herramienta;
 
 require_once "functions.php";
 
@@ -454,7 +454,7 @@ function getCrearHerramienta()
             $temp = explode(".", $_FILES["image"]["name"]);
             $newfilename = sha1(time()) . '.' . end($temp);
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddir . $newfilename);
-            $herramienta = new herramienta(
+            $herramienta = new Herramienta(
                 $toolName,
                 $_POST['brand'],
                 $_POST['model'],

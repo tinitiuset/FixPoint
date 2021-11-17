@@ -1,7 +1,7 @@
 <?php
 require "functions.php";
 
-use Grupo3\FixPoint\model\guiaDespiece;
+use Grupo3\FixPoint\model\GuiaDespiece;
 use Grupo3\FixPoint\Connection;
 
 

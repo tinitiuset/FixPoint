@@ -8,7 +8,7 @@ use PDO;
 
 require_once __DIR__ . '/../Connection.php';
 
-class herramienta
+class Herramienta
 {
     private $id_herramienta, $nombre, $modelo, $marca, $disponible, $foto, $observaciones, $idCategoria;
 
