@@ -122,7 +122,7 @@ function crearUsuario(): string
                 <p>¿Has estado aquí antes? <a href="#" id="crearSesion_txtIniciar" class="enlace">Inicia sesión</a></p>
             </div>
             <div class="modalBodyCrear" id="modalBodyCrear">
-                <form action="" method="post" id="formularioRegistro">
+                <form Class="paddingForm" action="" method="post" id="formularioRegistro">
                     <label class="textoFormCrear" for="dni">DNI:</label><br>
                     <input class="inputCrear" type="text" name="dni" id="dni" required><br>
                     <label class="textoFormCrear for="nombre">Nombre:</label><br>
@@ -217,18 +217,18 @@ function iniciarSesion(): string
                 <p class="pCrearCuenta">Nuevo? <a class="enlace" id="iniciarSesion_txtCrear" href="#">Crear una cuenta</a></p>
             </div>
             <div class="modalBody">
-                <form action="" method="post">
+                <form Class="paddingForm" action="" method="post">
                     <label class="textoForm" for="correo">Correo electrónico</label><br>
                     <!--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
                     <input class="redondeado" type="email" placeholder="Email@ejemplo.com" name="correo"
                     required title="Utiliza un correo válido, con esta estructura:Email@ejemplo.com" autofocus><br><br>
-                    <label class="textoForm" for="pass">Contraseña <a href="" id="recuperar" class="enlace">Se te olvidó?</a></label>
+                    <label class="textoForm" for="pass">Contraseña</label>
                     <!--pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"-->
                     <input class="redondeado" type="password" name="pass" 
                     title="Una contraseña válida es un conjuto de caracteres, donde cada uno consiste de una letra mayúscula o minúscula, o un dígito.
                     La contraseña debe empezar con una letra y contener al menor un dígito" required><br>
                     <p><input type="submit" formaction="#modalIniciar" class="btn-iniciarSesion" value="Iniciar sesión"></p>
-                    <p>' . $msg . '</p>
+                    <p id="loginErrorMessage">' . $msg . '</p>
                 </form>
             </div>
         </div>
@@ -244,7 +244,9 @@ function handleIniciarSesion($correo, $pass)
         $user->getUser($correo, $pass);
 
         if ($user->getDni() == null) {
-            return "Email y/o Contrasenña incorrectos.";
+            unset($_POST['correo']);
+            unset($_POST['pass']);
+            return "Email y/o Contraseña incorrectos.";
         } else {
             $_SESSION["logged"] = true;
             $_SESSION["user"] = $user;
@@ -252,7 +254,7 @@ function handleIniciarSesion($correo, $pass)
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'index.php';
             header("Location: http://$host$uri#");
-            exit();
+            //exit();=>Traperada Máxima, no se debe interrumpir la ejecución del código!!!
         }
     } catch (Exception $e) {
         return $e;
@@ -264,9 +266,7 @@ function getFooter($footerArgs = null)
     $structure = '
     <footer>
         <aside class="footerAsideizquierda">
-            <p><a href="">Aviso legal</a></p>
-            <p><a href="">Política de cookies</a></p>
-            <p><a href="">Mapa web</a></p>
+            <p><a href="avisoLegal.html" target="_blank">Aviso legal</a></p>
         </aside>
         <section class="footerSectionCentro">
             <img id="logoByN" src="./img/LogoFix(b&w).png" alt="FixPoint">

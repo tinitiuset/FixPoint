@@ -20,6 +20,7 @@ $args = [
     ]
 ];
 
+/*Creo un array multidimensional que contiene la información necesaria para cargar las distintas tarjetas*/ 
 $cardContent = [
     [
         'imagen' => './img/ayuda.jpg',
@@ -42,7 +43,7 @@ $cardContent = [
     ] 
 ];
 
-function createCard($img = '',$titulo = '',$descripcion = '',$enlace = '',$nombreBoton = ''): string
+function createCard($img = '',$titulo = '',$descripcion = '',$enlace = '',$nombreBoton = ''): string // Función que crea una tarjeta
 {
     $cardComunity = '
         <div class="cardComunity-wrapper">
@@ -63,12 +64,11 @@ function createCard($img = '',$titulo = '',$descripcion = '',$enlace = '',$nombr
 }
 
 
-function getContent($cardContent)
+function getContent($cardContent) // Función que pinta el contenido de la página principal
 {
-    $cards = [];
+    $cards = '';
     foreach ($cardContent as $card) {
-        $cardComunity = createCard($card['imagen'],$card['titulo'],$card['descripcion'],$card['enlace'],$card['btnNombre']);
-        array_push($cards,$cardComunity);
+        $cards .= createCard($card['imagen'],$card['titulo'],$card['descripcion'],$card['enlace'],$card['btnNombre']);
     };
     
 
@@ -93,9 +93,7 @@ function getContent($cardContent)
     </div>
     <div class="comunity-container-wrapper">
         <div class="comunity-container">
-            '.$cards[0].'
-            '.$cards[1].'
-            '.$cards[2].'
+            '.$cards.'
         </div>
     </div>
     <div class="containerMultimedia">
@@ -116,6 +114,6 @@ function getContent($cardContent)
     echo $content;
 }
 
-getHeader($args);
-getContent($cardContent);
-getFooter($args);
+getHeader($args); //=> Cargamos el Header
+getContent($cardContent); //=> Cargamos el contenido
+getFooter($args); //=> Cargamos el Footer

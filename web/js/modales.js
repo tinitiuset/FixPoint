@@ -2,11 +2,11 @@ document.onreadystatechange = function () {
     if (window.location.hash.substring(1) === 'modalIniciar') {
         document.getElementById("modal").style.display = "none";
         document.getElementById("modalConfirmarGuia").style.display = "none";
-    } if (window.location.hash.substring(1) === 'modal') {
+    } else if (window.location.hash.substring(1) === 'modal') {
         document.getElementById("modalIniciar").style.display = "none";
         document.getElementById("modalConfirmarGuia").style.display = "none";
 
-    } if (window.location.hash.substring(1) === 'modalConfirmarGuia') {
+    } else if (window.location.hash.substring(1) === 'modalConfirmarGuia') {
         document.getElementById("modal").style.display = "none";
         document.getElementById("modalIniciar").style.display = "none";
     } else {
@@ -65,6 +65,7 @@ document.onreadystatechange = function () {
             }
             // CERRAR MODAL
             btnCerrarModalSesion.onclick = function () {
+                document.getElementById("loginErrorMessage").textContent = "";//cuando cerramos el modal, vaciamos el mensaje
                 modalIniciarSesion.style.display = "none";
                 document.querySelector("body").style.overflow = 'visible';
             }
