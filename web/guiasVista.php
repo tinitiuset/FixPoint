@@ -40,7 +40,7 @@ function createCardGuia($title, $img, $id): string
                 <div class="boton-wrapper">
         <form action="" method="post" id="forMostrarGuia">
             <input type="hidden" name="id" value="' . $id . '">
-            <input type="submit" class="botonGuiasVista boton" value="Mostrar" name="btnMostrarGuia">
+            <input type="submit" formaction="./guia.php" class="botonGuiasVista boton" value="Mostrar" name="btnMostrarGuia">
         </form>';
 
     $card .= '
@@ -53,9 +53,8 @@ function createCardGuia($title, $img, $id): string
 
 function getContent()
 {
-    /**/
     /*CONSEGUIMOS LAS GUIAS DE BBDD*/
-    $query = Connection::executeQuery("select * from guiadespiece ")->fetchAll();
+    $query = Connection::executeQuery("select * from guiaDespiece")->fetchAll();
     $cards = '';
     foreach ($query as $guia) {
         /*Conseguir foto de paso 1*/
