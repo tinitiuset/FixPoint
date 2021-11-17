@@ -81,6 +81,9 @@ footer {
         text-align: right;
         margin-right: 20px;
     }
+    #avisoLegal {
+        margin-top: 40px;
+    }
 }
 
 @media only screen and (min-width:1200px){
@@ -98,5 +101,6 @@ footer {
     .footerAsideDerecha * {
         margin: 0.2vw;
     }
+
 }
 
