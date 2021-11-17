@@ -8,8 +8,6 @@ use Mpdf\Mpdf;
 require_once "functions.php";
 require_once __DIR__ . '/../vendor/autoload.php';
 
-
-
 $args = [
     'title' => 'Guia despiece',
     'styles' => [
@@ -32,15 +30,19 @@ $args = [
 function getContent()
 {
     try {
+        // Conseguimos la guia con el id pasado por POST
         $guia = new guiaDespiece('', '', '', '', '', '');
         $guia->getGuiaDespiece($_POST['id']);
 
+        // Conseguimos el DNI del creador de la Guia
         $creadorGuia = new creadorguia();
         $creadorGuia->getCreadorGuiaByNumFicha($guia->getNumFicha());
 
+        // Conseguimos el Usuario que ha creado la Guia
         $usuario = new User();
         $usuario->getUserPublicData($creadorGuia->getDni());
 
+        // Creamos las Filas de la tabla con los Pasos
         $pasos = '';
         foreach ($guia->getPasos() as $paso) {
             $pasos .= '
@@ -49,7 +51,7 @@ function getContent()
                         <td><img src="'.$paso['foto'].'" alt=""></td>
                     </tr>';
         }
-
+        // Creamos las tablas
         $content= '
         <div class="guia-container-wrapper">
         <div class="guia-container" style="width: 100%;">
@@ -130,6 +132,7 @@ function getContent()
 }
 function pdfForm()
 {
+    // Crear Boton de descarga de PDF
     $content= '
             <div style="width: 80%">
                 <br/>
