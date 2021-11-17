@@ -46,7 +46,7 @@ function getContent()
                         $content .= 'disabled';
                     }
                     $content .= '
-                    id="botonAceptar" name="accion" value="Aceptar"/></label>
+                    id="botonAceptar" name="accion" value="Aceptar" formaction="./guiaDespiecePaso.php"/></label>
                 </div>
             </form>
         </div>
@@ -63,7 +63,7 @@ $query = Connection::executeQuery("SELECT nombreMaquina FROM guiadespiece")->fet
 $cantidad = Connection::executeQuery("SELECT COUNT(*) FROM guiadespiece")->rowCount();
 //Se recorren todas las guías buscando si el nombre dado se repite
 for ($i=0; $i < $cantidad; $i++) { 
-    if ($_POST['nombreMaquina'] === isset($query[$i])) {
+    if (@$_POST['nombreMaquina'] === isset($query[$i])) {
         //Te devuelve a "crearGuia"
         header("Location: ../web/crearGuia.php");
         exit();
