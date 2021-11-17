@@ -64,9 +64,6 @@ $cantidad = Connection::executeQuery("SELECT COUNT(*) FROM guiadespiece")->rowCo
 //Se recorren todas las guías buscando si el nombre dado se repite
 for ($i=0; $i < $cantidad; $i++) { 
     if ($_POST['nombreMaquina'] === $query[$i]) {
-        $mensaje = "Ese nombre ya está en uso.";
-        echo "<script type='text/javascript'>alert('$mensaje');</script>";
-        sleep(5);
         //Te devuelve a "crearGuia"
         header("Location: ../web/crearGuia.php");
         exit();
