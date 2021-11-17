@@ -91,12 +91,12 @@ if ((isset($_POST['btnReservar'])) && (isset($_SESSION['user']))) {
     '<div class="modalConfirmarGuia" id="modalConfirmarGuia">
         <div class="modalContenidoConfirmar">
             <div class="modalHeaderConfirmar">
-                <h1 id="tituloConfirmarGuia">¡Reserva confirmada!</h1>
+                <h2 id="tituloConfirmarGuia" class="alquiler">¡Reserva confirmada!</h2>
             </div>
             <form action="" method="post">
-            <p>En breve recibirá un email con los detalles para recoger su herramienta</p>
+            <p class="pModalAlquilar">En breve recibirá un email con los detalles para recoger su herramienta.</p>
                 <div class=botones>
-                    <input type="submit" id="btnAceptarGuia"  formaction="./productos.php" name="btnConfirmarPasoAceptar" value="Aceptar">
+                    <input type="submit" id="btnAceptarGuia"  formaction="./productos.php" name="btnConfirmarPasoAceptar" value="Aceptar" style="margin-top: 0;">
                 </div>
             </form>
         </div>

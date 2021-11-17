@@ -122,6 +122,16 @@ class guiaDespiece
         $this->solucion = $solucion;
     }
 
+    public function recogerNombreMaquinas() {
+        $query = "SELECT nombreMaquina FROM guiadespiece";
+        Connection::executeQuery($query);
+    }
+
+    public function cantidadGuias() {
+        $query = "SELECT COUNT(*) FROM guiadespiece";
+        Connection::executeQuery($query);
+    }
+
     public function createGuiaDespieceAsAdmin()
     {
         $query = "INSERT INTO `guiaDespiece` ( `fecha`,
