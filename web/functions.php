@@ -300,7 +300,7 @@ function confirmarGuia(): string
             <div class="modalBodyConfirmar">
                 <form action="" method="post">
                     <div class=botones>
-                        <input type="submit" id="btnAceptarGuia"  formaction="./guiaDespiecePaso.php" name="btnConfirmarPasoAceptar" value="Aceptar">
+                        <input type="submit" id="btnAceptarGuia"  formaction="./Paso.php" name="btnConfirmarPasoAceptar" value="Aceptar">
                         <input type="submit" id="btnCancelarGuia" value="Cancelar">
                     </div>
                 </form>

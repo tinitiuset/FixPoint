@@ -6,7 +6,7 @@ use Grupo3\FixPoint\Connection;
 
 require_once __DIR__ . '/../Connection.php';
 
-class paso
+class Paso
 {
     private $foto;
     private $detalle;

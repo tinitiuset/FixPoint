@@ -1,7 +1,7 @@
 <?php
 
 use Grupo3\FixPoint\model\GuiaDespiece;
-use Grupo3\FixPoint\model\paso;
+use Grupo3\FixPoint\model\Paso;
 use Grupo3\FixPoint\Connection;
 
 require "functions.php";
@@ -39,7 +39,7 @@ function getContent()
                 <div class="formButtons">
                     <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
+                    <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./Paso.php" value="Añadir paso" /></label>
                     &nbsp;
                     <label class="formButton"><span> </span><input type="button"';
                     if(count($_SESSION['guia']->getPasos()) === 0) {
@@ -89,7 +89,7 @@ if (isset($_POST['paso'])) {
     $temp = explode(".", $_FILES["fileIntroducirImagen"]["name"]);
     $newfilename = $uploaddir.sha1(time()) . '.' . end($temp);
 
-    $paso = new paso($newfilename, $_POST["detalle"], '');
+    $paso = new Paso($newfilename, $_POST["detalle"], '');
 
     $pasos = $_SESSION['guia']->getPasos();
     array_push($pasos, $paso);
