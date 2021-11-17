@@ -79,16 +79,6 @@ function getContent()
                 <td class="tg-0lax" colspan="3"></td>
               </tr>
               <tr>
-                <td class="tg-0lax">CIUDAD</td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax">EDAD</td>
-                <td class="tg-0lax"></td>
-              </tr>
-              <tr>
-                <td class="tg-0lax">TELEFONO</td>
-                <td class="tg-0lax" colspan="3"></td>
-              </tr>
-              <tr>
                 <td class="tg-0lax">CORREO ELECTRONICO</td>
                 <td class="tg-0lax" colspan="3">'.$usuario->getEmail().'</td>
               </tr>
