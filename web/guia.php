@@ -33,6 +33,7 @@ function getContent()
 {
     try {
         $guia = new guiaDespiece('', '', '', '', '', '');
+        $guia->getGuiaDespiece($_POST['id']);
 
         $creadorGuia = new creadorguia();
         $creadorGuia->getCreadorGuiaByNumFicha($guia->getNumFicha());
