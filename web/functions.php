@@ -140,7 +140,7 @@ function crearUsuario(): string
                     <label class="textoFormCrear" for="passwordConfirm">Confirmar contraseña:</label><br>
                     <input class="inputCrear" type="password" name="passwordConfirm"><br><br>
                     <p><input type="submit" formaction="#modal" class="btnCrearCuenta" value="Crear cuenta"></p>
-                    <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="avisoLegal.html" class="enlace">política de privacidad</a> y <a href="terminos.html" class="enlace">términos</a>.</p>
+                    <p class="aviso">Al unirte a FixPoint, aceptas nuestra <a href="avisoLegal.html" target="_blank" class="enlace" >política de privacidad</a> y <a href="terminos.html" target="_blank" class="enlace">términos</a>.</p>
                     ' . $errMessage . '
                 </form>                
             </div>
