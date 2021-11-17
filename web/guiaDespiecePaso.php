@@ -39,7 +39,7 @@ function getContent()
                 <div class="formButtons">
                     <label class="formButton"><span> </span><input type="submit" formaction="./crearGuia.php" value="Reiniciar" formnovalidate /></label>
                     &nbsp;
-                    <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./Paso.php" value="Añadir paso" /></label>
+                    <label class="formButton"><span> </span><input type="submit" name="accion" formaction="./guiaDespiecePaso.php" value="Añadir paso" /></label>
                     &nbsp;
                     <label class="formButton"><span> </span><input type="button"';
                     if (count($_SESSION['guia']->getPasos()) === 0) {

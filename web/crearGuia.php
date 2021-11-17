@@ -54,7 +54,7 @@ function getContent()
                         <label for="field4"><span>Averias <span class="required">*</span></span><textarea name="averias" class="textarea-field" required></textarea></label>
                         <label for="field5"><span>Solucion <span class="required">*</span></span><textarea name="solucion" class="textarea-field" required></textarea></label>
                         <div class="formButtons">
-                            <label class="formButton"><span> </span><input type="submit" formaction="./Paso.php" value="Siguiente" /></label>
+                            <label class="formButton"><span> </span><input type="submit" formaction="./guiaDespiecePaso.php" value="Siguiente" /></label>
                             &nbsp;
                             <label class="formButton"><span> </span><input type="reset" value="Reiniciar" /></label>
                         </div>
