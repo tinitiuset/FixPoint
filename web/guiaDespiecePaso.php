@@ -46,7 +46,7 @@ function getContent()
                         $content .= 'disabled';
                     }
                     $content .= '
-                    id="botonAceptar" name="accion" value="Aceptar" formaction="./guiaDespiecePaso.php"/></label>
+                    id="botonAceptar" name="accion" value="Aceptar" name="btnConfirmarPasoAceptar" formaction="./guiaDespiecePaso.php"/></label>
                 </div>
             </form>
         </div>

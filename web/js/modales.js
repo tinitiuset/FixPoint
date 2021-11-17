@@ -82,7 +82,7 @@ document.onreadystatechange = function () {
 
         //  Añade el evento al botón únicamente si estamos en la sección en la que aparece,
         //  de lo contrario daría error porque no existe.
-        if (window.location.href.search('Paso.php') > 0) {
+        if (window.location.href.search('guiaDespiecePaso.php') > 0) {
             botonAceptarGuia.addEventListener("click", spawnConfirmar);
 
             //  Función para mostrar el modal "confirmar guía"
