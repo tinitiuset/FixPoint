@@ -21,6 +21,14 @@ p {
 }
 
 /*--------------------------------------- Version Movil ---------------------------------------------*/
+.alquiler {
+  margin-top: 40px;
+}
+.pModalAlquilar {
+  font-size: 20px;
+  padding: 20px;
+}
+
 .paddingForm {
   padding-top: 15px;
 }
@@ -48,6 +56,10 @@ p {
     margin-top: 50px;
 }
 
+.btnModalAlquiler {
+  margin-top: none;
+}
+
 #tituloIniciar {
   padding: 15px 25px;
   text-align: center;
@@ -61,6 +73,7 @@ p {
 #tituloConfirmarGuia {
   padding: 25px;
   text-align: center;
+  color: black;
 }
 
 .textoForm {
