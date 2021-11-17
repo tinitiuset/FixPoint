@@ -336,7 +336,7 @@ function getActivarUsuario()
 function getAdministrarAlquiler()
 {
     /*CONSEGUIMOS LOS DE BBDD*/
-    $query = Connection::executeQuery("select s.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
+    $query = Connection::executeQuery("select S.dni, S.nombre, S.apellidos, S.email, S.id_herramienta, H.nombre, S.disponible, S.alquiler_atendido, A.fechaInicio, A.fechaFin from solicitudalquiler S JOIN herramienta H ON H.id_herramienta = S.id_herramienta JOIN alquiler A ON S.id_herramienta = A.id_herramienta")->fetchAll();
     $alquileres = '';
     $mensajeAlquilerGestionado = '';
     //Kint\Kint::dump($_POST);

@@ -81,7 +81,7 @@ create table paso
     constraint fk_numFicha_paso foreign key (numFicha) references guiaDespiece (numFicha) on update cascade
 );
 
-create table solicitudDonacion
+create table solicitudaonacion
 (
     id        int primary key auto_increment,
     nombre    varchar(30) not null,
@@ -91,7 +91,7 @@ create table solicitudDonacion
     donacion  text
 );
 
-create table solicitudAlquiler
+create table solicitudalquiler
 (
     id_solicitud      int primary key auto_increment,
     dni               char(9),
