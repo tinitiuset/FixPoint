@@ -62,14 +62,15 @@ $query = Connection::executeQuery("SELECT nombreMaquina FROM guiadespiece")->fet
 //Se recoge la cantidad de guías creadas
 $cantidad = Connection::executeQuery("SELECT COUNT(*) FROM guiadespiece")->rowCount();
 //Se recorren todas las guías buscando si el nombre dado se repite
-for ($i=0; $i < $cantidad; $i++) { 
-    if (@$_POST['nombreMaquina'] === @$query[$i]) {
-        //Te devuelve a "crearGuia"
-        header("Location: ../web/crearGuia.php");
-        exit();
+if (isset($_POST['guia'])) { //esto hace que solo entre si vas desde guía
+    for ($i=0; $i < $cantidad; $i++) { 
+        if (@$_POST['nombreMaquina'] === @$query[$i]) {
+            //Te devuelve a "crearGuia"
+            header("Location: ../web/crearGuia.php");
+            exit();
+        }
     }
 }
-
 getHeader($args);
 
 if (isset($_POST['guia'])) {
