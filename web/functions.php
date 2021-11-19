@@ -74,7 +74,7 @@ function navbar(): string
                 <div class="dropdown-content">
             ';
 
-        $isAdmin ? $nav .= '<a href="administracion.php">Administracion</a>' : '';
+        $isAdmin ? $nav .= '<a href="administracion.php">Administración</a>' : '';
 
         $nav .= '
                     <a href="#" id="logOutBtn" onclick="logoutck();"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>

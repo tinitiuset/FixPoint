@@ -78,7 +78,7 @@ function getContent($cardContent)
 
     $content = '
     <div class="adminHerrContainer">
-    <h2>Administracion de herramientas</h2>
+    <h2>Administración de herramientas</h2>
         '.$cards[0].'
         '.$cards[1].'
         '.$cards[2].'
