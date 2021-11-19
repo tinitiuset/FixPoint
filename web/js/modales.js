@@ -17,7 +17,7 @@ document.onreadystatechange = function () {
         document.getElementById("modalConfirmarGuia").style.display = "none";
     }
 
-    if (document.readyState === "complete") {
+    if (document.readyState === "complete") { //describimos el estado de carga del documento
         if (document.getElementById("unirse") != null && document.getElementById("iniciarSesion") != null) {
             // MODAL CREAR SESIÓN (variables)
             let txtCrearSesion = document.getElementById("unirse");
@@ -25,7 +25,7 @@ document.onreadystatechange = function () {
             let modalCrearSesion = document.getElementById("modal");
             let btnCerrarModal = document.getElementById("cerrarCrear");
 
-            txtCrearSesion.addEventListener("click", spawn);
+            txtCrearSesion.addEventListener("click", spawn); //al hacer click llama a la función spawn
             iniciarSesion_txtCrear.addEventListener("click", spawn);
 
             // MODAL INICIAR SESIÓN (variables)

@@ -52,7 +52,7 @@ function navbar(): string
     if (!isset($_SESSION["logged"])) {
 
         $nav .= '
-            <div class="Login-a"><a id="unirse" href="#">Unete</a></div>
+            <div class="Login-a"><a id="unirse" href="#">Únete</a></div>
             <div class="icon-bar"></div>
             <div class="Login-a"><a id="iniciarSesion" href="#">Iniciar Sesión</a></div>
         ';
