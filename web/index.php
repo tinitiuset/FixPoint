@@ -31,7 +31,7 @@ $cardContent = [
     ], [
         'imagen' => './img/mejorar.jpg',
         'titulo' => 'Mejora FixPoint',
-        'descripcion' => 'Ayúdanos a mejorar las guías prácticas que otros han comenzado aportando tus conocimientos para completarlos.',
+        'descripcion' => 'Ayúdanos a mejorar las guías que otros han comenzado aportando tus conocimientos para completarlos.',
         'enlace' => 'crearGuia.php',
         'btnNombre' => 'Crear guías'
     ], [
