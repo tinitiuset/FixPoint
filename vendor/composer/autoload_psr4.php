@@ -13,7 +13,6 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Mpdf\\' => array($vendorDir . '/mpdf/mpdf/src'),
-    'Kint\\' => array($vendorDir . '/kint-php/kint/src'),
     'Grupo3\\FixPoint\\' => array($baseDir . '/web'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),

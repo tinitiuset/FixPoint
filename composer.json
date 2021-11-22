@@ -17,8 +17,5 @@
         "php": "*",
         "vlucas/phpdotenv": "5.4.x-dev",
         "mpdf/mpdf": "dev-development"
-    },
-    "require-dev": {
-        "kint-php/kint": "dev-master"
     }
 }
